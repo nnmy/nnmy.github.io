@@ -66,6 +66,8 @@
   .info .stagger > * { opacity: 0; transform: translateY(10px); transition: opacity .5s ease, transform .5s ease; }
   .info.in .stagger > * { opacity: 1; transform: none; }
   .chips { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; margin: 0; padding: 0; }
+  /* full label on wide screens, short label on phones */
+  .lg-short { display: none; }
   .chips li { font-size: 14px; padding: 2px 10px; background: var(--mist); border: 1px solid var(--line); }
   .chips li[data-tip] { position: relative; cursor: help; outline: none; }
   .chips li[data-tip]::after { content: attr(data-tip); position: absolute; bottom: calc(100% + 7px); left: 50%; transform: translate(-50%, 4px); background: var(--ink); color: #fff; font-size: 12px; font-weight: 600; padding: 3px 9px; white-space: nowrap; pointer-events: none; opacity: 0; transition: opacity .15s, transform .15s; z-index: 5; }
@@ -188,6 +190,19 @@
     .art-box { max-width: 420px; }
   }
   @media (max-width: 560px) {
+    .lg-full { display: none; }
+    .lg-short { display: inline; }
+    .chips li[data-tip]::after { content: attr(aria-label); }   /* full name + level, since the chip shows a code */
+    .tabbar { flex-wrap: nowrap; gap: 10px; }
+    .tabbar .tabs { flex-wrap: nowrap; gap: 6px; }
+    .tabbar .tab { padding: 8px 11px; font-size: 15px; white-space: nowrap; }
+    /* five nav links don't fit on small phones: let the link row scroll sideways instead of the page */
+    nav ul { min-width: 0; overflow-x: auto; scrollbar-width: none; gap: 14px; }
+    nav ul::-webkit-scrollbar { display: none; }
+    .mark { flex: none; }
+  }
+  @media (max-width: 380px) {
+    .tabbar .tab { padding: 7px 9px; font-size: 14px; }
     .mark span { display: none; }
     nav ul a { font-size: 14px; }
     .honor li { grid-template-columns: 84px 1fr auto; gap: 10px; }
@@ -237,7 +252,7 @@
           <dt>ORCID</dt>
           <dd><a href="https://orcid.org/0000-0002-7655-8903" target="_blank" rel="noopener">0000-0002-7655-8903</a></dd>
           <dt>Language</dt>
-          <dd><ul class="chips"><li tabindex="0" data-tip="Native" aria-label="Vietnamese, native">Vietnamese</li><li tabindex="0" data-tip="Business" aria-label="English, business">English</li><li tabindex="0" data-tip="Basic" aria-label="Chinese, basic">Chinese</li><li tabindex="0" data-tip="Basic" aria-label="Japanese, poor">Japanese</li></ul></dd>
+          <dd><ul class="chips"><li tabindex="0" data-tip="Native" aria-label="Vietnamese, native"><span class="lg-full">Vietnamese</span><span class="lg-short" aria-hidden="true">VN</span></li><li tabindex="0" data-tip="Business" aria-label="English, business"><span class="lg-full">English</span><span class="lg-short" aria-hidden="true">EN</span></li><li tabindex="0" data-tip="Basic" aria-label="Chinese, basic"><span class="lg-full">Chinese</span><span class="lg-short" aria-hidden="true">CN</span></li><li tabindex="0" data-tip="Basic" aria-label="Japanese, poor"><span class="lg-full">Japanese</span><span class="lg-short" aria-hidden="true">JP</span></li></ul></dd>
           <dt>Affiliation</dt>
           <dd>Nagoya Institute of Technology JP, as a Researcher</dd>
         </dl>
@@ -256,10 +271,10 @@
       <div class="tabbar">
         <div class="tabs" role="tablist" aria-label="Fields of interest" id="fieldTabs">
           <button class="tab" role="tab" id="t-ai" aria-controls="p-ai" aria-selected="true" data-art="ai">AI</button>
-          <button class="tab" role="tab" id="t-mi" aria-controls="p-mi" aria-selected="false" tabindex="-1" data-art="mi">Medical Imaging</button>
-          <button class="tab" role="tab" id="t-bem" aria-controls="p-bem" aria-selected="false" tabindex="-1" data-art="bem">Bioelectromagnetics</button>
+          <button class="tab" role="tab" id="t-mi" aria-controls="p-mi" aria-selected="false" tabindex="-1" data-art="mi"><span class="lg-full">Medical Imaging</span><span class="lg-short">Med. Imaging</span></button>
+          <button class="tab" role="tab" id="t-bem" aria-controls="p-bem" aria-selected="false" tabindex="-1" data-art="bem" aria-label="Bioelectromagnetics"><span class="lg-full">Bioelectromagnetics</span><span class="lg-short" aria-hidden="true">BEM</span></button>
         </div>
-        <label class="switch"><input type="checkbox" id="demoToggle" role="switch" checked><span class="track" aria-hidden="true"></span>Demo</label>
+        <label class="switch"><input type="checkbox" id="demoToggle" role="switch" checked aria-label="Show demo animation"><span class="track" aria-hidden="true"></span></label>
       </div>
 
       <div class="field" id="fieldBox">
@@ -301,7 +316,7 @@
 <!-- ================= 3. BACKGROUND ================= -->
 <section id="journey">
   <div class="wrap">
-    <div class="section-head reveal"><h2>Background, work and skills</h2></div>
+    <div class="section-head reveal"><h2>Background</h2></div>
 
     <div class="reveal">
       <div class="tabbar">
@@ -409,8 +424,8 @@
       <div class="tabbar">
         <div class="tabs" role="tablist" aria-label="Publications and awards" data-seg>
           <button class="tab" role="tab" id="t-jr" aria-controls="p-jr" aria-selected="true">Journal</button>
-          <button class="tab" role="tab" id="t-cf" aria-controls="p-cf" aria-selected="false" tabindex="-1">Conference</button>
-          <button class="tab" role="tab" id="t-pj" aria-controls="p-pj" aria-selected="false" tabindex="-1">Projects</button>
+          <button class="tab" role="tab" id="t-cf" aria-controls="p-cf" aria-selected="false" tabindex="-1" aria-label="Conference"><span class="lg-full">Conference</span><span class="lg-short" aria-hidden="true">Conf.</span></button>
+          <button class="tab" role="tab" id="t-pj" aria-controls="p-pj" aria-selected="false" tabindex="-1" aria-label="Projects"><span class="lg-full">Projects</span><span class="lg-short" aria-hidden="true">Proj.</span></button>
           <button class="tab" role="tab" id="t-hn" aria-controls="p-hn" aria-selected="false" tabindex="-1">Awards</button>
         </div>
       </div>
@@ -756,7 +771,7 @@ function drawHero(now) {
   if (!hero.infoShown && t > 0.9) { hero.infoShown = true; document.getElementById('info').classList.add('in'); }
 
   const cr = R * easeOutBack(clamp01((t - T.circle) / 0.7));
-  if (cr > 0) { ctx.fillStyle = '#7bcde8'; ctx.beginPath(); ctx.arc(cx, cy, cr, 0, Math.PI * 2); ctx.fill(); }
+  if (cr > 0) { ctx.fillStyle = circleColor(t); ctx.beginPath(); ctx.arc(cx, cy, cr, 0, Math.PI * 2); ctx.fill(); }
 
   const ringR = 1.13 * R, ringW = 0.035 * R;
   const rp = clamp01((t - T.ring) / T.ringDur);
@@ -818,12 +833,26 @@ function drawHero(now) {
   drawBubble(ctx, cx + 0.12 * R, cy - 0.5 * R, R, t);
 }
 
+// lightning: the inner circle flickers black / white a few times, then settles on the default blue
+const FLASH = [['#000000', 0.06], ['#FFFFFF', 0.05], ['#7bcde8', 0.09], ['#000000', 0.05], ['#FFFFFF', 0.08],
+               ['#7bcde8', 0.06], ['#FFFFFF', 0.04], ['#000000', 0.06], ['#FFFFFF', 0.05]];
+function circleColor(t) {
+  if (hero.flashStart == null) return '#7bcde8';
+  let el = t - hero.flashStart;
+  for (const [c, d] of FLASH) { if (el < d) return c; el -= d; }
+  hero.flashStart = null;
+  return '#7bcde8';
+}
+
 // tap/click ME to wave again (no visible hint)
 hero.canvas.addEventListener('click', e => {
   if (hero.start === null) return;
   const r = hero.canvas.getBoundingClientRect();
   const { R, cx, cy } = heroLayout();
-  if (Math.hypot(e.clientX - r.left - cx, e.clientY - r.top - cy) <= R * 1.2) triggerWave(heroTime(), 3, true);
+  if (Math.hypot(e.clientX - r.left - cx, e.clientY - r.top - cy) <= R * 1.2) {
+    triggerWave(heroTime(), 3, true);
+    if (!REDUCED) hero.flashStart = heroTime();
+  }
 });
 
 /* =====================================================================
@@ -1201,7 +1230,8 @@ function drawCatScene(now) {
   const targetCrouch = cat.charging ? 0.35 + 0.65 * clamp01((t - cat.chargeStart) / MAX_CHARGE) : (t < cat.land ? 0.6 : 0);
   cat.crouch += (targetCrouch - cat.crouch) * Math.min(1, dt * 14);
 
-  // bumping into the play button: knocked over, cries, gets up, walks the other way
+  // the play button: walking up to it makes the cat turn back; landing on it after a jump
+  // knocks the cat over (it cries, gets up and walks the other way)
   const BTN_R = 12, NOSE = 16 * PIX, TAIL = 11 * PIX;
   const hitsButton = () => {
     const a = cat.x - (cat.dir > 0 ? TAIL : NOSE), b = cat.x + (cat.dir > 0 ? NOSE : TAIL);
@@ -1245,7 +1275,10 @@ function drawCatScene(now) {
     cat.step += dt * 8;
     if (cat.x > W - margin) { cat.x = W - margin; cat.dir = -1; }
     if (cat.x < margin) { cat.x = margin; cat.dir = 1; }
-    if (hitsButton()) startHurt();                // walked into the button
+    if (hitsButton()) {                           // walked up to the button: turn back
+      cat.x = mid - cat.dir * (BTN_R + NOSE + 2);
+      cat.dir *= -1;
+    }
   }
 
   // charge meter above the button while holding
@@ -1303,6 +1336,5 @@ function loop(now) {
 }
 requestAnimationFrame(loop);
 </script>
-<script data-goatcounter="https://nnmy99.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </body>
 </html>
