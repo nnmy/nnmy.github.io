@@ -1,0 +1,1306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>My N. Nguyen | Researcher profile</title>
+<link rel="icon" type="image/svg+xml" href="lib/logo.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Pixelify+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<!--
+  =====================================================================
+  HOW TO EDIT
+  - Text content lives in the HTML below; search for "EDIT" comments.
+  - Skill tags: class lv3 / lv2 / lv1 = confidence, class sw = software.
+  - Reusable assets live in the <script> block:
+      PALETTE, ME_FRAMES (pixel art of ME: 0-2 neutral, 3-5 smiling),
+      drawVietnamFlag / drawTaiwanFlag / drawJapanFlag, renderFlag().
+  =====================================================================
+-->
+<style>
+  :root {
+    --sky: #7bcde8;
+    --sea: #3787c4;
+    --ink: #1B1920;
+    --paper: #FBFCFD;
+    --mist: #EEF6FA;
+    --gray: #E8ECF0;
+    --line: #DCE6EC;
+    --muted: #59606B;
+    --skin: #F1AF90;
+    --pixel: "Pixelify Sans", "Courier New", monospace;
+    --body: "Figtree", "Segoe UI", system-ui, -apple-system, sans-serif;
+    --nav-h: 60px;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: var(--nav-h); }
+  body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--body); font-size: 17px; line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+  h1, h2, h3, h4 { font-family: var(--pixel); font-weight: 600; line-height: 1.15; margin: 0; }
+  a { color: var(--sea); }
+  :focus-visible { outline: 3px solid var(--sea); outline-offset: 3px; }
+
+  /* ---------- nav ---------- */
+  nav { position: fixed; inset: 0 0 auto 0; height: var(--nav-h); z-index: 10; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 0 clamp(14px, 4vw, 48px); background: rgba(251,252,253,.88); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+  .mark { font-family: var(--pixel); font-weight: 700; font-size: 18px; color: var(--ink); text-decoration: none; display: flex; align-items: center; gap: 10px; white-space: nowrap; }
+  .mark img { width: 30px; height: 30px; display: block; flex: none; }
+  nav ul { list-style: none; display: flex; gap: clamp(10px, 2.6vw, 30px); margin: 0; padding: 0; }
+  nav ul a { color: var(--muted); text-decoration: none; font-weight: 500; font-size: 15px; padding: 4px 0; border-bottom: 2px solid transparent; white-space: nowrap; }
+  nav ul a.active, nav ul a:hover { color: var(--ink); border-bottom-color: var(--sea); }
+
+  section { padding: clamp(64px, 9vw, 120px) clamp(16px, 5vw, 64px); }
+  .wrap { max-width: 1180px; margin: 0 auto; }
+  .section-head { margin-bottom: 28px; }
+  .section-head h2 { font-size: clamp(28px, 4.4vw, 46px); }
+
+  /* ---------- 1. overview ---------- */
+  #profile { min-height: 100svh; padding-top: calc(var(--nav-h) + 24px); padding-bottom: 48px; display: flex; align-items: center; position: relative; }
+  .hero { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: clamp(8px, 4vw, 56px); align-items: center; width: 100%; }
+  .stage { position: relative; height: min(76vh, 640px); min-height: 380px; }
+  .stage canvas { width: 100%; height: 100%; display: block; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+  .info h1 { font-size: clamp(34px, 4.6vw, 54px); }
+  .info .role { color: var(--muted); margin: 12px 0 24px; max-width: 38ch; }
+  .info dl { margin: 0; display: grid; grid-template-columns: max-content 1fr; gap: 14px 20px; border-top: 1px solid var(--line); padding-top: 22px; }
+  .info dt { font-weight: 600; font-size: 15px; color: var(--muted); }
+  .info dd { margin: 0; font-weight: 500; }
+  .info .stagger > * { opacity: 0; transform: translateY(10px); transition: opacity .5s ease, transform .5s ease; }
+  .info.in .stagger > * { opacity: 1; transform: none; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; margin: 0; padding: 0; }
+  .chips li { font-size: 14px; padding: 2px 10px; background: var(--mist); border: 1px solid var(--line); }
+  .chips li[data-tip] { position: relative; cursor: help; outline: none; }
+  .chips li[data-tip]::after { content: attr(data-tip); position: absolute; bottom: calc(100% + 7px); left: 50%; transform: translate(-50%, 4px); background: var(--ink); color: #fff; font-size: 12px; font-weight: 600; padding: 3px 9px; white-space: nowrap; pointer-events: none; opacity: 0; transition: opacity .15s, transform .15s; z-index: 5; }
+  .chips li[data-tip]::before { content: ""; position: absolute; bottom: calc(100% + 2px); left: 50%; transform: translateX(-50%); border: 5px solid transparent; border-bottom: 0; border-top-color: var(--ink); opacity: 0; transition: opacity .15s; }
+  .chips li[data-tip]:hover::after, .chips li[data-tip]:focus::after { opacity: 1; transform: translate(-50%, 0); }
+  .chips li[data-tip]:hover::before, .chips li[data-tip]:focus::before { opacity: 1; }
+  .chips li[data-tip]:focus-visible { border-color: var(--sea); }
+  .scroll-hint { position: absolute; bottom: 18px; left: 50%; transform: translateX(-50%); width: 20px; height: 12px; animation: bob 1.8s ease-in-out infinite; }
+  @keyframes bob { 50% { transform: translate(-50%, 6px); } }
+
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
+  .reveal.in { opacity: 1; transform: none; }
+
+  /* ---------- 2. fields of interest ---------- */
+  #interests { background: var(--mist); }
+  .tabbar { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; margin-bottom: 24px; }
+  .tabs { display: flex; flex-wrap: wrap; gap: 10px; }
+  .tab { font: 600 16px var(--body); color: var(--ink); background: #fff; border: 2px solid var(--ink); padding: 9px 16px; cursor: pointer; transition: background .2s, color .2s, transform .15s; }
+  .tab:hover { transform: translateY(-2px); }
+  .tab[aria-selected="true"] { background: var(--ink); color: #fff; box-shadow: 4px 4px 0 var(--sea); }
+  .switch { display: inline-flex; align-items: center; gap: 10px; font-weight: 600; font-size: 15px; cursor: pointer; user-select: none; }
+  .switch input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+  .switch .track { width: 44px; height: 24px; background: #C9CFD6; position: relative; transition: background .2s; flex: none; }
+  .switch .track::after { content: ""; position: absolute; top: 3px; left: 3px; width: 18px; height: 18px; background: #fff; transition: transform .2s; }
+  .switch input:checked + .track { background: var(--sea); }
+  .switch input:checked + .track::after { transform: translateX(20px); }
+  .switch input:focus-visible + .track { outline: 3px solid var(--sea); outline-offset: 3px; }
+
+  .field { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: clamp(18px, 4vw, 44px); align-items: center; background: #fff; border: 2px solid var(--ink); padding: clamp(16px, 3vw, 30px); }
+  .field.no-demo { grid-template-columns: 1fr; }
+  .field.no-demo .art-box { display: none; }
+  .art-box { width: 100%; max-width: 380px; justify-self: center; }
+  .field-art { width: 100%; aspect-ratio: 4 / 3; display: block; border: 1px solid var(--line); }
+  .field h3 { font-size: clamp(22px, 3vw, 30px); margin-bottom: 10px; }
+  .field p { margin: 0 0 16px; color: #333842; max-width: 60ch; }
+  .field h4 { font-family: var(--body); font-size: 14px; font-weight: 700; color: var(--muted); margin: 0 0 6px; }
+  .links { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; font-size: 15px; }
+  .links li { padding-left: 16px; position: relative; }
+  .links li::before { content: ""; position: absolute; left: 0; top: .6em; width: 6px; height: 6px; background: var(--sea); }
+  .tabpanel[hidden] { display: none; }
+  .tabpanel.enter { animation: enter .45s ease; }
+  @keyframes enter { from { opacity: 0; transform: translateY(10px); } }
+
+
+  .timeline { list-style: none; margin: 0; padding: 0; position: relative; max-width: 840px; }
+  .timeline::before { content: ""; position: absolute; left: 31px; top: 10px; bottom: 44px; width: 2px; background: repeating-linear-gradient(var(--ink) 0 6px, transparent 6px 12px); }
+  .timeline li { display: grid; grid-template-columns: 64px 1fr; gap: 20px; padding: 0 0 32px; position: relative; }
+  .timeline .badge { width: 64px; display: flex; justify-content: center; position: relative; z-index: 1; }
+  .logo-ph { width: 50px; height: 50px; background: #fff; display: grid; place-items: center; font: 600 13px var(--body); color: var(--muted); text-align: center; }
+  .logo-ph img { width: 100%; height: 100%; object-fit: contain; }
+  .year { width: 54px; height: 54px; background: var(--sea); color: #fff; display: grid; place-items: center; font: 700 15px var(--body); }
+  .timeline h3 { font-family: var(--body); font-weight: 700; font-size: 20px; }
+  .timeline .meta { color: var(--muted); font-size: 15px; margin: 2px 0 6px; }
+  .timeline p { margin: 0; max-width: 62ch; }
+  .tabpanel.enter .timeline li, .tabpanel.enter .pub li, .tabpanel.enter .proj li { animation: enter .5s ease backwards; }
+  .tabpanel.enter li:nth-child(2) { animation-delay: .08s; }
+  .tabpanel.enter li:nth-child(3) { animation-delay: .16s; }
+  .tabpanel.enter li:nth-child(4) { animation-delay: .24s; }
+
+  .skills { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 28px 40px; }
+  .skill-group h3 { font-family: var(--body); font-weight: 700; font-size: 18px; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 2px solid var(--ink); }
+  .skill-group h4 { font: 600 14px var(--body); color: var(--muted); margin: 12px 0 8px; }
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; margin: 0; padding: 0; }
+  .tags li { font-size: 15px; font-weight: 500; padding: 4px 12px; }
+  .tags .lv3 { background: #B7BEC6; color: var(--ink); }
+  .tags .lv2 { background: #D4D9DE; color: var(--ink); }
+  .tags .lv1 { background: #EDF0F3; color: var(--ink); }
+  .tags .sw { background: #fff; border: 1.5px dashed var(--ink); padding: 3px 11px; }
+  .tabpanel.enter .tags li { animation: pop .35s ease backwards; }
+  @keyframes pop { from { opacity: 0; transform: scale(.85); } }
+
+  /* ---------- 4. publications ---------- */
+  #publications { background: var(--mist); }
+  .pub { margin: 0; padding: 0; list-style: none; counter-reset: pub; max-width: 900px; }
+  .pub li { counter-increment: pub; display: grid; grid-template-columns: 36px 1fr; font-size: 16px; gap: 8px; padding: 14px 0; border-bottom: 1px solid var(--line); }
+  .pub li::before { content: "[" counter(pub) "]"; font-weight: 700; color: var(--sea); }
+  .pub-group { font-family: var(--body); font-weight: 700; font-size: 18px; margin: 4px 0 4px; }
+  .pub + .pub-group { margin-top: 32px; }
+  .pub a.title { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--sky); }
+  .pub a.title:hover { color: var(--sea); }
+  .pub .title { font-weight: 600; }
+  .pub .venue { font-style: italic; }
+  .q { display: inline-block; font: 700 12px var(--body); background: #D6EEF8; color: #1F5E8C; padding: 1px 8px; margin-left: 6px; vertical-align: 1px; }
+  .q.q2 { background: #E3E8EE; color: #3E4650; }
+  /* projects */
+  .proj { list-style: none; margin: 0; padding: 0; max-width: 900px; }
+  .proj li { display: grid; grid-template-columns: 112px 1fr; gap: 4px 20px; padding: 16px 0; border-bottom: 1px solid var(--line); }
+  .proj .yr { font-weight: 700; color: var(--sea); }
+  .proj .name { font-weight: 700; font-size: 17px; line-height: 1.4; }
+  .proj .jp { font-weight: 500; }
+  .proj .meta { color: var(--muted); font-size: 15px; margin-top: 2px; }
+  .proj .role { font-size: 15px; margin-top: 2px; }
+  .proj .role b { font-weight: 600; }
+  @media (max-width: 560px) { .proj li { grid-template-columns: 1fr; gap: 2px; } }
+
+  .awards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 28px 48px; max-width: 1000px; }
+  .awards h3 { font-family: var(--body); font-weight: 700; font-size: 18px; padding-bottom: 8px; border-bottom: 2px solid var(--ink); margin-bottom: 4px; }
+  .honor { list-style: none; margin: 0; padding: 0; }
+  .honor li { display: grid; grid-template-columns: 92px 1fr auto; gap: 12px; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--line); }
+  .honor .when { font-weight: 700; font-size: 15px; color: var(--sea); }
+  .honor canvas { display: block; }
+
+  /* ---------- footer with the cat ---------- */
+  footer { padding: 24px clamp(16px, 5vw, 64px) 36px; }
+  .cat-lane { max-width: 1180px; margin: 0 auto; position: relative; }
+  /* tall enough that a jumping or standing cat always stays inside the footer */
+  #catCanvas { width: 100%; height: 140px; display: block; position: relative; z-index: 2; pointer-events: none; }
+  .cat-btn { position: absolute; left: 50%; top: calc(140px - 24px); transform: translate(-50%, -50%); z-index: 1;
+    width: 40px; height: 40px; border: 0; background: none; cursor: pointer; display: grid; place-items: center; padding: 0; transition: transform .15s; -webkit-tap-highlight-color: transparent; }
+  .cat-btn:hover { transform: translate(-50%, -50%) scale(1.08); }
+  .cat-btn:active { transform: translate(-50%, -50%) scale(.9); }
+  .cat-btn svg { width: 24px; height: 24px; display: block; }
+  .cat-btn { touch-action: manipulation; user-select: none; -webkit-user-select: none; -webkit-touch-callout: none; }
+  .cat-btn.charging svg .bg { fill: #7bcde8; }
+  .foot-row { display: flex; align-items: center; justify-content: center; gap: 16px; flex-wrap: wrap; margin-top: 10px; color: var(--muted); font-size: 14px; }
+
+  @media (max-width: 860px) {
+    .hero, .field { grid-template-columns: 1fr; }
+    .stage { height: clamp(300px, 92vw, 60vh); min-height: 0; }
+    .art-box { max-width: 420px; }
+  }
+  @media (max-width: 560px) {
+    .mark span { display: none; }
+    nav ul a { font-size: 14px; }
+    .honor li { grid-template-columns: 84px 1fr auto; gap: 10px; }
+    .timeline li { grid-template-columns: 56px 1fr; gap: 14px; }
+    .timeline .badge { width: 56px; }
+    .timeline::before { left: 27px; }
+    .logo-ph, .year { width: 50px; height: 50px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .reveal, .info .stagger > *, .tabpanel.enter, .tabpanel.enter li, .tabpanel.enter .tags li { transition: none; animation: none; opacity: 1; transform: none; }
+    .scroll-hint { animation: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav aria-label="Sections">
+  <a class="mark" href="#profile"><img src="lib/logo-my.svg" alt="" width="30" height="30"><span>My N. Nguyen</span></a>
+  <ul>
+    <li><a href="#profile">Profile</a></li>
+    <li><a href="#interests">Interests</a></li>
+    <li><a href="#journey">Background</a></li>
+    <li><a href="#publications">Publications</a></li>
+  </ul>
+</nav>
+
+<main>
+<!-- ================= 1. OVERVIEW ================= -->
+<section id="profile">
+  <div class="wrap hero">
+    <div class="stage">
+      <canvas id="heroCanvas" role="img" aria-label="Pixel art portrait smiling and waving hello, with degrees: Eng. CTU in Vietnam, MSc. NCTU in Taiwan, PhD. KIT in Japan"></canvas>
+    </div>
+
+    <!-- EDIT: basic info -->
+    <div class="info" id="info">
+      <div class="stagger">
+        <h1>My N. Nguyen</h1>
+        <p class="role">Researcher working in the medical imaging field.</p>
+        <dl>
+          <dt>Full name</dt>
+          <dd>Nguyễn Ngọc Mỹ</dd>
+          <dt>Birthplace</dt>
+          <dd>Long Điền, An Giang VN</dd>
+          <dt>ORCID</dt>
+          <dd><a href="https://orcid.org/0000-0002-7655-8903" target="_blank" rel="noopener">0000-0002-7655-8903</a></dd>
+          <dt>Language</dt>
+          <dd><ul class="chips"><li tabindex="0" data-tip="Native" aria-label="Vietnamese, native">Vietnamese</li><li tabindex="0" data-tip="Business" aria-label="English, business">English</li><li tabindex="0" data-tip="Basic" aria-label="Chinese, basic">Chinese</li><li tabindex="0" data-tip="Basic" aria-label="Japanese, poor">Japanese</li></ul></dd>
+          <dt>Affiliation</dt>
+          <dd>Nagoya Institute of Technology JP, as a Researcher</dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+  <svg class="scroll-hint" viewBox="0 0 5 3" shape-rendering="crispEdges" aria-hidden="true"><path d="M0 0h1v1h1v1h1v-1h1v-1h1v1h-1v1h-1v1h-1v-1h-1v-1h-1z" fill="#3787c4"/></svg>
+</section>
+
+<!-- ================= 2. FIELDS OF INTEREST ================= -->
+<section id="interests">
+  <div class="wrap">
+    <div class="section-head reveal"><h2>Fields of interest</h2></div>
+
+    <div class="reveal">
+      <div class="tabbar">
+        <div class="tabs" role="tablist" aria-label="Fields of interest" id="fieldTabs">
+          <button class="tab" role="tab" id="t-ai" aria-controls="p-ai" aria-selected="true" data-art="ai">AI</button>
+          <button class="tab" role="tab" id="t-mi" aria-controls="p-mi" aria-selected="false" tabindex="-1" data-art="mi">Medical Imaging</button>
+          <button class="tab" role="tab" id="t-bem" aria-controls="p-bem" aria-selected="false" tabindex="-1" data-art="bem">Bioelectromagnetics</button>
+        </div>
+        <label class="switch"><input type="checkbox" id="demoToggle" role="switch" checked><span class="track" aria-hidden="true"></span>Demo</label>
+      </div>
+
+      <div class="field" id="fieldBox">
+        <div class="art-box"><canvas class="field-art" id="fieldArt" aria-hidden="true"></canvas></div>
+        <div>
+          <!-- EDIT: tab contents and publication links -->
+          <div class="tabpanel" role="tabpanel" id="p-ai" aria-labelledby="t-ai">
+            <h3>Artificial intelligence</h3>
+            <p>I build machine learning models, from classic to deep classifiers, that learn from data.</p>
+            <h4>Typical publications</h4>
+            <ul class="links">
+              <li><a href="https://doi.org/10.5573/ieiespc.2020.9.4.284" target="_blank" rel="noopener">Deep learning approaches to human gait pattern classification based on MEMS sensors</a>, IEIE Trans. Smart Processing &amp; Computing, 2020</li>
+              <li><a href="https://doi.org/10.1007/s41870-023-01687-9" target="_blank" rel="noopener">Abnormalities detection on chest radiograph with bounding box-based lungs extraction and object detection algorithm</a>, Int. J. Information Technology, 2024</li>
+            </ul>
+          </div>
+          <div class="tabpanel" role="tabpanel" id="p-mi" aria-labelledby="t-mi" hidden>
+            <h3>Medical imaging</h3>
+            <p>I work with medical images (e.g. MRI, CT, ultrasound) and exploring clinical findings from them.</p>
+            <h4>Typical publications</h4>
+            <ul class="links">
+              <li><a href="https://doi.org/10.1007/s42979-024-03025-7" target="_blank" rel="noopener">Integrated dataset-preparation system for ML-based medical image diagnosis with high clinical applicability</a>, SN Computer Science, 2024</li>
+              <li><a href="https://doi.org/10.11318/mii.41.46" target="_blank" rel="noopener">Discrimination of probe-stabilized scene from neonatal cranial ultrasonic movies by supervised learning</a>, Medical Imaging and Information Sciences, 2024</li>
+            </ul>
+          </div>
+          <div class="tabpanel" role="tabpanel" id="p-bem" aria-labelledby="t-bem" hidden>
+            <h3>Bioelectromagnetics</h3>
+            <p>I study how electromagnetic fields act on the brain, e.g. the electric field a TMS coil induces in cortex, using tissue conductivity models and simulation.</p>
+            <h4>Typical publications</h4>
+            <ul class="links">
+              <li><a href="https://doi.org/10.1016/j.neuri.2025.100255" target="_blank" rel="noopener">Age-related changes in brain fiber pathways based on directional decomposition of DTI tractograms</a>, Neuroscience Informatics, 2026</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 3. BACKGROUND ================= -->
+<section id="journey">
+  <div class="wrap">
+    <div class="section-head reveal"><h2>Background, work and skills</h2></div>
+
+    <div class="reveal">
+      <div class="tabbar">
+        <div class="tabs" role="tablist" aria-label="Background, work and skills" data-seg>
+          <button class="tab" role="tab" id="t-bg" aria-controls="p-bg" aria-selected="true">Background</button>
+          <button class="tab" role="tab" id="t-work" aria-controls="p-work" aria-selected="false" tabindex="-1">Work Experience</button>
+          <button class="tab" role="tab" id="t-skill" aria-controls="p-skill" aria-selected="false" tabindex="-1">Skill</button>
+        </div>
+      </div>
+
+      <!-- EDIT: replace each logo placeholder's text with <img src="lib/logo.png" alt=""> -->
+      <div class="tabpanel" role="tabpanel" id="p-bg" aria-labelledby="t-bg">
+        <ol class="timeline">
+          <li>
+            <div class="badge"><div class="logo-ph"><img src="lib/logo-kit.png" alt="KIT"></div></div>
+            <div>
+              <h3>PhD. in Engineering Design</h3>
+              <p class="meta">Kyoto Institute of Technology, Japan, September 2024</p>
+              <p>Research: Medical image processing and recognition.</p>
+            </div>
+          </li>
+          <li>
+            <div class="badge"><div class="logo-ph"><img src="lib/logo-nctu.png" alt="NCTU"></div></div>
+            <div>
+              <h3>MSc. in Electrical Engineering and Computer Science</h3>
+              <p class="meta">National Chiao Tung University, Taiwan, 2015</p>
+              <p>Research: Machine learning techniques for human gait recognition.</p>
+            </div>
+          </li>
+          <li>
+            <div class="badge"><div class="logo-ph"><img src="lib/logo-ctu.png" alt="CTU"></div></div>
+            <div>
+              <h3>B.Eng. in Information Technology</h3>
+              <p class="meta">Can Tho University, Vietnam, 2010</p>
+              <p>Thesis: A metadata-driven form builder system for residence management.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+
+      <!-- EDIT: replace 20XX in each blue square with the starting year -->
+      <div class="tabpanel" role="tabpanel" id="p-work" aria-labelledby="t-work" hidden>
+        <ol class="timeline">
+          <li>
+            <div class="badge"><span class="year">2015</span></div>
+            <div>
+              <h3>Lecturer</h3>
+              <p class="meta">Can Tho University, Vietnam</p>
+              <p>Taught IT-related courses and participated in some web projects.</p>
+            </div>
+          </li>
+          <li>
+            <div class="badge"><span class="year">2024</span></div>
+            <div>
+              <h3>Visiting Scholar</h3>
+              <p class="meta">Ming Chi University of Technology, Taiwan</p>
+              <p>Short-term research on ECG and delivering some talks on medical imaging.</p>
+            </div>
+          </li>
+          <li>
+            <div class="badge"><span class="year">2025</span></div>
+            <div>
+              <h3>Researcher</h3>
+              <p class="meta">Nagoya Institute of Technology, Japan</p>
+              <p>Research on neuroimaging and brain stimulation.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+
+      <!-- EDIT: tag color = confidence (lv3 high, lv2 mid, lv1 basic); sw = software -->
+      <div class="tabpanel" role="tabpanel" id="p-skill" aria-labelledby="t-skill" hidden>
+        <div class="skills">
+          <div class="skill-group">
+            <h3>Programming</h3>
+            <ul class="tags"><li class="lv3">Python</li><li class="lv3">MATLAB</li><li class="lv2">JavaScript</li><li class="lv2">PHP</li><li class="lv1">C/C++</li></ul>
+          </div>
+          <div class="skill-group">
+            <h3>AI</h3>
+            <h4>Conventional</h4>
+            <ul class="tags"><li class="lv3">KNN</li><li class="lv3">RF</li><li class="lv3">GB</li><li class="lv3">SVM</li></ul>
+            <h4>Deep learning</h4>
+            <ul class="tags"><li class="lv3">CNN-based</li><li class="lv1">Transformer-based</li></ul>
+          </div>
+          <div class="skill-group">
+            <h3>Medical Imaging</h3>
+            <ul class="tags"><li class="lv3">MRI T1/T2</li><li class="lv3">DTI</li><li class="lv2">US</li><li class="lv2">CT</li><li class="sw" title="Software">3D Slicer</li></ul>
+          </div>
+          <div class="skill-group">
+            <h3>Bioelectromagnetics</h3>
+            <ul class="tags"><li class="lv3">Tissue Conductivity</li><li class="lv3">Induced E-field</li><li class="sw" title="Software">SimNIBS</li></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 4. PUBLICATIONS & AWARDS ================= -->
+<section id="publications">
+  <div class="wrap">
+    <div class="section-head reveal"><h2>Publications &amp; awards</h2></div>
+
+    <div class="reveal">
+      <div class="tabbar">
+        <div class="tabs" role="tablist" aria-label="Publications and awards" data-seg>
+          <button class="tab" role="tab" id="t-jr" aria-controls="p-jr" aria-selected="true">Journal</button>
+          <button class="tab" role="tab" id="t-cf" aria-controls="p-cf" aria-selected="false" tabindex="-1">Conference</button>
+          <button class="tab" role="tab" id="t-pj" aria-controls="p-pj" aria-selected="false" tabindex="-1">Projects</button>
+          <button class="tab" role="tab" id="t-hn" aria-controls="p-hn" aria-selected="false" tabindex="-1">Awards</button>
+        </div>
+      </div>
+
+      <!-- EDIT: publications (from sites.google.com/view/nguyenmy); Q tags: <span class="q">Q1</span>, <span class="q q2">Q2</span> -->
+      <div class="tabpanel" role="tabpanel" id="p-jr" aria-labelledby="t-jr">
+        <h3 class="pub-group">Peer-reviewed international journals</h3>
+        <ol class="pub">
+          <li><div><strong>Nguyen, M. N.</strong>, Kubota, Y., Hirata, A. (2026). <a class="title" href="https://doi.org/10.1016/j.neuri.2025.100255" target="_blank" rel="noopener">Age-related changes in brain fiber pathways based on directional decomposition of DTI tractograms</a>. <span class="venue">Neuroscience Informatics</span>, 6(1). <span class="q">Q1</span></div></li>
+          <li><div><strong>Nguyen, M. N.</strong>, Harada, K., Yoshimoto, T., Duong, N. P., Sowa, Y., Sakai, K., Fukuzawa, M. (2024). <a class="title" href="https://doi.org/10.1007/s42979-024-03025-7" target="_blank" rel="noopener">Integrated dataset-preparation system for ML-based medical image diagnosis with high clinical applicability in various modalities and diagnoses</a>. <span class="venue">SN Computer Science</span>, 5(6). <span class="q q2">Q2</span></div></li>
+          <li><div><strong>Nguyen, M. N.</strong>, Kawamidori, R., Kitsunezuka, Y., Fukuzawa, M. (2024). <a class="title" href="https://doi.org/10.11318/mii.41.46" target="_blank" rel="noopener">Discrimination of probe-stabilized scene from neonatal cranial ultrasonic movies by supervised learning for selective detection of pulsatile tissues</a>. <span class="venue">Medical Imaging and Information Sciences</span>, 41(2), 46–52.</div></li>
+          <li><div>Nguyen, H. T., <strong><strong>Nguyen, M. N.</strong></strong>, Pham, S. C., Bui, P. H. D. (2024). <a class="title" href="https://doi.org/10.1007/s41870-023-01687-9" target="_blank" rel="noopener">Abnormalities detection on chest radiograph with bounding box-based lungs extraction and object detection algorithm</a>. <span class="venue">International Journal of Information Technology</span>, 16(4), 2241–2251.</div></li>
+          <li><div>Nguyen, H. T., <strong>Nguyen, M. N.</strong>, Nguyen, B. A., Nguyen, L. C., Phung, L. D. (2023). <a class="title" href="https://doi.org/10.2478/acss-2023-0007" target="_blank" rel="noopener">Recognition and 3D visualization of human body parts and bone areas using CT images</a>. <span class="venue">Applied Computer Systems</span>, 28(1), 66–77.</div></li>
+          <li><div><strong>Nguyen, M. N.</strong>, Nguyen, H. T. (2020). <a class="title" href="https://doi.org/10.5573/ieiespc.2020.9.4.284" target="_blank" rel="noopener">Deep learning approaches to human gait pattern classification based on MEMS sensors</a>. <span class="venue">IEIE Transactions on Smart Processing &amp; Computing</span>, 9(4), 284–292.</div></li>
+        </ol>
+        <h3 class="pub-group">Japanese magazine</h3>
+        <ol class="pub">
+          <li><div>素輪善弘, <strong>Nguyen Ngoc My</strong>, 福澤理行 (2020). <a class="title" href="http://id.ndl.go.jp/bib/030726732" target="_blank" rel="noopener">人工知能・機械学習を用いた乳房の整容性評価システム構築への挑戦 (The challenge of building a breast cosmetic evaluation system using artificial intelligence and machine learning)</a>. <span class="venue">PEPARS</span>, 166, 27–34.</div></li>
+        </ol>
+      </div>
+
+      <div class="tabpanel" role="tabpanel" id="p-cf" aria-labelledby="t-cf" hidden>
+        <h3 class="pub-group">Peer-reviewed international conferences</h3>
+        <ol class="pub">
+          <li><div>Chen, Y.-J., Lin, G.-H., Yang, J.-F., Tsai, K.-Y., <strong>Nguyen, M. N.</strong> (2026). <a class="title" href="https://doi.org/10.1109/jcsse68839.2026.11597067" target="_blank" rel="noopener">A generalizable deep learning for automatic reading of circular analog gauges</a>. <span class="venue">JCSSE 2026, IEEE</span>, 700–705.</div></li>
+          <li><div>Chen, Y.-J., Chen, D.-J., Yang, J.-F., Jian, Z.-C., <strong>Nguyen, M. N.</strong> (2026). <a class="title" href="https://doi.org/10.1109/jcsse68839.2026.11597014" target="_blank" rel="noopener">A vision-based algorithm for straightness inspection of steel bars</a>. <span class="venue">JCSSE 2026, IEEE</span>, 717–721.</div></li>
+          <li><div><strong>Nguyen, M. N.</strong>, Kawamidori, R., Kitsunezuka, Y., Fukuzawa, M. (2023). <a class="title" href="https://doi.org/10.1007/978-981-99-7649-2_5" target="_blank" rel="noopener">Retrospective analysis of a large-scale archive of ultrasonic movies for ischemic diseases of neonatal brain</a>. <span class="venue">Communications in Computer and Information Science, Springer</span>, 55–64.</div></li>
+          <li><div>Harada, K., Yoshimoto, T., Duong, N. P., <strong>Nguyen, M. N.</strong>, Sowa, Y., Fukuzawa, M. (2023). <a class="title" href="https://doi.org/10.1007/978-981-99-7666-9_4" target="_blank" rel="noopener">A new integrated medical-image processing system with high clinical applicability for effective dataset preparation in ML-based diagnosis</a>. <span class="venue">Communications in Computer and Information Science, Springer</span>, 41–50.</div></li>
+          <li><div><strong>Nguyen, M. N.</strong>, Bui, P. H. D., Nguyen, K. Q., Nguyen, H. T. (2023). <a class="title" href="https://doi.org/10.1007/978-981-99-4725-6_58" target="_blank" rel="noopener">Efficiency evaluation of Hanning window-based filter on human skin disease diagnosis</a>. <span class="venue">Lecture Notes in Networks and Systems, Springer</span>, 478–487.</div></li>
+          <li><div>Nguyen, H. T., <strong>Nguyen, M. N.</strong>, Duong, T. Q., Dang Bui, P. H. (2022). <a class="title" href="https://doi.org/10.1109/rivf55975.2022.10013803" target="_blank" rel="noopener">Denoising with median and bilateral on CT images for liver segmentation</a>. <span class="venue">RIVF 2022, IEEE</span>, 59–64.</div></li>
+          <li><div>Nguyen, H. T., Nguyen, B. A., <strong>Nguyen, M. N.</strong>, Truong, Q.-D., Nguyen, L. C., Banh, T. T. N., Linh, P. D. (2020). <a class="title" href="https://doi.org/10.1007/978-3-030-63924-2_9" target="_blank" rel="noopener">Growing self-organizing maps for metagenomic visualizations supporting disease classification</a>. <span class="venue">Lecture Notes in Computer Science, Springer</span>, 151–166.</div></li>
+          <li><div><strong>Nguyen, M. N.</strong>, Kar-Kin Zao, J., Nguyen, T. H. (2019). <a class="title" href="https://doi.org/10.1109/kse.2019.8919264" target="_blank" rel="noopener">Human gait patterns classification based on MEMS data using unsupervised and supervised learning algorithms</a>. <span class="venue">KSE 2019, IEEE</span>, 1–5.</div></li>
+        </ol>
+        <h3 class="pub-group">Peer-reviewed national conferences</h3>
+        <ol class="pub">
+          <li><div><strong>Nguyen, M. N.</strong>, Nguyen, B.A., Phung, L.D., Banh, T.T.N., Bui, T.M., Vo, H.A., Nguyen, H.T. (2020). <span class="title">An approach for public bike sharing system within a predefined area</span>. <span class="venue">The 9th Conference on Information Technology and its Applications (CITA)</span>, 106–113, Da Nang, Vietnam.</div></li>
+          <li><div><strong>Nguyen, N. M.</strong>, Phan, M.T. (2017). <span class="title">Một giải pháp giám sát vị trí và quản lý vùng an toàn cho trẻ em với dịch vụ web kiểu REST (A solution for monitoring positions and managing safety zones for kids using RESTful web service)</span>. <span class="venue">The 2017 Nationwide Conference on Information Technology</span>, Can Tho, Vietnam.</div></li>
+        </ol>
+      </div>
+
+      <!-- EDIT: projects (from sites.google.com/view/nguyenmy), newest first -->
+      <div class="tabpanel" role="tabpanel" id="p-pj" aria-labelledby="t-pj" hidden>
+        <ol class="proj">
+          <li>
+            <span class="yr">2025–2026</span>
+            <div>
+              <div class="name"><span class="jp">刺激作用に基づく許容電磁界強度導出に関する研究 (Research on deriving permissible electromagnetic field strength based on stimulation effects)</span></div>
+              <div class="meta">Hirata Lab. Funded by Ministry of Internal Affairs and Communications, Japan.</div>
+              <div class="role"><b>Role:</b> Investigating the changes of white-matter nerve fibers due to aging and Parkinson's disease. Construction of head models with tissue conductivity and calculation of induced electric fields for brain stimulation.</div>
+            </div>
+          </li>
+          <li>
+            <span class="yr">2014-2015</span>
+            <div>
+              <div class="name">Cerebra web portal for BCI data manipulation</div>
+              <div class="meta">PET Lab. Cooperation project between NCTU (Taiwan) and UCSD Swartz Center for Computational Neuroscience (USA)</div>
+              <div class="role"><b>Role:</b> Developing a web portal for managing a BCI data repository using a RESTful API</div>
+            </div>
+          </li>
+          <li>
+            <span class="yr">2011-2013</span>
+            <div>
+              <div class="name">Information system for designing and managing forms</div>
+              <div class="meta">Provincial-level project of Can Tho City, Vietnam. L. T. X. Pham, M. N. Nguyen, T. M. Nguyen</div>
+              <div class="role"><b>Role:</b> Database and web development</div>
+            </div>
+          </li>
+          <li>
+            <span class="yr">2010</span>
+            <div>
+              <div class="name">Portal for preventing pests in the Mekong Delta</div>
+              <div class="meta">State-level project of Vietnam. T. Q. Le, et al.</div>
+              <div class="role"><b>Role:</b> Data warehouse and OLAP modules development</div>
+            </div>
+          </li>
+        </ol>
+      </div>
+
+      <div class="tabpanel" role="tabpanel" id="p-hn" aria-labelledby="t-hn" hidden>
+        <div class="awards">
+          <div>
+            <h3>Awards</h3>
+            <ul class="honor">
+              <li><span class="when">2025</span><span>Uchida Paper Award</span><canvas data-flag="japan" data-w="27" aria-label="Japan"></canvas></li>
+              <li><span class="when">2021</span><span>Grand Prize &amp; Student-Choice Prize, Short Movie Contest 2021 for Intl' Students, Kyoto</span><canvas data-flag="japan" data-w="27" aria-label="Japan"></canvas></li>
+              <li><span class="when">2020</span><span>Best Judges' Prize, Short Movie Contest 2020 for Intl' Students, Kyoto</span><canvas data-flag="japan" data-w="27" aria-label="Japan"></canvas></li>
+            </ul>
+          </div>
+          <div>
+            <h3>Others</h3>
+            <ul class="honor">
+              <li><span class="when">2019–2022</span><span>MEXT Scholarship</span><canvas data-flag="japan" data-w="27" aria-label="Japan"></canvas></li>
+              <li><span class="when">2014–2015</span><span>Chunghwa Telecom Scholarship</span><canvas data-flag="taiwan" data-w="27" aria-label="Taiwan"></canvas></li>
+              <li><span class="when">2013–2015</span><span>NCTU Scholarship</span><canvas data-flag="taiwan" data-w="27" aria-label="Taiwan"></canvas></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="cat-lane">
+    <canvas id="catCanvas" aria-hidden="true"></canvas>
+    <button class="cat-btn" id="catBtn" aria-label="Make the cat jump (hold to jump further)" title="Tap to jump, hold to jump further">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle class="bg" cx="12" cy="12" r="10.75" fill="#fff" stroke="#1B1920" stroke-width="1.5"/><path d="M9.6 7.4 17 12l-7.4 4.6z" fill="#1B1920" stroke="#1B1920" stroke-width="1.2" stroke-linejoin="round"/></svg>
+    </button>
+    <div class="foot-row">
+      <span>&copy; 2026 My N. Nguyen</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* =====================================================================
+   REUSABLE ASSETS
+   ===================================================================== */
+const PALETTE = ["#00000000", "#1B1920", "#FFFFFF", "#F1AF90", "#54505C", "#C9C6D6"];
+const ME_W = 275, ME_H = 242;
+// 0 rest, 1-2 hand tilted (neutral face); 3 rest, 4-5 hand tilted (smiling)
+const ME_FRAMES = [
+"0:1220,1:2,0:271,1:18,0:257,1:18,0:251,1:26,0:12,1:9,0:228,1:26,0:12,1:9,0:224,1:30,0:6,1:24,0:215,1:31,0:4,1:25,0:211,1:65,0:209,1:72,0:202,1:73,0:202,1:77,0:197,1:78,0:192,1:84,0:191,1:86,0:185,1:91,0:183,1:92,0:181,1:97,0:178,1:97,0:178,1:97,0:176,1:100,0:175,1:102,0:173,1:102,0:173,1:102,0:172,1:103,0:170,1:59,3:2,1:46,0:168,1:59,3:2,1:46,0:168,1:59,3:2,1:47,0:167,1:57,3:9,1:43,0:164,1:59,3:9,1:43,0:164,1:58,3:12,1:41,0:164,1:58,3:12,1:41,0:164,1:57,3:14,1:40,0:164,1:57,3:14,1:40,0:164,1:56,3:16,1:41,0:162,1:56,3:16,1:41,0:162,1:55,3:17,1:41,0:162,1:54,3:18,1:41,0:162,1:54,3:18,1:41,0:163,1:53,3:18,1:41,0:164,1:50,3:20,1:41,0:164,1:50,3:20,1:41,0:164,1:48,3:23,1:40,0:164,1:48,3:23,1:40,0:164,1:47,3:26,1:38,0:164,1:46,3:27,1:38,0:164,1:44,3:29,1:36,0:166,1:44,3:29,1:36,0:166,1:44,3:29,1:36,0:166,1:43,3:32,1:34,0:166,1:48,3:27,1:34,0:166,1:50,3:26,1:33,0:167,1:23,3:6,1:22,3:25,1:32,0:167,1:20,3:11,1:20,3:16,1:39,0:169,1:18,3:15,1:18,3:15,1:40,0:169,1:18,3:22,1:11,3:14,1:23,3:1,1:17,0:169,1:17,3:33,1:1,3:12,1:23,3:6,1:14,0:169,1:17,3:46,1:23,3:6,1:13,0:172,1:15,3:76,1:11,0:173,1:15,3:76,1:11,0:175,1:12,3:17,1:10,3:51,1:10,0:175,1:12,3:17,1:11,3:51,1:9,0:175,1:12,3:15,1:16,3:23,1:8,3:16,1:10,0:175,1:12,3:11,1:1,3:1,1:6,2:1,1:11,3:22,1:10,3:15,1:10,0:173,1:14,3:11,1:6,3:1,2:2,1:7,2:2,1:3,3:19,1:14,3:13,1:8,0:175,1:14,3:19,2:1,1:7,2:2,3:1,1:3,3:17,1:16,3:12,1:8,0:172,1:2,3:7,1:8,3:21,1:5,2:2,3:3,1:2,3:16,1:11,2:3,1:4,3:11,1:8,0:172,1:3,3:6,1:8,3:49,1:2,3:2,1:7,2:3,3:1,1:4,3:10,1:8,0:172,3:10,1:6,3:50,1:1,3:4,1:6,2:2,3:2,1:5,3:8,1:7,0:172,1:2,3:5,1:2,3:5,1:4,3:57,1:3,3:1,2:1,3:4,1:4,3:8,1:7,0:172,1:2,3:4,1:3,3:5,1:4,3:78,1:7,0:172,1:2,3:8,1:1,3:5,1:2,3:78,1:7,0:172,1:2,3:8,1:2,3:3,1:3,3:78,1:7,0:172,1:2,3:10,1:1,3:3,1:2,3:78,1:9,0:170,1:2,3:11,1:1,3:82,1:4,3:3,1:2,0:170,1:2,3:10,1:2,3:82,1:4,3:5,1:2,0:168,1:2,3:9,1:3,3:82,1:4,3:5,1:2,0:168,1:2,3:9,1:3,3:82,1:4,3:5,1:2,0:168,1:2,3:94,1:2,3:7,1:2,0:168,1:2,3:94,1:2,3:7,1:2,0:169,1:2,3:93,1:2,3:7,1:2,0:170,1:2,3:91,1:3,3:7,1:2,0:170,1:3,3:90,1:2,3:8,1:2,0:170,1:3,3:90,1:1,3:9,1:2,0:170,1:3,3:90,1:1,3:9,1:2,0:172,1:2,3:46,1:4,3:39,1:1,3:9,1:2,0:173,1:1,3:46,1:5,3:5,1:3,3:30,1:2,3:8,1:2,0:173,1:3,3:43,1:6,3:1,1:1,3:2,1:5,3:27,1:1,3:9,1:2,0:176,1:2,3:49,1:2,3:1,1:6,3:2,1:1,3:23,1:2,3:9,1:2,0:176,1:2,3:57,1:3,3:24,1:2,3:9,1:2,0:176,1:2,3:84,1:3,3:8,1:2,0:176,1:1,3:85,1:3,3:8,1:2,0:178,1:2,3:8,1:1,3:73,1:3,3:6,1:2,0:180,1:1,3:8,1:2,3:73,1:2,3:7,1:2,0:182,3:1,1:9,3:70,1:3,3:8,1:2,0:183,3:4,0:2,1:3,3:70,1:3,3:8,1:2,0:190,1:2,3:23,1:3,3:44,1:3,3:7,1:1,0:192,1:2,3:23,1:8,3:2,1:2,3:35,1:3,3:6,1:1,0:193,1:2,3:23,1:5,3:6,1:1,3:14,1:1,3:20,1:3,3:5,1:2,0:195,1:1,3:37,1:4,3:2,1:7,3:19,1:8,0:49,1:6,0:142,1:1,3:44,1:6,3:19,1:8,0:49,1:6,0:142,1:2,3:45,1:4,3:17,1:3,0:54,1:2,3:6,1:2,0:140,1:2,3:66,1:3,0:54,1:2,3:6,1:2,0:140,1:2,3:65,1:2,0:56,1:2,3:6,1:2,0:141,1:3,3:62,1:3,0:45,1:3,0:8,1:2,3:6,1:2,0:141,1:3,3:62,1:3,0:44,1:5,0:7,1:2,3:6,1:2,0:4,1:5,0:132,1:3,3:62,1:3,0:43,1:2,3:3,1:2,0:6,1:2,3:6,1:2,0:4,1:5,0:132,1:5,3:61,1:1,0:44,1:2,3:3,1:2,0:6,1:2,3:6,1:2,0:2,1:2,3:5,1:3,0:129,1:4,3:59,1:2,0:46,1:2,3:4,1:3,0:4,1:2,3:6,1:2,0:2,1:2,3:6,1:2,0:129,1:2,3:3,1:2,3:56,1:2,0:44,1:2,3:7,1:2,0:4,1:2,3:6,1:6,3:6,1:2,0:129,1:2,3:3,1:2,3:54,1:2,0:46,1:2,3:7,1:2,0:4,1:2,3:6,1:6,3:6,1:2,0:129,1:2,3:5,1:1,3:53,1:2,0:46,1:2,3:7,1:2,0:4,1:2,3:6,1:6,3:6,1:2,0:129,1:2,3:5,1:2,3:52,1:2,0:46,1:2,3:7,1:2,0:4,1:2,3:6,1:6,3:6,1:2,0:129,1:2,3:56,1:3,0:48,1:2,3:7,1:2,0:4,1:2,3:6,1:5,3:7,1:2,0:129,1:2,3:56,1:3,0:48,1:2,3:7,1:2,0:4,1:2,3:6,1:4,3:8,1:2,0:129,1:2,3:52,1:1,3:1,1:3,0:50,1:2,3:7,1:2,0:4,1:2,3:6,1:4,3:8,1:2,0:129,1:2,3:52,1:4,0:51,1:2,3:7,1:2,0:4,1:2,3:6,1:4,3:6,1:4,0:129,1:2,3:52,1:4,0:51,1:2,3:7,1:2,0:4,1:2,3:6,1:4,3:6,1:2,0:131,1:2,3:13,1:5,3:31,1:7,0:53,1:2,3:5,1:2,0:4,1:2,3:6,1:3,3:7,1:2,0:7,1:5,0:119,1:2,3:13,1:5,3:31,1:3,3:1,1:3,0:53,1:2,3:5,1:2,0:4,1:2,3:6,1:4,3:6,1:2,0:6,1:6,0:119,1:2,3:19,1:4,3:22,1:4,3:5,1:2,0:53,1:2,3:6,1:2,0:3,1:1,3:7,1:4,3:6,1:2,0:4,1:1,0:1,1:1,3:4,1:1,0:119,1:2,3:18,1:4,3:23,1:4,3:5,1:2,0:53,1:2,3:7,1:5,3:7,1:3,3:7,1:2,0:4,1:3,3:5,1:2,0:115,1:4,3:19,1:3,3:1,1:24,3:5,1:2,0:55,1:2,3:7,1:5,3:7,1:2,3:8,1:2,0:4,1:1,3:7,1:2,0:115,1:4,3:23,1:22,3:7,1:2,0:55,1:2,3:7,1:5,3:7,1:2,3:8,1:2,0:3,1:2,3:7,1:2,0:112,1:3,2:2,1:2,3:23,1:22,3:7,1:2,0:55,1:2,3:7,1:5,3:7,1:2,3:8,1:2,0:3,1:2,3:7,1:2,0:112,1:3,2:2,1:2,3:52,1:2,0:55,1:2,3:7,1:5,3:7,1:2,3:8,1:2,0:3,1:2,3:7,1:2,0:112,1:3,2:2,1:2,3:52,1:2,0:55,1:2,3:7,1:4,3:6,1:4,3:8,1:2,0:3,1:2,3:7,1:2,0:110,1:5,2:2,1:2,3:52,1:2,0:55,1:2,3:7,1:4,3:6,1:4,3:7,1:3,0:3,1:1,3:8,1:2,0:110,1:5,2:2,1:2,3:52,1:2,0:55,1:2,3:7,1:4,3:6,1:4,3:7,1:3,0:1,1:2,3:7,1:2,0:110,1:5,2:6,3:52,1:4,0:53,1:2,3:7,1:4,3:6,1:3,3:7,1:4,2:1,1:2,3:7,1:2,0:109,1:6,2:6,3:52,1:5,0:52,1:2,3:7,1:4,3:6,1:3,3:6,1:3,2:3,1:2,3:7,1:2,0:107,1:8,2:7,1:2,3:49,2:2,1:5,0:50,1:2,3:7,1:4,3:6,1:3,3:6,1:3,2:3,1:2,3:7,1:2,0:107,1:8,2:7,1:2,3:49,2:2,1:5,0:50,1:2,3:7,1:4,3:6,1:3,3:6,1:3,2:3,1:2,3:7,1:2,0:106,1:8,2:10,3:48,2:3,1:6,2:2,0:29,1:7,0:11,1:2,3:17,1:3,3:6,1:3,2:2,1:1,3:9,1:2,0:105,1:9,2:11,3:45,1:3,2:2,1:7,2:1,0:29,1:8,0:10,1:3,3:16,1:3,3:6,1:3,2:1,1:2,3:7,1:2,0:107,1:9,2:12,3:44,1:3,2:2,1:7,2:2,0:26,1:2,3:8,1:2,0:9,1:2,3:25,1:3,2:1,1:2,3:6,1:2,0:103,1:14,2:12,1:2,3:40,1:2,2:5,1:9,0:26,1:2,3:7,1:3,0:10,1:1,3:24,1:4,2:1,1:2,3:6,1:2,0:103,1:14,2:12,1:2,3:40,1:2,2:5,1:9,0:26,1:2,3:10,1:1,0:9,1:1,3:24,1:3,2:2,1:2,3:6,1:2,0:99,1:18,2:14,1:2,3:36,1:2,2:8,1:10,0:24,1:2,3:10,1:2,0:8,1:1,3:24,1:5,3:8,1:2,0:99,1:18,2:14,1:2,3:36,1:2,2:9,1:9,0:24,1:2,3:10,1:2,0:8,1:1,3:24,1:5,3:8,1:2,0:94,1:23,2:17,3:34,1:1,2:12,1:8,0:24,1:3,3:10,1:2,0:6,1:2,3:35,1:2,0:96,1:23,2:17,1:1,3:32,1:2,2:12,1:9,0:25,1:3,3:8,1:2,0:6,1:2,3:35,1:2,0:91,1:28,2:19,3:30,2:15,1:10,0:24,1:3,3:9,1:4,0:3,1:2,3:35,1:2,0:91,1:28,2:19,1:1,3:28,2:16,1:11,0:23,1:3,3:10,1:3,0:3,1:2,3:35,1:2,0:86,1:31,2:1,1:1,2:21,3:26,2:17,1:15,0:19,1:3,3:10,1:3,0:2,1:2,3:36,1:2,0:86,1:31,2:22,1:3,3:22,1:2,2:17,1:15,0:19,1:3,3:10,1:3,0:2,1:2,3:36,1:2,0:86,1:31,2:23,1:2,3:22,1:2,2:17,1:18,0:18,1:3,3:8,1:7,3:34,1:2,0:84,1:35,2:25,1:2,3:18,1:2,2:19,1:19,0:18,1:2,3:11,1:2,3:36,1:2,0:83,1:36,2:26,1:1,3:18,1:2,2:18,1:21,0:17,1:2,3:11,1:2,3:36,1:2,0:79,1:40,2:27,1:2,3:15,2:20,1:27,0:12,1:4,3:9,1:2,3:36,1:2,0:78,1:41,2:28,1:1,3:13,2:22,1:27,0:14,1:2,3:9,1:2,3:36,1:2,0:72,1:47,2:29,1:2,3:9,1:2,2:22,1:33,0:8,1:2,3:47,1:2,0:72,1:47,2:29,1:2,3:9,1:2,2:22,1:33,0:8,1:2,3:47,1:2,0:65,1:54,2:32,1:2,3:2,1:4,2:24,1:34,0:9,1:2,3:45,1:2,0:65,1:54,2:32,1:8,2:24,1:38,0:5,1:3,3:44,1:2,0:56,1:63,2:64,1:46,3:44,1:2,0:56,1:63,2:27,1:4,2:9,1:2,2:20,1:48,3:44,1:2,0:49,1:72,2:25,1:5,2:7,1:5,2:18,1:48,3:44,1:2,0:49,1:72,2:25,1:5,2:6,1:7,2:17,1:48,3:44,1:2,0:45,1:76,2:20,5:3,4:16,1:5,2:16,1:50,3:42,1:2,0:44,1:77,2:20,5:3,4:16,1:5,2:16,1:50,3:40,1:2,0:46,1:77,2:20,4:16,5:2,4:1,1:7,2:14,1:50,3:40,1:2,0:45,1:78,2:20,4:16,5:2,4:1,1:7,2:14,1:50,3:40,1:2,0:44,1:79,2:18,1:2,4:18,5:1,1:8,2:13,1:52,3:38,1:2,0:44,1:79,2:18,1:2,4:18,5:1,1:9,2:12,1:52,3:38,1:2,0:44,1:79,2:16,1:4,4:19,1:6,2:2,1:2,2:11,1:52,3:38,1:2,0:44,1:79,2:16,1:3,2:1,5:1,4:18,1:6,2:2,1:2,2:11,1:52,3:38,1:2,0:44,1:79,2:17,1:1,2:2,5:1,4:17,1:7,2:2,1:2,2:11,1:54,3:34,1:2,0:44,1:81,2:14,1:3,2:3,5:1,4:17,1:7,2:4,1:3,2:6,1:56,3:34,1:2,0:44,1:81,2:14,1:3,2:3,5:1,4:17,1:7,2:4,1:3,2:6,1:56,3:34,1:2,0:44,1:81,2:12,1:2,2:6,5:1,4:17,1:5,2:7,1:1,2:7,1:58,3:32,1:2,0:44,1:81,2:12,1:2,2:6,5:1,4:17,1:5,2:9,1:1,2:5,1:58,3:32,1:2,0:44,1:81,2:9,1:3,2:8,5:3,4:15,1:3,2:11,1:2,2:4,1:60,3:28,1:2,0:46,1:81,2:9,1:3,2:8,5:3,4:15,1:3,2:11,1:2,2:4,1:60,3:28,1:2,0:46,1:81,2:7,1:4,2:9,5:3,4:15,1:3,2:11,1:4,2:2,1:60,3:28,1:2,0:43,1:84,2:6,1:4,2:10,5:3,4:3,5:4,4:8,1:3,2:13,1:2,2:2,1:61,3:27,1:2,0:43,1:84,2:7,1:2,2:11,5:3,4:15,1:3,2:13,1:67,3:23,1:4,0:43,1:84,2:20,5:3,4:7,5:2,4:6,1:2,2:16,1:65,3:23,1:5,0:42,1:86,2:18,5:3,4:15,1:2,2:16,1:65,3:24,1:5,0:41,1:87,2:17,5:3,4:9,5:2,4:4,2:18,1:65,3:24,1:5,0:41,1:87,2:17,5:3,4:15,2:18,1:65,3:24,1:7,0:39,1:87,2:17,5:3,4:15,2:18,1:67,3:23,1:2,2:2,1:3,0:36,1:89,2:17,5:3,4:15,2:18,1:67,3:23,1:2,2:2,1:4,0:35,1:89,2:17,5:1,4:17,2:18,1:68,3:22,1:2,2:2,1:4,2:1,0:34,1:89,2:17,5:1,4:16,1:1,2:18,1:68,3:22,1:1,3:1,2:2,1:4,2:2,0:33,1:89,2:17,5:1,4:16,1:3,2:14,1:71,3:21,1:1,3:1,2:2,1:6,0:33,1:89,2:17,5:1,4:2,5:2,4:12,1:3,2:14,1:71,3:23,2:2,1:6,0:33,1:89,2:17,5:1,4:2,5:2,4:12,1:3,2:14,1:68,2:1,1:1,3:24,2:2,1:6,0:33,1:89,2:17,4:6,5:1,4:10,1:3,2:14,1:68,2:3,1:2,3:19,2:5,1:5,0:31,1:91,2:17,4:6,5:1,4:10,1:3,2:14,1:68,2:3,1:2,3:19,2:5,1:5,2:2,0:29,1:91,2:17,4:8,5:1,4:8,1:3,2:14,1:68,2:5,3:16,2:8,1:6,2:1,0:29,1:91,2:17,4:8,5:2,4:7,1:3,2:14,1:69,2:5,3:14,2:9,1:6,2:1,0:29,1:93,2:14,1:1,4:10,5:1,4:6,1:3,2:14,1:70,2:7,3:2,1:6,3:1,2:11,1:7,0:29,1:93,2:13,1:2,4:10,5:2,4:5,1:3,2:14,1:71,2:7,3:7,2:11,1:9,0:28,1:93,2:13,1:2,4:17,1:3,2:12,1:73,2:25,1:9,0:28,1:93,2:13,1:2,4:12,5:2,4:3,1:3,2:12,1:73,2:25,1:9,0:28,1:93,2:13,1:2,4:12,5:2,4:3,1:5,2:10,1:75,2:23,1:9,0:27,1:94,2:13,1:2,4:17,1:5,2:10,1:75,2:23,1:9,0:26,1:95,2:13,1:2,4:14,5:2,4:1,1:5,2:10,1:77,2:21,1:11,0:24,1:95,2:13,1:2,4:14,5:2,4:1,1:5,2:10,1:78,2:18,1:13,0:24,1:95,2:13,1:2,4:17,1:5,2:10,1:81,2:14,1:14,0:24,1:95,2:13,1:2,4:16,5:1,1:5,2:8,1:83,2:14,1:14,0:24,1:96,2:12,1:2,4:16,5:1,1:5,2:7,1:84,2:14,1:14,0:24,1:97,2:11,1:2,4:14,5:2,4:1,1:5,2:7,1:87,2:11,1:14,0:24,1:97,2:9,1:4,4:14,5:2,4:1,1:5,2:7,1:90,2:4,1:18,0:24,1:97,2:9,1:4,4:12,5:2,4:3,1:5,2:7,1:114,0:20,1:99,2:9,1:4,4:12,5:2,4:3,1:5,2:7,1:114,0:19,1:100,2:9,1:4,4:10,5:2,4:5,1:5,2:7,1:114,0:19,1:100,2:9,1:4,4:10,5:2,4:5,1:5,2:7,1:114,0:19,1:100,2:9,1:4,4:17,1:5,2:7,1:114,0:19,1:100,2:9,1:4,4:8,5:2,4:7,1:5,2:7,1:114,0:19,1:102,2:7,1:4,4:17,1:5,2:5,1:116,0:19,1:102,2:7,1:4,4:5,5:2,4:10,1:5,2:5,1:116,0:19,1:102,2:7,1:3,4:4,5:2,4:12,1:5,2:5,1:117,0:18,1:103,2:6,1:3,4:4,5:2,4:12,1:5,2:5,1:118,0:17,1:103,2:6,1:3,4:2,5:2,4:14,1:5,2:5,1:118,0:17,1:103,2:6,1:3,4:18,1:5,2:5,1:118,0:17,1:103,2:6,1:3,5:1,4:17,1:5,2:5,1:118,0:17,1:103,2:4,1:5,4:18,1:5,2:3,1:121,0:14,1:105,2:4,1:5,4:18,1:5,2:3,1:123,0:12,1:106,2:3,1:5,4:18,1:5,2:3,1:122,0:13,1:107,2:2,1:5,4:18,1:5,2:3,1:122,0:13,1:106,2:3,1:5,4:18,1:5,2:3,1:122,0:13,1:107,2:2,1:5,4:18,1:5,2:3,1:123,0:12,1:107,2:2,1:5,4:18,1:5,2:3,1:125,0:10,1:107,2:2,1:5,4:18,1:133,0:8,1:109,2:2,1:5,4:17,5:1,1:133,0:8,1:109,2:2,1:5,4:18,1:133,0:8,1:116,4:15,5:2,4:1,1:135,0:6,1:116,4:15,5:2,4:1,1:135,0:6,1:116,4:18,1:135,0:6,1:116,4:13,5:2,4:3,1:135,0:6,1:116,4:19,1:134,0:6,1:116,4:11,5:2,4:6,1:134,0:6,1:115,4:20,1:132,0:8,1:115,4:9,5:3,4:8,1:132,0:832",
+"0:1220,1:2,0:271,1:18,0:257,1:18,0:251,1:26,0:12,1:9,0:228,1:26,0:12,1:9,0:224,1:30,0:6,1:24,0:215,1:31,0:4,1:25,0:211,1:65,0:209,1:72,0:202,1:73,0:202,1:77,0:197,1:78,0:192,1:84,0:191,1:86,0:185,1:91,0:183,1:92,0:181,1:97,0:178,1:97,0:178,1:97,0:176,1:100,0:175,1:102,0:173,1:102,0:173,1:102,0:172,1:103,0:170,1:59,3:2,1:46,0:168,1:59,3:2,1:46,0:168,1:59,3:2,1:47,0:167,1:57,3:9,1:43,0:164,1:59,3:9,1:43,0:164,1:58,3:12,1:41,0:164,1:58,3:12,1:41,0:164,1:57,3:14,1:40,0:164,1:57,3:14,1:40,0:164,1:56,3:16,1:41,0:162,1:56,3:16,1:41,0:162,1:55,3:17,1:41,0:162,1:54,3:18,1:41,0:162,1:54,3:18,1:41,0:163,1:53,3:18,1:41,0:164,1:50,3:20,1:41,0:164,1:50,3:20,1:41,0:164,1:48,3:23,1:40,0:164,1:48,3:23,1:40,0:164,1:47,3:26,1:38,0:164,1:46,3:27,1:38,0:164,1:44,3:29,1:36,0:166,1:44,3:29,1:36,0:166,1:44,3:29,1:36,0:166,1:43,3:32,1:34,0:166,1:48,3:27,1:34,0:166,1:50,3:26,1:33,0:167,1:23,3:6,1:22,3:25,1:32,0:167,1:20,3:11,1:20,3:16,1:39,0:169,1:18,3:15,1:18,3:15,1:40,0:169,1:18,3:22,1:11,3:14,1:23,3:1,1:17,0:169,1:17,3:33,1:1,3:12,1:23,3:6,1:14,0:169,1:17,3:46,1:23,3:6,1:13,0:172,1:15,3:76,1:11,0:173,1:15,3:76,1:11,0:175,1:12,3:17,1:10,3:51,1:10,0:175,1:12,3:17,1:11,3:51,1:9,0:175,1:12,3:15,1:16,3:23,1:8,3:16,1:10,0:175,1:12,3:11,1:1,3:1,1:6,2:1,1:11,3:22,1:10,3:15,1:10,0:173,1:14,3:11,1:6,3:1,2:2,1:7,2:2,1:3,3:19,1:14,3:13,1:8,0:175,1:14,3:19,2:1,1:7,2:2,3:1,1:3,3:17,1:16,3:12,1:8,0:172,1:2,3:7,1:8,3:21,1:5,2:2,3:3,1:2,3:16,1:11,2:3,1:4,3:11,1:8,0:172,1:3,3:6,1:8,3:49,1:2,3:2,1:7,2:3,3:1,1:4,3:10,1:8,0:172,3:10,1:6,3:50,1:1,3:4,1:6,2:2,3:2,1:5,3:8,1:7,0:172,1:2,3:5,1:2,3:5,1:4,3:57,1:3,3:1,2:1,3:4,1:4,3:8,1:7,0:172,1:2,3:4,1:3,3:5,1:4,3:78,1:7,0:172,1:2,3:8,1:1,3:5,1:2,3:78,1:7,0:172,1:2,3:8,1:2,3:3,1:3,3:78,1:7,0:172,1:2,3:10,1:1,3:3,1:2,3:78,1:9,0:170,1:2,3:11,1:1,3:82,1:4,3:3,1:2,0:170,1:2,3:10,1:2,3:82,1:4,3:5,1:2,0:168,1:2,3:9,1:3,3:82,1:4,3:5,1:2,0:168,1:2,3:9,1:3,3:82,1:4,3:5,1:2,0:168,1:2,3:94,1:2,3:7,1:2,0:168,1:2,3:94,1:2,3:7,1:2,0:169,1:2,3:93,1:2,3:7,1:2,0:170,1:2,3:91,1:3,3:7,1:2,0:170,1:3,3:90,1:2,3:8,1:2,0:170,1:3,3:90,1:1,3:9,1:2,0:170,1:3,3:90,1:1,3:9,1:2,0:172,1:2,3:46,1:4,3:39,1:1,3:9,1:2,0:173,1:1,3:46,1:5,3:5,1:3,3:30,1:2,3:8,1:2,0:173,1:3,3:43,1:6,3:1,1:1,3:2,1:5,3:27,1:1,3:9,1:2,0:176,1:2,3:49,1:2,3:1,1:6,3:2,1:1,3:23,1:2,3:9,1:2,0:176,1:2,3:57,1:3,3:24,1:2,3:9,1:2,0:176,1:2,3:84,1:3,3:8,1:2,0:176,1:1,3:85,1:3,3:8,1:2,0:178,1:2,3:8,1:1,3:73,1:3,3:6,1:2,0:180,1:1,3:8,1:2,3:73,1:2,3:7,1:2,0:182,3:1,1:9,3:70,1:3,3:8,1:2,0:183,3:4,0:2,1:3,3:70,1:3,3:8,1:2,0:190,1:2,3:23,1:3,3:44,1:3,3:7,1:1,0:192,1:2,3:23,1:8,3:2,1:2,3:35,1:3,3:6,1:1,0:193,1:2,3:23,1:5,3:6,1:1,3:14,1:1,3:20,1:3,3:5,1:2,0:195,1:1,3:37,1:4,3:2,1:7,3:19,1:8,0:197,1:1,3:44,1:6,3:19,1:8,0:36,1:2,0:159,1:2,3:45,1:4,3:17,1:3,0:39,1:6,0:159,1:2,3:66,1:3,0:39,1:4,3:2,1:2,0:157,1:2,3:65,1:2,0:40,1:1,3:6,1:2,0:158,1:3,3:62,1:3,0:39,1:2,3:7,1:2,0:6,1:3,0:148,1:3,3:62,1:3,0:40,1:2,3:6,1:2,0:4,1:5,0:2,1:1,0:145,1:3,3:62,1:3,0:40,1:2,3:6,1:2,0:4,1:2,3:3,1:3,0:145,1:5,3:61,1:1,0:41,1:2,3:6,1:2,0:2,1:2,3:6,1:2,0:145,1:4,3:59,1:2,0:33,1:2,0:8,1:2,3:6,1:2,0:2,1:2,3:7,1:2,0:144,1:2,3:3,1:2,3:56,1:2,0:32,1:4,0:7,1:2,3:6,1:7,3:6,1:2,0:144,1:2,3:3,1:2,3:54,1:2,0:33,1:2,3:2,1:2,0:7,1:2,3:6,1:6,3:6,1:2,0:144,1:2,3:5,1:1,3:53,1:2,0:32,1:3,3:3,1:2,0:1,1:1,0:4,1:2,3:6,1:6,3:6,1:2,0:144,1:2,3:5,1:2,3:52,1:2,0:33,1:2,3:4,1:3,0:4,1:2,3:6,1:6,3:6,1:2,0:144,1:2,3:56,1:3,0:35,1:2,3:5,1:2,0:4,1:2,3:6,1:5,3:7,1:3,0:143,1:2,3:56,1:3,0:33,1:2,3:7,1:2,0:4,1:2,3:6,1:5,3:8,1:2,0:9,1:1,0:133,1:2,3:52,1:1,3:1,1:3,0:35,1:2,3:7,1:2,0:5,1:2,3:6,1:4,3:6,1:2,0:7,1:5,0:133,1:2,3:52,1:4,0:36,1:2,3:8,1:2,0:4,1:2,3:6,1:4,3:6,1:2,0:6,1:6,0:133,1:2,3:52,1:4,0:37,1:2,3:7,1:2,0:4,1:2,3:6,1:4,3:6,1:2,0:6,1:1,3:5,1:3,0:130,1:2,3:13,1:5,3:31,1:7,0:37,1:2,3:7,1:2,0:4,1:2,3:6,1:3,3:7,1:2,0:5,1:3,3:5,1:2,0:130,1:2,3:13,1:5,3:31,1:3,3:1,1:3,0:37,1:2,3:7,1:2,0:4,1:2,3:6,1:5,3:6,1:2,0:4,1:1,3:7,1:2,0:130,1:2,3:19,1:4,3:22,1:4,3:5,1:2,0:37,1:2,3:7,1:2,0:4,1:3,3:6,1:4,3:6,1:2,0:4,1:1,3:7,1:2,0:130,1:2,3:18,1:4,3:23,1:4,3:5,1:2,0:37,1:2,3:8,1:2,0:4,1:2,3:6,1:3,3:7,1:2,0:3,1:2,3:7,1:2,0:128,1:4,3:19,1:3,3:1,1:24,3:5,1:2,0:40,1:2,3:1,1:1,3:5,1:2,0:4,1:1,3:7,1:2,3:8,1:2,0:3,1:2,3:7,1:3,0:127,1:4,3:23,1:22,3:7,1:2,0:42,1:2,3:6,1:2,0:2,1:2,3:7,1:2,3:8,1:2,0:3,1:3,3:7,1:2,0:124,1:3,2:2,1:2,3:23,1:22,3:7,1:2,0:42,1:2,3:7,1:5,3:7,1:2,3:9,1:2,0:3,1:1,3:6,1:2,0:126,1:3,2:2,1:2,3:52,1:2,0:42,1:2,3:7,1:5,3:8,1:2,3:8,1:2,0:3,1:1,3:6,1:2,0:126,1:3,2:2,1:2,3:52,1:2,0:42,1:2,3:8,1:5,3:7,1:2,3:7,1:3,0:1,1:2,3:7,1:2,0:124,1:5,2:2,1:2,3:52,1:2,0:43,1:2,3:7,1:5,3:5,1:4,3:7,1:3,2:1,1:2,3:7,1:2,0:124,1:5,2:2,1:2,3:52,1:2,0:43,1:2,3:7,1:4,3:6,1:4,3:6,1:4,2:1,1:2,3:8,1:2,0:121,1:5,2:6,3:52,1:4,0:41,1:2,3:7,1:4,3:6,1:3,3:7,1:5,2:1,1:2,3:7,1:2,0:120,1:6,2:6,3:52,1:5,0:40,1:2,3:7,1:4,3:7,1:3,3:6,1:4,2:2,1:2,3:6,1:1,2:1,0:119,1:8,2:7,1:2,3:49,2:2,1:5,0:38,1:2,3:8,1:4,3:6,1:3,3:6,1:4,2:1,1:1,3:7,1:1,2:2,0:119,1:8,2:7,1:2,3:49,2:2,1:5,0:39,1:2,3:7,1:4,3:6,1:3,3:6,1:3,2:1,1:2,3:6,1:2,2:1,0:119,1:8,2:10,3:48,2:3,1:6,2:2,0:36,1:2,3:7,1:4,3:6,1:3,3:6,1:3,2:1,1:2,3:7,1:2,0:118,1:9,2:11,3:45,1:3,2:2,1:7,2:1,0:36,1:2,3:7,1:4,3:6,1:3,3:6,1:4,2:1,1:2,3:6,1:2,0:118,1:9,2:12,3:44,1:3,2:2,1:7,2:2,0:35,1:2,3:7,1:2,3:9,1:2,3:6,1:4,2:1,1:2,3:6,1:2,0:113,1:14,2:12,1:2,3:40,1:2,2:5,1:9,0:35,1:2,3:26,1:3,2:1,1:1,3:8,1:2,0:113,1:14,2:12,1:2,3:40,1:2,2:5,1:9,0:36,1:2,3:25,1:5,3:6,1:2,0:111,1:18,2:14,1:2,3:36,1:2,2:8,1:10,0:34,1:3,3:24,1:4,3:7,1:2,0:111,1:18,2:14,1:2,3:36,1:2,2:9,1:9,0:35,1:2,3:36,1:2,0:105,1:23,2:17,3:34,1:1,2:12,1:8,0:18,1:5,0:13,1:1,3:36,1:2,0:105,1:23,2:17,1:1,3:32,1:2,2:12,1:9,0:15,1:10,0:10,1:1,3:36,1:2,0:100,1:28,2:19,3:30,2:15,1:10,0:14,1:3,3:5,1:2,0:11,1:1,3:35,1:2,0:100,1:28,2:19,1:1,3:28,2:16,1:11,0:11,1:2,3:10,1:2,0:9,1:1,3:33,1:2,0:97,1:31,2:1,1:1,2:21,3:26,2:17,1:15,0:8,1:2,3:10,1:2,0:7,1:2,3:34,1:2,0:96,1:31,2:22,1:3,3:22,1:2,2:17,1:15,0:8,1:2,3:10,1:3,0:6,1:2,3:34,1:2,0:96,1:31,2:23,1:2,3:22,1:2,2:17,1:18,0:5,1:2,3:11,1:2,0:6,1:2,3:34,1:2,0:92,1:35,2:25,1:2,3:18,1:2,2:19,1:19,0:4,1:2,3:11,1:4,0:5,1:2,3:33,1:2,0:91,1:36,2:26,1:1,3:18,1:2,2:18,1:21,0:3,1:3,3:1,1:1,3:11,1:3,0:2,1:2,3:34,1:2,0:87,1:40,2:27,1:2,3:15,2:20,1:31,3:10,1:3,0:2,1:2,3:35,1:2,0:85,1:41,2:28,1:1,3:13,2:22,1:31,3:10,1:3,0:1,1:3,3:35,1:2,0:79,1:47,2:29,1:2,3:9,1:2,2:22,1:31,3:10,1:5,3:37,1:2,0:79,1:47,2:29,1:2,3:9,1:2,2:22,1:31,3:13,1:2,3:37,1:2,0:72,1:54,2:32,1:2,3:2,1:4,2:24,1:33,3:12,1:2,3:36,1:2,0:72,1:54,2:32,1:8,2:24,1:34,3:11,1:2,3:37,1:2,0:62,1:63,2:64,1:34,3:1,1:1,3:9,1:1,3:38,1:2,0:62,1:63,2:27,1:4,2:9,1:2,2:20,1:38,3:48,1:2,0:55,1:72,2:25,1:5,2:7,1:5,2:18,1:38,3:47,1:1,0:57,1:72,2:25,1:5,2:6,1:7,2:17,1:38,3:46,1:2,0:53,1:76,2:20,5:3,4:16,1:5,2:16,1:41,3:43,1:2,0:52,1:77,2:20,5:3,4:16,1:5,2:16,1:42,3:43,1:2,0:51,1:77,2:20,4:16,5:2,4:1,1:7,2:14,1:42,3:43,1:2,0:50,1:78,2:20,4:16,5:2,4:1,1:7,2:14,1:42,3:43,1:2,0:49,1:79,2:18,1:2,4:18,5:1,1:8,2:13,1:42,3:43,1:2,0:49,1:79,2:18,1:2,4:18,5:1,1:9,2:12,1:45,3:39,1:1,0:51,1:79,2:16,1:4,4:19,1:6,2:2,1:2,2:11,1:45,3:39,1:2,0:50,1:79,2:16,1:3,2:1,5:1,4:18,1:6,2:2,1:2,2:11,1:45,3:39,1:2,0:50,1:79,2:17,1:1,2:2,5:1,4:17,1:7,2:2,1:2,2:11,1:45,3:39,1:2,0:48,1:81,2:14,1:3,2:3,5:1,4:17,1:7,2:4,1:3,2:6,1:49,3:37,1:2,0:48,1:81,2:14,1:3,2:3,5:1,4:17,1:7,2:4,1:3,2:6,1:50,3:36,1:2,0:48,1:81,2:12,1:2,2:6,5:1,4:17,1:5,2:7,1:1,2:7,1:50,3:35,1:2,0:49,1:81,2:12,1:2,2:6,5:1,4:17,1:5,2:9,1:1,2:5,1:50,3:1,1:1,3:33,1:2,0:49,1:81,2:9,1:3,2:8,5:3,4:15,1:3,2:11,1:2,2:4,1:52,3:33,1:2,0:49,1:81,2:9,1:3,2:8,5:3,4:15,1:3,2:11,1:2,2:4,1:53,3:32,1:2,0:49,1:81,2:7,1:4,2:9,5:3,4:15,1:3,2:11,1:4,2:2,1:55,3:28,1:4,0:46,1:84,2:6,1:4,2:10,5:3,4:3,5:4,4:8,1:3,2:13,1:2,2:2,1:55,3:28,1:4,0:46,1:84,2:7,1:2,2:11,5:3,4:15,1:3,2:13,1:61,3:28,1:3,0:45,1:84,2:20,5:3,4:7,5:2,4:6,1:2,2:16,1:59,3:28,1:3,0:1,1:2,0:42,1:86,2:18,5:3,4:15,1:2,2:16,1:61,3:26,1:3,0:2,1:2,0:41,1:87,2:17,5:3,4:9,5:2,4:4,2:18,1:63,3:25,1:2,2:1,0:1,1:2,0:41,1:87,2:17,5:3,4:15,2:18,1:63,3:25,1:3,2:2,1:3,0:39,1:87,2:17,5:3,4:15,2:18,1:63,3:26,1:2,2:2,1:4,0:36,1:89,2:17,5:3,4:15,2:18,1:63,3:26,1:1,3:1,1:2,2:1,1:4,0:35,1:89,2:17,5:1,4:17,2:18,1:64,3:1,1:1,3:23,1:1,3:1,1:7,2:1,0:34,1:89,2:17,5:1,4:16,1:1,2:18,1:66,3:25,1:7,2:2,0:33,1:89,2:17,5:1,4:16,1:3,2:14,1:69,3:24,1:1,2:2,1:6,0:33,1:89,2:17,5:1,4:2,5:2,4:12,1:3,2:14,1:69,3:23,1:2,2:2,1:6,0:33,1:89,2:17,5:1,4:2,5:2,4:12,1:3,2:14,1:68,2:1,1:1,3:22,1:2,2:2,1:6,0:33,1:89,2:17,4:6,5:1,4:10,1:3,2:14,1:68,2:3,3:18,1:3,2:5,1:5,0:31,1:91,2:17,4:6,5:1,4:10,1:3,2:14,1:68,2:2,3:18,1:4,2:5,1:5,2:2,0:29,1:91,2:17,4:8,5:1,4:8,1:3,2:14,1:68,2:5,3:15,1:1,2:8,1:6,2:1,0:29,1:91,2:17,4:8,5:2,4:7,1:3,2:14,1:69,2:4,3:10,1:2,3:1,1:2,2:9,1:6,2:1,0:29,1:93,2:14,1:1,4:10,5:1,4:6,1:3,2:14,1:70,2:4,3:6,1:3,3:3,2:11,1:7,0:29,1:93,2:13,1:2,4:10,5:2,4:5,1:3,2:14,1:71,2:7,1:1,3:5,1:1,2:11,1:9,0:28,1:93,2:13,1:2,4:17,1:3,2:12,1:73,2:25,1:9,0:28,1:93,2:13,1:2,4:12,5:2,4:3,1:3,2:12,1:73,2:25,1:9,0:28,1:93,2:13,1:2,4:12,5:2,4:3,1:5,2:10,1:75,2:23,1:9,0:27,1:94,2:13,1:2,4:17,1:5,2:10,1:75,2:23,1:9,0:26,1:95,2:13,1:2,4:14,5:2,4:1,1:5,2:10,1:77,2:21,1:11,0:24,1:95,2:13,1:2,4:14,5:2,4:1,1:5,2:10,1:78,2:18,1:13,0:24,1:95,2:13,1:2,4:17,1:5,2:10,1:81,2:14,1:14,0:24,1:95,2:13,1:2,4:16,5:1,1:5,2:8,1:83,2:14,1:14,0:24,1:96,2:12,1:2,4:16,5:1,1:5,2:7,1:84,2:14,1:14,0:24,1:97,2:11,1:2,4:14,5:2,4:1,1:5,2:7,1:87,2:11,1:14,0:24,1:97,2:9,1:4,4:14,5:2,4:1,1:5,2:7,1:90,2:4,1:18,0:24,1:97,2:9,1:4,4:12,5:2,4:3,1:5,2:7,1:114,0:20,1:99,2:9,1:4,4:12,5:2,4:3,1:5,2:7,1:114,0:19,1:100,2:9,1:4,4:10,5:2,4:5,1:5,2:7,1:114,0:19,1:100,2:9,1:4,4:10,5:2,4:5,1:5,2:7,1:114,0:19,1:100,2:9,1:4,4:17,1:5,2:7,1:114,0:19,1:100,2:9,1:4,4:8,5:2,4:7,1:5,2:7,1:114,0:19,1:102,2:7,1:4,4:17,1:5,2:5,1:116,0:19,1:102,2:7,1:4,4:5,5:2,4:10,1:5,2:5,1:116,0:19,1:102,2:7,1:3,4:4,5:2,4:12,1:5,2:5,1:117,0:18,1:103,2:6,1:3,4:4,5:2,4:12,1:5,2:5,1:118,0:17,1:103,2:6,1:3,4:2,5:2,4:14,1:5,2:5,1:118,0:17,1:103,2:6,1:3,4:18,1:5,2:5,1:118,0:17,1:103,2:6,1:3,5:1,4:17,1:5,2:5,1:118,0:17,1:103,2:4,1:5,4:18,1:5,2:3,1:121,0:14,1:105,2:4,1:5,4:18,1:5,2:3,1:123,0:12,1:106,2:3,1:5,4:18,1:5,2:3,1:122,0:13,1:107,2:2,1:5,4:18,1:5,2:3,1:122,0:13,1:106,2:3,1:5,4:18,1:5,2:3,1:122,0:13,1:107,2:2,1:5,4:18,1:5,2:3,1:123,0:12,1:107,2:2,1:5,4:18,1:5,2:3,1:125,0:10,1:107,2:2,1:5,4:18,1:133,0:8,1:109,2:2,1:5,4:17,5:1,1:133,0:8,1:109,2:2,1:5,4:18,1:133,0:8,1:116,4:15,5:2,4:1,1:135,0:6,1:116,4:15,5:2,4:1,1:135,0:6,1:116,4:18,1:135,0:6,1:116,4:13,5:2,4:3,1:135,0:6,1:116,4:19,1:134,0:6,1:116,4:11,5:2,4:6,1:134,0:6,1:115,4:20,1:132,0:8,1:115,4:9,5:3,4:8,1:132,0:832",
+"0:1220,1:2,0:271,1:18,0:257,1:18,0:251,1:26,0:12,1:9,0:228,1:26,0:12,1:9,0:224,1:30,0:6,1:24,0:215,1:31,0:4,1:25,0:211,1:65,0:209,1:72,0:202,1:73,0:202,1:77,0:197,1:78,0:192,1:84,0:191,1:86,0:185,1:91,0:183,1:92,0:181,1:97,0:178,1:97,0:178,1:97,0:176,1:100,0:175,1:102,0:173,1:102,0:173,1:102,0:172,1:103,0:170,1:59,3:2,1:46,0:168,1:59,3:2,1:46,0:168,1:59,3:2,1:47,0:167,1:57,3:9,1:43,0:164,1:59,3:9,1:43,0:164,1:58,3:12,1:41,0:164,1:58,3:12,1:41,0:164,1:57,3:14,1:40,0:164,1:57,3:14,1:40,0:164,1:56,3:16,1:41,0:162,1:56,3:16,1:41,0:162,1:55,3:17,1:41,0:162,1:54,3:18,1:41,0:162,1:54,3:18,1:41,0:163,1:53,3:18,1:41,0:164,1:50,3:20,1:41,0:164,1:50,3:20,1:41,0:164,1:48,3:23,1:40,0:164,1:48,3:23,1:40,0:164,1:47,3:26,1:38,0:164,1:46,3:27,1:38,0:164,1:44,3:29,1:36,0:166,1:44,3:29,1:36,0:166,1:44,3:29,1:36,0:166,1:43,3:32,1:34,0:166,1:48,3:27,1:34,0:166,1:50,3:26,1:33,0:167,1:23,3:6,1:22,3:25,1:32,0:167,1:20,3:11,1:20,3:16,1:39,0:169,1:18,3:15,1:18,3:15,1:40,0:169,1:18,3:22,1:11,3:14,1:23,3:1,1:17,0:169,1:17,3:33,1:1,3:12,1:23,3:6,1:14,0:169,1:17,3:46,1:23,3:6,1:13,0:172,1:15,3:76,1:11,0:173,1:15,3:76,1:11,0:175,1:12,3:17,1:10,3:51,1:10,0:175,1:12,3:17,1:11,3:51,1:9,0:175,1:12,3:15,1:16,3:23,1:8,3:16,1:10,0:175,1:12,3:11,1:1,3:1,1:6,2:1,1:11,3:22,1:10,3:15,1:10,0:173,1:14,3:11,1:6,3:1,2:2,1:7,2:2,1:3,3:19,1:14,3:13,1:8,0:175,1:14,3:19,2:1,1:7,2:2,3:1,1:3,3:17,1:16,3:12,1:8,0:172,1:2,3:7,1:8,3:21,1:5,2:2,3:3,1:2,3:16,1:11,2:3,1:4,3:11,1:8,0:172,1:3,3:6,1:8,3:49,1:2,3:2,1:7,2:3,3:1,1:4,3:10,1:8,0:172,3:10,1:6,3:50,1:1,3:4,1:6,2:2,3:2,1:5,3:8,1:7,0:172,1:2,3:5,1:2,3:5,1:4,3:57,1:3,3:1,2:1,3:4,1:4,3:8,1:7,0:172,1:2,3:4,1:3,3:5,1:4,3:78,1:7,0:172,1:2,3:8,1:1,3:5,1:2,3:78,1:7,0:172,1:2,3:8,1:2,3:3,1:3,3:78,1:7,0:172,1:2,3:10,1:1,3:3,1:2,3:78,1:9,0:170,1:2,3:11,1:1,3:82,1:4,3:3,1:2,0:170,1:2,3:10,1:2,3:82,1:4,3:5,1:2,0:168,1:2,3:9,1:3,3:82,1:4,3:5,1:2,0:168,1:2,3:9,1:3,3:82,1:4,3:5,1:2,0:168,1:2,3:94,1:2,3:7,1:2,0:168,1:2,3:94,1:2,3:7,1:2,0:169,1:2,3:93,1:2,3:7,1:2,0:170,1:2,3:91,1:3,3:7,1:2,0:170,1:3,3:90,1:2,3:8,1:2,0:170,1:3,3:90,1:1,3:9,1:2,0:170,1:3,3:90,1:1,3:9,1:2,0:172,1:2,3:46,1:4,3:39,1:1,3:9,1:2,0:173,1:1,3:46,1:5,3:5,1:3,3:30,1:2,3:8,1:2,0:173,1:3,3:43,1:6,3:1,1:1,3:2,1:5,3:27,1:1,3:9,1:2,0:176,1:2,3:49,1:2,3:1,1:6,3:2,1:1,3:23,1:2,3:9,1:2,0:176,1:2,3:57,1:3,3:24,1:2,3:9,1:2,0:176,1:2,3:84,1:3,3:8,1:2,0:176,1:1,3:85,1:3,3:8,1:2,0:178,1:2,3:8,1:1,3:73,1:3,3:6,1:2,0:180,1:1,3:8,1:2,3:73,1:2,3:7,1:2,0:182,3:1,1:9,3:70,1:3,3:8,1:2,0:183,3:4,0:2,1:3,3:70,1:3,3:8,1:2,0:190,1:2,3:23,1:3,3:44,1:3,3:7,1:1,0:192,1:2,3:23,1:8,3:2,1:2,3:35,1:3,3:6,1:1,0:193,1:2,3:23,1:5,3:6,1:1,3:14,1:1,3:20,1:3,3:5,1:2,0:195,1:1,3:37,1:4,3:2,1:7,3:19,1:8,0:197,1:1,3:44,1:6,3:19,1:8,0:61,1:7,0:129,1:2,3:45,1:4,3:17,1:3,0:66,1:2,3:1,1:5,0:130,1:2,3:66,1:3,0:66,1:2,3:6,1:2,0:128,1:2,3:65,1:2,0:56,1:4,0:8,1:2,3:6,1:2,0:129,1:3,3:62,1:3,0:55,1:6,0:7,1:2,3:6,1:2,0:129,1:3,3:62,1:3,0:55,1:2,3:3,1:2,0:6,1:2,3:6,1:2,0:129,1:3,3:62,1:3,0:54,1:3,3:3,1:2,0:6,1:2,3:6,1:2,0:129,1:5,3:61,1:1,0:53,1:2,3:6,1:3,0:4,1:2,3:7,1:2,0:4,1:3,0:122,1:4,3:59,1:2,0:55,1:2,3:7,1:2,0:4,1:2,3:6,1:2,0:4,1:6,0:120,1:2,3:3,1:2,3:56,1:2,0:55,1:2,3:7,1:2,0:4,1:2,3:6,1:2,0:2,1:2,3:4,1:1,0:121,1:2,3:3,1:2,3:54,1:2,0:57,1:2,3:7,1:2,0:4,1:2,3:6,1:3,0:1,1:2,3:5,1:3,0:118,1:2,3:5,1:1,3:53,1:2,0:57,1:2,3:7,1:2,0:4,1:2,3:6,1:6,3:6,1:2,0:118,1:2,3:5,1:2,3:52,1:2,0:57,1:2,3:7,1:2,0:4,1:2,3:6,1:6,3:6,1:2,0:118,1:2,3:56,1:3,0:58,1:2,3:8,1:2,0:4,1:2,3:6,1:6,3:6,1:2,0:118,1:2,3:56,1:3,0:58,1:2,3:7,1:2,0:4,1:3,3:6,1:6,3:6,1:2,0:118,1:2,3:52,1:1,3:1,1:3,0:60,1:2,3:7,1:2,0:4,1:2,3:6,1:5,3:8,1:2,0:118,1:2,3:52,1:4,0:63,1:2,3:5,1:2,0:4,1:2,3:6,1:4,3:8,1:2,0:119,1:2,3:52,1:4,0:63,1:2,3:5,1:2,0:4,1:2,3:6,1:4,3:8,1:2,0:119,1:2,3:13,1:5,3:31,1:7,0:63,1:2,3:5,1:2,0:4,1:2,3:6,1:4,3:8,1:2,0:119,1:2,3:13,1:5,3:31,1:3,3:1,1:3,0:63,1:2,3:6,1:2,0:3,1:2,3:6,1:4,3:6,1:4,0:119,1:2,3:19,1:4,3:22,1:4,3:5,1:2,0:63,1:2,3:7,1:1,0:3,1:1,3:7,1:3,3:7,1:2,0:121,1:2,3:18,1:4,3:23,1:4,3:5,1:2,0:62,1:2,3:7,1:6,3:7,1:4,3:6,1:2,0:119,1:4,3:19,1:3,3:1,1:24,3:5,1:2,0:64,1:2,3:7,1:5,3:7,1:3,3:8,1:2,0:7,1:5,0:107,1:4,3:23,1:22,3:7,1:2,0:64,1:2,3:7,1:5,3:7,1:2,3:8,1:2,0:4,1:1,0:1,1:7,0:104,1:3,2:2,1:2,3:23,1:22,3:7,1:2,0:64,1:2,3:7,1:5,3:7,1:2,3:8,1:2,0:4,1:3,3:4,1:1,0:105,1:3,2:2,1:2,3:52,1:2,0:64,1:2,3:7,1:5,3:7,1:2,3:8,1:2,0:4,1:1,3:1,1:1,3:5,1:1,0:104,1:3,2:2,1:2,3:52,1:2,0:64,1:2,3:7,1:4,3:8,1:2,3:8,1:2,0:3,1:2,3:7,1:2,0:101,1:5,2:2,1:2,3:52,1:2,0:64,1:2,3:7,1:4,3:6,1:4,3:8,1:2,0:3,1:2,3:7,1:2,0:101,1:5,2:2,1:2,3:52,1:2,0:63,1:2,3:7,1:5,3:6,1:4,3:8,1:2,0:3,1:2,3:7,1:2,0:99,1:5,2:6,3:52,1:4,0:43,1:7,0:11,1:2,3:7,1:4,3:6,1:4,3:8,1:3,0:3,1:2,3:7,1:2,0:98,1:6,2:6,3:52,1:5,0:40,1:9,0:11,1:2,3:7,1:4,3:6,1:3,3:8,1:3,0:3,1:1,3:9,1:2,0:96,1:8,2:7,1:2,3:49,2:2,1:5,0:38,1:2,3:7,1:1,0:10,1:2,3:7,1:4,3:6,1:3,3:7,1:3,0:2,1:2,3:9,1:2,0:97,1:8,2:7,1:2,3:49,2:2,1:5,0:38,1:2,3:8,1:2,0:8,1:3,3:8,1:2,3:6,1:3,3:6,1:3,0:2,2:1,1:2,3:7,1:2,0:98,1:8,2:10,3:48,2:3,1:6,2:2,0:34,1:3,3:7,1:3,0:9,1:2,3:16,1:3,3:6,1:3,0:2,2:1,1:2,3:7,1:2,0:97,1:9,2:11,3:45,1:3,2:2,1:7,2:1,0:34,1:2,3:10,1:1,0:10,1:1,3:16,1:3,3:6,1:3,0:2,2:1,1:2,3:7,1:2,0:97,1:9,2:12,3:44,1:3,2:2,1:7,2:2,0:33,1:3,3:9,1:2,0:8,1:1,3:17,1:3,3:6,1:3,2:3,1:2,3:7,1:2,0:92,1:14,2:12,1:2,3:40,1:2,2:5,1:9,0:35,1:1,3:9,1:2,0:8,1:1,3:26,1:3,2:2,1:1,3:9,1:2,0:92,1:14,2:12,1:2,3:40,1:2,2:5,1:9,0:35,1:3,3:8,1:2,0:7,1:1,3:25,1:3,2:1,1:2,3:9,1:3,0:88,1:18,2:14,1:2,3:36,1:2,2:8,1:10,0:33,1:3,3:8,1:2,0:6,1:2,3:24,1:4,2:1,1:2,3:7,1:2,0:91,1:18,2:14,1:2,3:36,1:2,2:9,1:9,0:33,1:3,3:9,1:3,0:4,1:2,3:24,1:3,2:2,1:2,3:6,1:2,0:87,1:23,2:17,3:34,1:1,2:12,1:8,0:33,1:3,3:10,1:2,0:4,1:2,3:24,1:5,3:1,1:1,3:6,1:2,0:87,1:23,2:17,1:1,3:32,1:2,2:12,1:9,0:33,1:1,3:11,1:3,0:3,1:2,3:24,1:5,3:8,1:2,0:82,1:28,2:19,3:30,2:15,1:10,0:32,1:3,3:8,1:3,0:2,1:2,3:39,1:2,0:82,1:28,2:19,1:1,3:28,2:16,1:11,0:34,1:1,3:7,1:3,0:2,1:2,3:37,1:4,0:77,1:31,2:1,1:1,2:21,3:26,2:17,1:15,0:30,1:2,3:9,1:4,3:37,1:2,0:79,1:31,2:22,1:3,3:22,1:2,2:17,1:15,0:32,1:1,3:8,1:2,3:38,1:2,0:80,1:31,2:23,1:2,3:22,1:2,2:17,1:18,0:29,1:1,3:8,1:2,3:38,1:2,0:76,1:35,2:25,1:2,3:18,1:2,2:19,1:19,0:18,1:3,0:7,1:1,3:8,1:2,3:38,1:2,0:75,1:36,2:26,1:1,3:18,1:2,2:18,1:21,0:17,1:3,0:6,1:2,3:8,1:2,3:38,1:2,0:71,1:40,2:27,1:2,3:15,2:20,1:27,0:12,1:4,0:7,1:1,3:45,1:2,0:72,1:41,2:28,1:1,3:13,2:22,1:27,0:14,1:2,0:7,1:1,3:45,1:2,0:66,1:47,2:29,1:2,3:9,1:2,2:22,1:33,0:8,1:3,0:7,1:1,3:44,1:2,0:66,1:47,2:29,1:2,3:9,1:2,2:22,1:33,0:8,1:3,0:7,1:1,3:43,1:2,0:60,1:54,2:32,1:2,3:2,1:4,2:24,1:34,0:9,1:2,0:6,1:1,3:43,1:2,0:60,1:54,2:32,1:8,2:24,1:38,0:5,1:3,0:5,1:1,3:43,1:2,0:51,1:63,2:64,1:46,0:5,1:1,3:43,1:2,0:51,1:63,2:27,1:4,2:9,1:2,2:20,1:49,0:5,1:1,3:42,1:2,0:44,1:72,2:25,1:5,2:7,1:5,2:18,1:49,0:5,1:1,3:42,1:2,0:44,1:72,2:25,1:5,2:6,1:7,2:17,1:50,0:4,1:1,3:42,1:2,0:40,1:76,2:20,5:3,4:16,1:5,2:16,1:50,0:4,1:2,3:40,1:2,0:40,1:77,2:20,5:3,4:16,1:5,2:16,1:51,0:5,1:1,3:39,1:2,0:40,1:77,2:20,4:16,5:2,4:1,1:7,2:14,1:52,0:4,1:1,3:39,1:2,0:39,1:78,2:20,4:16,5:2,4:1,1:7,2:14,1:52,0:4,1:1,3:39,1:2,0:38,1:79,2:18,1:2,4:18,5:1,1:8,2:13,1:53,0:2,1:2,3:37,1:2,0:40,1:79,2:18,1:2,4:18,5:1,1:9,2:12,1:53,0:4,1:1,3:36,1:2,0:40,1:79,2:16,1:4,4:19,1:6,2:2,1:2,2:11,1:54,0:3,1:1,3:36,1:2,0:40,1:79,2:16,1:3,2:1,5:1,4:18,1:6,2:2,1:2,2:11,1:54,0:3,1:1,3:35,1:2,0:41,1:79,2:17,1:1,2:2,5:1,4:17,1:7,2:2,1:2,2:11,1:55,0:3,1:1,3:34,1:2,0:39,1:81,2:14,1:3,2:3,5:1,4:17,1:7,2:4,1:3,2:6,1:58,0:3,1:1,3:33,1:2,0:39,1:81,2:14,1:3,2:3,5:1,4:17,1:7,2:4,1:3,2:6,1:58,0:3,1:2,3:30,1:2,0:1,1:1,0:39,1:81,2:12,1:2,2:6,5:1,4:17,1:5,2:7,1:1,2:7,1:59,0:4,1:1,3:29,1:2,0:41,1:81,2:12,1:2,2:6,5:1,4:17,1:5,2:9,1:1,2:5,1:59,0:3,1:1,3:30,1:2,0:41,1:81,2:9,1:3,2:8,5:3,4:15,1:3,2:11,1:2,2:4,1:60,0:2,1:1,3:30,1:2,0:41,1:81,2:9,1:3,2:8,5:3,4:15,1:3,2:11,1:2,2:4,1:60,0:3,1:2,3:27,1:2,0:42,1:81,2:7,1:4,2:9,5:3,4:15,1:3,2:11,1:4,2:2,1:61,0:4,1:1,3:24,1:2,0:41,1:84,2:6,1:4,2:10,5:3,4:3,5:4,4:8,1:3,2:13,1:2,2:2,1:62,0:3,1:1,3:24,1:2,0:41,1:84,2:7,1:2,2:11,5:3,4:15,1:3,2:13,1:67,0:2,1:1,3:24,1:2,0:41,1:84,2:20,5:3,4:7,5:2,4:6,1:2,2:16,1:65,0:2,1:1,3:24,1:2,0:41,1:86,2:18,5:3,4:15,1:2,2:16,1:65,0:1,1:1,3:23,1:4,0:41,1:87,2:17,5:3,4:9,5:2,4:4,2:18,1:68,3:22,1:4,0:41,1:87,2:17,5:3,4:15,2:18,1:68,3:22,1:6,0:39,1:87,2:17,5:3,4:15,2:18,1:68,3:22,1:3,2:1,1:3,0:36,1:89,2:17,5:3,4:15,2:18,1:69,3:21,1:3,2:1,1:4,0:35,1:89,2:17,5:1,4:17,2:18,1:69,3:22,1:2,2:1,1:4,2:1,0:34,1:89,2:17,5:1,4:16,1:1,2:18,1:70,3:21,1:2,2:1,1:4,2:2,0:33,1:89,2:17,5:1,4:16,1:3,2:14,1:71,3:22,1:2,2:2,1:5,0:33,1:89,2:17,5:1,4:2,5:2,4:12,1:3,2:14,1:70,3:23,1:1,3:1,2:2,1:5,0:33,1:89,2:17,5:1,4:2,5:2,4:12,1:3,2:14,1:68,2:1,1:4,3:19,1:1,3:1,2:2,1:6,0:33,1:89,2:17,4:6,5:1,4:10,1:3,2:14,1:68,2:3,1:2,3:21,2:3,1:5,0:31,1:91,2:17,4:6,5:1,4:10,1:3,2:14,1:68,2:3,1:2,3:21,2:3,1:5,2:2,0:29,1:91,2:17,4:8,5:1,4:8,1:3,2:14,1:68,2:5,1:1,3:18,2:5,1:6,2:1,0:29,1:91,2:17,4:8,5:2,4:7,1:3,2:14,1:69,2:5,1:3,3:12,2:2,3:1,2:5,1:6,2:1,0:29,1:93,2:14,1:1,4:10,5:1,4:6,1:3,2:14,1:70,2:7,3:2,1:5,3:4,2:9,1:7,0:29,1:93,2:13,1:2,4:10,5:2,4:5,1:3,2:14,1:71,2:6,3:8,2:11,1:9,0:28,1:93,2:13,1:2,4:17,1:3,2:12,1:73,2:25,1:9,0:28,1:93,2:13,1:2,4:12,5:2,4:3,1:3,2:12,1:73,2:25,1:9,0:28,1:93,2:13,1:2,4:12,5:2,4:3,1:5,2:10,1:75,2:23,1:9,0:27,1:94,2:13,1:2,4:17,1:5,2:10,1:75,2:23,1:9,0:26,1:95,2:13,1:2,4:14,5:2,4:1,1:5,2:10,1:77,2:21,1:11,0:24,1:95,2:13,1:2,4:14,5:2,4:1,1:5,2:10,1:78,2:18,1:13,0:24,1:95,2:13,1:2,4:17,1:5,2:10,1:81,2:14,1:14,0:24,1:95,2:13,1:2,4:16,5:1,1:5,2:8,1:83,2:14,1:14,0:24,1:96,2:12,1:2,4:16,5:1,1:5,2:7,1:84,2:14,1:14,0:24,1:97,2:11,1:2,4:14,5:2,4:1,1:5,2:7,1:87,2:11,1:14,0:24,1:97,2:9,1:4,4:14,5:2,4:1,1:5,2:7,1:90,2:4,1:18,0:24,1:97,2:9,1:4,4:12,5:2,4:3,1:5,2:7,1:114,0:20,1:99,2:9,1:4,4:12,5:2,4:3,1:5,2:7,1:114,0:19,1:100,2:9,1:4,4:10,5:2,4:5,1:5,2:7,1:114,0:19,1:100,2:9,1:4,4:10,5:2,4:5,1:5,2:7,1:114,0:19,1:100,2:9,1:4,4:17,1:5,2:7,1:114,0:19,1:100,2:9,1:4,4:8,5:2,4:7,1:5,2:7,1:114,0:19,1:102,2:7,1:4,4:17,1:5,2:5,1:116,0:19,1:102,2:7,1:4,4:5,5:2,4:10,1:5,2:5,1:116,0:19,1:102,2:7,1:3,4:4,5:2,4:12,1:5,2:5,1:117,0:18,1:103,2:6,1:3,4:4,5:2,4:12,1:5,2:5,1:118,0:17,1:103,2:6,1:3,4:2,5:2,4:14,1:5,2:5,1:118,0:17,1:103,2:6,1:3,4:18,1:5,2:5,1:118,0:17,1:103,2:6,1:3,5:1,4:17,1:5,2:5,1:118,0:17,1:103,2:4,1:5,4:18,1:5,2:3,1:121,0:14,1:105,2:4,1:5,4:18,1:5,2:3,1:123,0:12,1:106,2:3,1:5,4:18,1:5,2:3,1:122,0:13,1:107,2:2,1:5,4:18,1:5,2:3,1:122,0:13,1:106,2:3,1:5,4:18,1:5,2:3,1:122,0:13,1:107,2:2,1:5,4:18,1:5,2:3,1:123,0:12,1:107,2:2,1:5,4:18,1:5,2:3,1:125,0:10,1:107,2:2,1:5,4:18,1:133,0:8,1:109,2:2,1:5,4:17,5:1,1:133,0:8,1:109,2:2,1:5,4:18,1:133,0:8,1:116,4:15,5:2,4:1,1:135,0:6,1:116,4:15,5:2,4:1,1:135,0:6,1:116,4:18,1:135,0:6,1:116,4:13,5:2,4:3,1:135,0:6,1:116,4:19,1:134,0:6,1:116,4:11,5:2,4:6,1:134,0:6,1:115,4:20,1:132,0:8,1:115,4:9,5:3,4:8,1:132,0:832",
+"0:1220,1:2,0:271,1:18,0:257,1:18,0:251,1:26,0:12,1:9,0:228,1:26,0:12,1:9,0:224,1:30,0:6,1:24,0:215,1:31,0:4,1:25,0:211,1:65,0:209,1:72,0:202,1:73,0:202,1:77,0:197,1:78,0:192,1:84,0:191,1:86,0:185,1:91,0:183,1:92,0:181,1:97,0:178,1:97,0:178,1:97,0:176,1:100,0:175,1:102,0:173,1:102,0:173,1:102,0:172,1:103,0:170,1:59,3:2,1:46,0:168,1:59,3:2,1:46,0:168,1:59,3:2,1:47,0:167,1:57,3:9,1:43,0:164,1:59,3:9,1:43,0:164,1:58,3:12,1:41,0:164,1:58,3:12,1:41,0:164,1:57,3:14,1:40,0:164,1:57,3:14,1:40,0:164,1:56,3:16,1:41,0:162,1:56,3:16,1:41,0:162,1:55,3:17,1:41,0:162,1:54,3:18,1:41,0:162,1:54,3:18,1:41,0:163,1:53,3:18,1:41,0:164,1:50,3:20,1:41,0:164,1:50,3:20,1:41,0:164,1:48,3:23,1:40,0:164,1:48,3:23,1:40,0:164,1:47,3:26,1:38,0:164,1:46,3:27,1:38,0:164,1:44,3:29,1:36,0:166,1:44,3:29,1:36,0:166,1:44,3:29,1:36,0:166,1:43,3:32,1:34,0:166,1:48,3:27,1:34,0:166,1:50,3:26,1:33,0:167,1:23,3:6,1:22,3:25,1:32,0:167,1:20,3:11,1:20,3:16,1:39,0:169,1:18,3:15,1:18,3:15,1:40,0:169,1:18,3:22,1:11,3:14,1:23,3:1,1:17,0:169,1:17,3:33,1:1,3:12,1:23,3:6,1:14,0:169,1:17,3:46,1:23,3:6,1:13,0:172,1:15,3:76,1:11,0:173,1:15,3:76,1:11,0:175,1:12,3:17,1:10,3:51,1:10,0:175,1:12,3:17,1:11,3:51,1:9,0:175,1:12,3:15,1:16,3:23,1:8,3:16,1:10,0:175,1:12,3:11,1:1,3:1,1:6,2:1,1:11,3:22,1:10,3:15,1:10,0:173,1:14,3:11,1:6,3:1,2:2,1:7,2:2,1:3,3:19,1:14,3:13,1:8,0:175,1:14,3:19,2:1,1:7,2:2,3:1,1:3,3:17,1:16,3:12,1:8,0:172,1:2,3:7,1:8,3:21,1:5,2:2,3:3,1:2,3:16,1:11,2:3,1:4,3:11,1:8,0:172,1:3,3:6,1:8,3:49,1:2,3:2,1:7,2:3,3:1,1:4,3:10,1:8,0:172,3:10,1:6,3:50,1:1,3:4,1:6,2:2,3:2,1:5,3:8,1:7,0:172,1:2,3:5,1:2,3:5,1:4,3:57,1:3,3:1,2:1,3:4,1:4,3:8,1:7,0:172,1:2,3:4,1:3,3:5,1:4,3:78,1:7,0:172,1:2,3:8,1:1,3:5,1:2,3:78,1:7,0:172,1:2,3:8,1:2,3:3,1:3,3:78,1:7,0:172,1:2,3:10,1:1,3:3,1:2,3:78,1:9,0:170,1:2,3:11,1:1,3:82,1:4,3:3,1:2,0:170,1:2,3:10,1:2,3:82,1:4,3:5,1:2,0:168,1:2,3:9,1:3,3:82,1:4,3:5,1:2,0:168,1:2,3:9,1:3,3:82,1:4,3:5,1:2,0:168,1:2,3:94,1:2,3:7,1:2,0:168,1:2,3:94,1:2,3:7,1:2,0:169,1:2,3:93,1:2,3:7,1:2,0:170,1:2,3:91,1:3,3:7,1:2,0:170,1:3,3:90,1:2,3:8,1:2,0:170,1:3,3:90,1:1,3:9,1:2,0:170,1:3,3:90,1:1,3:9,1:2,0:172,1:2,3:46,1:4,3:39,1:1,3:9,1:2,0:173,1:1,3:46,1:5,3:5,1:3,3:30,1:2,3:8,1:2,0:173,1:3,3:43,1:6,3:1,1:1,3:2,1:5,3:27,1:1,3:9,1:2,0:176,1:2,3:49,1:2,3:1,1:6,3:2,1:1,3:23,1:2,3:9,1:2,0:176,1:2,3:57,1:3,3:24,1:2,3:9,1:2,0:176,1:2,3:84,1:3,3:8,1:2,0:176,1:1,3:85,1:3,3:8,1:2,0:178,1:2,3:8,1:1,3:73,1:3,3:6,1:2,0:180,1:1,3:8,1:2,3:22,1:1,3:32,1:1,3:17,1:2,3:7,1:2,0:182,3:1,1:9,3:22,1:1,3:30,1:1,3:16,1:3,3:8,1:2,0:183,3:4,0:2,1:3,3:70,1:3,3:8,1:2,0:190,1:2,3:23,1:5,3:20,1:5,3:17,1:3,3:7,1:1,0:192,1:2,3:25,1:26,3:19,1:3,3:6,1:1,0:193,1:2,3:26,1:4,2:16,1:4,3:20,1:3,3:5,1:2,0:195,1:1,3:27,1:2,2:16,1:2,3:22,1:8,0:49,1:6,0:142,1:1,3:29,1:16,3:24,1:8,0:49,1:6,0:142,1:2,3:31,1:10,3:25,1:3,0:54,1:2,3:6,1:2,0:140,1:2,3:66,1:3,0:54,1:2,3:6,1:2,0:140,1:2,3:65,1:2,0:56,1:2,3:6,1:2,0:141,1:3,3:62,1:3,0:45,1:3,0:8,1:2,3:6,1:2,0:141,1:3,3:62,1:3,0:44,1:5,0:7,1:2,3:6,1:2,0:4,1:5,0:132,1:3,3:62,1:3,0:43,1:2,3:3,1:2,0:6,1:2,3:6,1:2,0:4,1:5,0:132,1:5,3:61,1:1,0:44,1:2,3:3,1:2,0:6,1:2,3:6,1:2,0:2,1:2,3:5,1:3,0:129,1:4,3:59,1:2,0:46,1:2,3:4,1:3,0:4,1:2,3:6,1:2,0:2,1:2,3:6,1:2,0:129,1:2,3:3,1:2,3:56,1:2,0:44,1:2,3:7,1:2,0:4,1:2,3:6,1:6,3:6,1:2,0:129,1:2,3:3,1:2,3:54,1:2,0:46,1:2,3:7,1:2,0:4,1:2,3:6,1:6,3:6,1:2,0:129,1:2,3:5,1:1,3:53,1:2,0:46,1:2,3:7,1:2,0:4,1:2,3:6,1:6,3:6,1:2,0:129,1:2,3:5,1:2,3:52,1:2,0:46,1:2,3:7,1:2,0:4,1:2,3:6,1:6,3:6,1:2,0:129,1:2,3:56,1:3,0:48,1:2,3:7,1:2,0:4,1:2,3:6,1:5,3:7,1:2,0:129,1:2,3:56,1:3,0:48,1:2,3:7,1:2,0:4,1:2,3:6,1:4,3:8,1:2,0:129,1:2,3:52,1:1,3:1,1:3,0:50,1:2,3:7,1:2,0:4,1:2,3:6,1:4,3:8,1:2,0:129,1:2,3:52,1:4,0:51,1:2,3:7,1:2,0:4,1:2,3:6,1:4,3:6,1:4,0:129,1:2,3:52,1:4,0:51,1:2,3:7,1:2,0:4,1:2,3:6,1:4,3:6,1:2,0:131,1:2,3:13,1:5,3:31,1:7,0:53,1:2,3:5,1:2,0:4,1:2,3:6,1:3,3:7,1:2,0:7,1:5,0:119,1:2,3:13,1:5,3:31,1:3,3:1,1:3,0:53,1:2,3:5,1:2,0:4,1:2,3:6,1:4,3:6,1:2,0:6,1:6,0:119,1:2,3:19,1:4,3:22,1:4,3:5,1:2,0:53,1:2,3:6,1:2,0:3,1:1,3:7,1:4,3:6,1:2,0:4,1:1,0:1,1:1,3:4,1:1,0:119,1:2,3:18,1:4,3:23,1:4,3:5,1:2,0:53,1:2,3:7,1:5,3:7,1:3,3:7,1:2,0:4,1:3,3:5,1:2,0:115,1:4,3:19,1:3,3:1,1:24,3:5,1:2,0:55,1:2,3:7,1:5,3:7,1:2,3:8,1:2,0:4,1:1,3:7,1:2,0:115,1:4,3:23,1:22,3:7,1:2,0:55,1:2,3:7,1:5,3:7,1:2,3:8,1:2,0:3,1:2,3:7,1:2,0:112,1:3,2:2,1:2,3:23,1:22,3:7,1:2,0:55,1:2,3:7,1:5,3:7,1:2,3:8,1:2,0:3,1:2,3:7,1:2,0:112,1:3,2:2,1:2,3:52,1:2,0:55,1:2,3:7,1:5,3:7,1:2,3:8,1:2,0:3,1:2,3:7,1:2,0:112,1:3,2:2,1:2,3:52,1:2,0:55,1:2,3:7,1:4,3:6,1:4,3:8,1:2,0:3,1:2,3:7,1:2,0:110,1:5,2:2,1:2,3:52,1:2,0:55,1:2,3:7,1:4,3:6,1:4,3:7,1:3,0:3,1:1,3:8,1:2,0:110,1:5,2:2,1:2,3:52,1:2,0:55,1:2,3:7,1:4,3:6,1:4,3:7,1:3,0:1,1:2,3:7,1:2,0:110,1:5,2:6,3:52,1:4,0:53,1:2,3:7,1:4,3:6,1:3,3:7,1:4,2:1,1:2,3:7,1:2,0:109,1:6,2:6,3:52,1:5,0:52,1:2,3:7,1:4,3:6,1:3,3:6,1:3,2:3,1:2,3:7,1:2,0:107,1:8,2:7,1:2,3:49,2:2,1:5,0:50,1:2,3:7,1:4,3:6,1:3,3:6,1:3,2:3,1:2,3:7,1:2,0:107,1:8,2:7,1:2,3:49,2:2,1:5,0:50,1:2,3:7,1:4,3:6,1:3,3:6,1:3,2:3,1:2,3:7,1:2,0:106,1:8,2:10,3:48,2:3,1:6,2:2,0:29,1:7,0:11,1:2,3:17,1:3,3:6,1:3,2:2,1:1,3:9,1:2,0:105,1:9,2:11,3:45,1:3,2:2,1:7,2:1,0:29,1:8,0:10,1:3,3:16,1:3,3:6,1:3,2:1,1:2,3:7,1:2,0:107,1:9,2:12,3:44,1:3,2:2,1:7,2:2,0:26,1:2,3:8,1:2,0:9,1:2,3:25,1:3,2:1,1:2,3:6,1:2,0:103,1:14,2:12,1:2,3:40,1:2,2:5,1:9,0:26,1:2,3:7,1:3,0:10,1:1,3:24,1:4,2:1,1:2,3:6,1:2,0:103,1:14,2:12,1:2,3:40,1:2,2:5,1:9,0:26,1:2,3:10,1:1,0:9,1:1,3:24,1:3,2:2,1:2,3:6,1:2,0:99,1:18,2:14,1:2,3:36,1:2,2:8,1:10,0:24,1:2,3:10,1:2,0:8,1:1,3:24,1:5,3:8,1:2,0:99,1:18,2:14,1:2,3:36,1:2,2:9,1:9,0:24,1:2,3:10,1:2,0:8,1:1,3:24,1:5,3:8,1:2,0:94,1:23,2:17,3:34,1:1,2:12,1:8,0:24,1:3,3:10,1:2,0:6,1:2,3:35,1:2,0:96,1:23,2:17,1:1,3:32,1:2,2:12,1:9,0:25,1:3,3:8,1:2,0:6,1:2,3:35,1:2,0:91,1:28,2:19,3:30,2:15,1:10,0:24,1:3,3:9,1:4,0:3,1:2,3:35,1:2,0:91,1:28,2:19,1:1,3:28,2:16,1:11,0:23,1:3,3:10,1:3,0:3,1:2,3:35,1:2,0:86,1:31,2:1,1:1,2:21,3:26,2:17,1:15,0:19,1:3,3:10,1:3,0:2,1:2,3:36,1:2,0:86,1:31,2:22,1:3,3:22,1:2,2:17,1:15,0:19,1:3,3:10,1:3,0:2,1:2,3:36,1:2,0:86,1:31,2:23,1:2,3:22,1:2,2:17,1:18,0:18,1:3,3:8,1:7,3:34,1:2,0:84,1:35,2:25,1:2,3:18,1:2,2:19,1:19,0:18,1:2,3:11,1:2,3:36,1:2,0:83,1:36,2:26,1:1,3:18,1:2,2:18,1:21,0:17,1:2,3:11,1:2,3:36,1:2,0:79,1:40,2:27,1:2,3:15,2:20,1:27,0:12,1:4,3:9,1:2,3:36,1:2,0:78,1:41,2:28,1:1,3:13,2:22,1:27,0:14,1:2,3:9,1:2,3:36,1:2,0:72,1:47,2:29,1:2,3:9,1:2,2:22,1:33,0:8,1:2,3:47,1:2,0:72,1:47,2:29,1:2,3:9,1:2,2:22,1:33,0:8,1:2,3:47,1:2,0:65,1:54,2:32,1:2,3:2,1:4,2:24,1:34,0:9,1:2,3:45,1:2,0:65,1:54,2:32,1:8,2:24,1:38,0:5,1:3,3:44,1:2,0:56,1:63,2:64,1:46,3:44,1:2,0:56,1:63,2:27,1:4,2:9,1:2,2:20,1:48,3:44,1:2,0:49,1:72,2:25,1:5,2:7,1:5,2:18,1:48,3:44,1:2,0:49,1:72,2:25,1:5,2:6,1:7,2:17,1:48,3:44,1:2,0:45,1:76,2:20,5:3,4:16,1:5,2:16,1:50,3:42,1:2,0:44,1:77,2:20,5:3,4:16,1:5,2:16,1:50,3:40,1:2,0:46,1:77,2:20,4:16,5:2,4:1,1:7,2:14,1:50,3:40,1:2,0:45,1:78,2:20,4:16,5:2,4:1,1:7,2:14,1:50,3:40,1:2,0:44,1:79,2:18,1:2,4:18,5:1,1:8,2:13,1:52,3:38,1:2,0:44,1:79,2:18,1:2,4:18,5:1,1:9,2:12,1:52,3:38,1:2,0:44,1:79,2:16,1:4,4:19,1:6,2:2,1:2,2:11,1:52,3:38,1:2,0:44,1:79,2:16,1:3,2:1,5:1,4:18,1:6,2:2,1:2,2:11,1:52,3:38,1:2,0:44,1:79,2:17,1:1,2:2,5:1,4:17,1:7,2:2,1:2,2:11,1:54,3:34,1:2,0:44,1:81,2:14,1:3,2:3,5:1,4:17,1:7,2:4,1:3,2:6,1:56,3:34,1:2,0:44,1:81,2:14,1:3,2:3,5:1,4:17,1:7,2:4,1:3,2:6,1:56,3:34,1:2,0:44,1:81,2:12,1:2,2:6,5:1,4:17,1:5,2:7,1:1,2:7,1:58,3:32,1:2,0:44,1:81,2:12,1:2,2:6,5:1,4:17,1:5,2:9,1:1,2:5,1:58,3:32,1:2,0:44,1:81,2:9,1:3,2:8,5:3,4:15,1:3,2:11,1:2,2:4,1:60,3:28,1:2,0:46,1:81,2:9,1:3,2:8,5:3,4:15,1:3,2:11,1:2,2:4,1:60,3:28,1:2,0:46,1:81,2:7,1:4,2:9,5:3,4:15,1:3,2:11,1:4,2:2,1:60,3:28,1:2,0:43,1:84,2:6,1:4,2:10,5:3,4:3,5:4,4:8,1:3,2:13,1:2,2:2,1:61,3:27,1:2,0:43,1:84,2:7,1:2,2:11,5:3,4:15,1:3,2:13,1:67,3:23,1:4,0:43,1:84,2:20,5:3,4:7,5:2,4:6,1:2,2:16,1:65,3:23,1:5,0:42,1:86,2:18,5:3,4:15,1:2,2:16,1:65,3:24,1:5,0:41,1:87,2:17,5:3,4:9,5:2,4:4,2:18,1:65,3:24,1:5,0:41,1:87,2:17,5:3,4:15,2:18,1:65,3:24,1:7,0:39,1:87,2:17,5:3,4:15,2:18,1:67,3:23,1:2,2:2,1:3,0:36,1:89,2:17,5:3,4:15,2:18,1:67,3:23,1:2,2:2,1:4,0:35,1:89,2:17,5:1,4:17,2:18,1:68,3:22,1:2,2:2,1:4,2:1,0:34,1:89,2:17,5:1,4:16,1:1,2:18,1:68,3:22,1:1,3:1,2:2,1:4,2:2,0:33,1:89,2:17,5:1,4:16,1:3,2:14,1:71,3:21,1:1,3:1,2:2,1:6,0:33,1:89,2:17,5:1,4:2,5:2,4:12,1:3,2:14,1:71,3:23,2:2,1:6,0:33,1:89,2:17,5:1,4:2,5:2,4:12,1:3,2:14,1:68,2:1,1:1,3:24,2:2,1:6,0:33,1:89,2:17,4:6,5:1,4:10,1:3,2:14,1:68,2:3,1:2,3:19,2:5,1:5,0:31,1:91,2:17,4:6,5:1,4:10,1:3,2:14,1:68,2:3,1:2,3:19,2:5,1:5,2:2,0:29,1:91,2:17,4:8,5:1,4:8,1:3,2:14,1:68,2:5,3:16,2:8,1:6,2:1,0:29,1:91,2:17,4:8,5:2,4:7,1:3,2:14,1:69,2:5,3:14,2:9,1:6,2:1,0:29,1:93,2:14,1:1,4:10,5:1,4:6,1:3,2:14,1:70,2:7,3:2,1:6,3:1,2:11,1:7,0:29,1:93,2:13,1:2,4:10,5:2,4:5,1:3,2:14,1:71,2:7,3:7,2:11,1:9,0:28,1:93,2:13,1:2,4:17,1:3,2:12,1:73,2:25,1:9,0:28,1:93,2:13,1:2,4:12,5:2,4:3,1:3,2:12,1:73,2:25,1:9,0:28,1:93,2:13,1:2,4:12,5:2,4:3,1:5,2:10,1:75,2:23,1:9,0:27,1:94,2:13,1:2,4:17,1:5,2:10,1:75,2:23,1:9,0:26,1:95,2:13,1:2,4:14,5:2,4:1,1:5,2:10,1:77,2:21,1:11,0:24,1:95,2:13,1:2,4:14,5:2,4:1,1:5,2:10,1:78,2:18,1:13,0:24,1:95,2:13,1:2,4:17,1:5,2:10,1:81,2:14,1:14,0:24,1:95,2:13,1:2,4:16,5:1,1:5,2:8,1:83,2:14,1:14,0:24,1:96,2:12,1:2,4:16,5:1,1:5,2:7,1:84,2:14,1:14,0:24,1:97,2:11,1:2,4:14,5:2,4:1,1:5,2:7,1:87,2:11,1:14,0:24,1:97,2:9,1:4,4:14,5:2,4:1,1:5,2:7,1:90,2:4,1:18,0:24,1:97,2:9,1:4,4:12,5:2,4:3,1:5,2:7,1:114,0:20,1:99,2:9,1:4,4:12,5:2,4:3,1:5,2:7,1:114,0:19,1:100,2:9,1:4,4:10,5:2,4:5,1:5,2:7,1:114,0:19,1:100,2:9,1:4,4:10,5:2,4:5,1:5,2:7,1:114,0:19,1:100,2:9,1:4,4:17,1:5,2:7,1:114,0:19,1:100,2:9,1:4,4:8,5:2,4:7,1:5,2:7,1:114,0:19,1:102,2:7,1:4,4:17,1:5,2:5,1:116,0:19,1:102,2:7,1:4,4:5,5:2,4:10,1:5,2:5,1:116,0:19,1:102,2:7,1:3,4:4,5:2,4:12,1:5,2:5,1:117,0:18,1:103,2:6,1:3,4:4,5:2,4:12,1:5,2:5,1:118,0:17,1:103,2:6,1:3,4:2,5:2,4:14,1:5,2:5,1:118,0:17,1:103,2:6,1:3,4:18,1:5,2:5,1:118,0:17,1:103,2:6,1:3,5:1,4:17,1:5,2:5,1:118,0:17,1:103,2:4,1:5,4:18,1:5,2:3,1:121,0:14,1:105,2:4,1:5,4:18,1:5,2:3,1:123,0:12,1:106,2:3,1:5,4:18,1:5,2:3,1:122,0:13,1:107,2:2,1:5,4:18,1:5,2:3,1:122,0:13,1:106,2:3,1:5,4:18,1:5,2:3,1:122,0:13,1:107,2:2,1:5,4:18,1:5,2:3,1:123,0:12,1:107,2:2,1:5,4:18,1:5,2:3,1:125,0:10,1:107,2:2,1:5,4:18,1:133,0:8,1:109,2:2,1:5,4:17,5:1,1:133,0:8,1:109,2:2,1:5,4:18,1:133,0:8,1:116,4:15,5:2,4:1,1:135,0:6,1:116,4:15,5:2,4:1,1:135,0:6,1:116,4:18,1:135,0:6,1:116,4:13,5:2,4:3,1:135,0:6,1:116,4:19,1:134,0:6,1:116,4:11,5:2,4:6,1:134,0:6,1:115,4:20,1:132,0:8,1:115,4:9,5:3,4:8,1:132,0:832",
+"0:1220,1:2,0:271,1:18,0:257,1:18,0:251,1:26,0:12,1:9,0:228,1:26,0:12,1:9,0:224,1:30,0:6,1:24,0:215,1:31,0:4,1:25,0:211,1:65,0:209,1:72,0:202,1:73,0:202,1:77,0:197,1:78,0:192,1:84,0:191,1:86,0:185,1:91,0:183,1:92,0:181,1:97,0:178,1:97,0:178,1:97,0:176,1:100,0:175,1:102,0:173,1:102,0:173,1:102,0:172,1:103,0:170,1:59,3:2,1:46,0:168,1:59,3:2,1:46,0:168,1:59,3:2,1:47,0:167,1:57,3:9,1:43,0:164,1:59,3:9,1:43,0:164,1:58,3:12,1:41,0:164,1:58,3:12,1:41,0:164,1:57,3:14,1:40,0:164,1:57,3:14,1:40,0:164,1:56,3:16,1:41,0:162,1:56,3:16,1:41,0:162,1:55,3:17,1:41,0:162,1:54,3:18,1:41,0:162,1:54,3:18,1:41,0:163,1:53,3:18,1:41,0:164,1:50,3:20,1:41,0:164,1:50,3:20,1:41,0:164,1:48,3:23,1:40,0:164,1:48,3:23,1:40,0:164,1:47,3:26,1:38,0:164,1:46,3:27,1:38,0:164,1:44,3:29,1:36,0:166,1:44,3:29,1:36,0:166,1:44,3:29,1:36,0:166,1:43,3:32,1:34,0:166,1:48,3:27,1:34,0:166,1:50,3:26,1:33,0:167,1:23,3:6,1:22,3:25,1:32,0:167,1:20,3:11,1:20,3:16,1:39,0:169,1:18,3:15,1:18,3:15,1:40,0:169,1:18,3:22,1:11,3:14,1:23,3:1,1:17,0:169,1:17,3:33,1:1,3:12,1:23,3:6,1:14,0:169,1:17,3:46,1:23,3:6,1:13,0:172,1:15,3:76,1:11,0:173,1:15,3:76,1:11,0:175,1:12,3:17,1:10,3:51,1:10,0:175,1:12,3:17,1:11,3:51,1:9,0:175,1:12,3:15,1:16,3:23,1:8,3:16,1:10,0:175,1:12,3:11,1:1,3:1,1:6,2:1,1:11,3:22,1:10,3:15,1:10,0:173,1:14,3:11,1:6,3:1,2:2,1:7,2:2,1:3,3:19,1:14,3:13,1:8,0:175,1:14,3:19,2:1,1:7,2:2,3:1,1:3,3:17,1:16,3:12,1:8,0:172,1:2,3:7,1:8,3:21,1:5,2:2,3:3,1:2,3:16,1:11,2:3,1:4,3:11,1:8,0:172,1:3,3:6,1:8,3:49,1:2,3:2,1:7,2:3,3:1,1:4,3:10,1:8,0:172,3:10,1:6,3:50,1:1,3:4,1:6,2:2,3:2,1:5,3:8,1:7,0:172,1:2,3:5,1:2,3:5,1:4,3:57,1:3,3:1,2:1,3:4,1:4,3:8,1:7,0:172,1:2,3:4,1:3,3:5,1:4,3:78,1:7,0:172,1:2,3:8,1:1,3:5,1:2,3:78,1:7,0:172,1:2,3:8,1:2,3:3,1:3,3:78,1:7,0:172,1:2,3:10,1:1,3:3,1:2,3:78,1:9,0:170,1:2,3:11,1:1,3:82,1:4,3:3,1:2,0:170,1:2,3:10,1:2,3:82,1:4,3:5,1:2,0:168,1:2,3:9,1:3,3:82,1:4,3:5,1:2,0:168,1:2,3:9,1:3,3:82,1:4,3:5,1:2,0:168,1:2,3:94,1:2,3:7,1:2,0:168,1:2,3:94,1:2,3:7,1:2,0:169,1:2,3:93,1:2,3:7,1:2,0:170,1:2,3:91,1:3,3:7,1:2,0:170,1:3,3:90,1:2,3:8,1:2,0:170,1:3,3:90,1:1,3:9,1:2,0:170,1:3,3:90,1:1,3:9,1:2,0:172,1:2,3:46,1:4,3:39,1:1,3:9,1:2,0:173,1:1,3:46,1:5,3:5,1:3,3:30,1:2,3:8,1:2,0:173,1:3,3:43,1:6,3:1,1:1,3:2,1:5,3:27,1:1,3:9,1:2,0:176,1:2,3:49,1:2,3:1,1:6,3:2,1:1,3:23,1:2,3:9,1:2,0:176,1:2,3:57,1:3,3:24,1:2,3:9,1:2,0:176,1:2,3:84,1:3,3:8,1:2,0:176,1:1,3:85,1:3,3:8,1:2,0:178,1:2,3:8,1:1,3:73,1:3,3:6,1:2,0:180,1:1,3:8,1:2,3:22,1:1,3:32,1:1,3:17,1:2,3:7,1:2,0:182,3:1,1:9,3:22,1:1,3:30,1:1,3:16,1:3,3:8,1:2,0:183,3:4,0:2,1:3,3:70,1:3,3:8,1:2,0:190,1:2,3:23,1:5,3:20,1:5,3:17,1:3,3:7,1:1,0:192,1:2,3:25,1:26,3:19,1:3,3:6,1:1,0:193,1:2,3:26,1:4,2:16,1:4,3:20,1:3,3:5,1:2,0:195,1:1,3:27,1:2,2:16,1:2,3:22,1:8,0:197,1:1,3:29,1:16,3:24,1:8,0:36,1:2,0:159,1:2,3:31,1:10,3:25,1:3,0:39,1:6,0:159,1:2,3:66,1:3,0:39,1:4,3:2,1:2,0:157,1:2,3:65,1:2,0:40,1:1,3:6,1:2,0:158,1:3,3:62,1:3,0:39,1:2,3:7,1:2,0:6,1:3,0:148,1:3,3:62,1:3,0:40,1:2,3:6,1:2,0:4,1:5,0:2,1:1,0:145,1:3,3:62,1:3,0:40,1:2,3:6,1:2,0:4,1:2,3:3,1:3,0:145,1:5,3:61,1:1,0:41,1:2,3:6,1:2,0:2,1:2,3:6,1:2,0:145,1:4,3:59,1:2,0:33,1:2,0:8,1:2,3:6,1:2,0:2,1:2,3:7,1:2,0:144,1:2,3:3,1:2,3:56,1:2,0:32,1:4,0:7,1:2,3:6,1:7,3:6,1:2,0:144,1:2,3:3,1:2,3:54,1:2,0:33,1:2,3:2,1:2,0:7,1:2,3:6,1:6,3:6,1:2,0:144,1:2,3:5,1:1,3:53,1:2,0:32,1:3,3:3,1:2,0:1,1:1,0:4,1:2,3:6,1:6,3:6,1:2,0:144,1:2,3:5,1:2,3:52,1:2,0:33,1:2,3:4,1:3,0:4,1:2,3:6,1:6,3:6,1:2,0:144,1:2,3:56,1:3,0:35,1:2,3:5,1:2,0:4,1:2,3:6,1:5,3:7,1:3,0:143,1:2,3:56,1:3,0:33,1:2,3:7,1:2,0:4,1:2,3:6,1:5,3:8,1:2,0:9,1:1,0:133,1:2,3:52,1:1,3:1,1:3,0:35,1:2,3:7,1:2,0:5,1:2,3:6,1:4,3:6,1:2,0:7,1:5,0:133,1:2,3:52,1:4,0:36,1:2,3:8,1:2,0:4,1:2,3:6,1:4,3:6,1:2,0:6,1:6,0:133,1:2,3:52,1:4,0:37,1:2,3:7,1:2,0:4,1:2,3:6,1:4,3:6,1:2,0:6,1:1,3:5,1:3,0:130,1:2,3:13,1:5,3:31,1:7,0:37,1:2,3:7,1:2,0:4,1:2,3:6,1:3,3:7,1:2,0:5,1:3,3:5,1:2,0:130,1:2,3:13,1:5,3:31,1:3,3:1,1:3,0:37,1:2,3:7,1:2,0:4,1:2,3:6,1:5,3:6,1:2,0:4,1:1,3:7,1:2,0:130,1:2,3:19,1:4,3:22,1:4,3:5,1:2,0:37,1:2,3:7,1:2,0:4,1:3,3:6,1:4,3:6,1:2,0:4,1:1,3:7,1:2,0:130,1:2,3:18,1:4,3:23,1:4,3:5,1:2,0:37,1:2,3:8,1:2,0:4,1:2,3:6,1:3,3:7,1:2,0:3,1:2,3:7,1:2,0:128,1:4,3:19,1:3,3:1,1:24,3:5,1:2,0:40,1:2,3:1,1:1,3:5,1:2,0:4,1:1,3:7,1:2,3:8,1:2,0:3,1:2,3:7,1:3,0:127,1:4,3:23,1:22,3:7,1:2,0:42,1:2,3:6,1:2,0:2,1:2,3:7,1:2,3:8,1:2,0:3,1:3,3:7,1:2,0:124,1:3,2:2,1:2,3:23,1:22,3:7,1:2,0:42,1:2,3:7,1:5,3:7,1:2,3:9,1:2,0:3,1:1,3:6,1:2,0:126,1:3,2:2,1:2,3:52,1:2,0:42,1:2,3:7,1:5,3:8,1:2,3:8,1:2,0:3,1:1,3:6,1:2,0:126,1:3,2:2,1:2,3:52,1:2,0:42,1:2,3:8,1:5,3:7,1:2,3:7,1:3,0:1,1:2,3:7,1:2,0:124,1:5,2:2,1:2,3:52,1:2,0:43,1:2,3:7,1:5,3:5,1:4,3:7,1:3,2:1,1:2,3:7,1:2,0:124,1:5,2:2,1:2,3:52,1:2,0:43,1:2,3:7,1:4,3:6,1:4,3:6,1:4,2:1,1:2,3:8,1:2,0:121,1:5,2:6,3:52,1:4,0:41,1:2,3:7,1:4,3:6,1:3,3:7,1:5,2:1,1:2,3:7,1:2,0:120,1:6,2:6,3:52,1:5,0:40,1:2,3:7,1:4,3:7,1:3,3:6,1:4,2:2,1:2,3:6,1:1,2:1,0:119,1:8,2:7,1:2,3:49,2:2,1:5,0:38,1:2,3:8,1:4,3:6,1:3,3:6,1:4,2:1,1:1,3:7,1:1,2:2,0:119,1:8,2:7,1:2,3:49,2:2,1:5,0:39,1:2,3:7,1:4,3:6,1:3,3:6,1:3,2:1,1:2,3:6,1:2,2:1,0:119,1:8,2:10,3:48,2:3,1:6,2:2,0:36,1:2,3:7,1:4,3:6,1:3,3:6,1:3,2:1,1:2,3:7,1:2,0:118,1:9,2:11,3:45,1:3,2:2,1:7,2:1,0:36,1:2,3:7,1:4,3:6,1:3,3:6,1:4,2:1,1:2,3:6,1:2,0:118,1:9,2:12,3:44,1:3,2:2,1:7,2:2,0:35,1:2,3:7,1:2,3:9,1:2,3:6,1:4,2:1,1:2,3:6,1:2,0:113,1:14,2:12,1:2,3:40,1:2,2:5,1:9,0:35,1:2,3:26,1:3,2:1,1:1,3:8,1:2,0:113,1:14,2:12,1:2,3:40,1:2,2:5,1:9,0:36,1:2,3:25,1:5,3:6,1:2,0:111,1:18,2:14,1:2,3:36,1:2,2:8,1:10,0:34,1:3,3:24,1:4,3:7,1:2,0:111,1:18,2:14,1:2,3:36,1:2,2:9,1:9,0:35,1:2,3:36,1:2,0:105,1:23,2:17,3:34,1:1,2:12,1:8,0:18,1:5,0:13,1:1,3:36,1:2,0:105,1:23,2:17,1:1,3:32,1:2,2:12,1:9,0:15,1:10,0:10,1:1,3:36,1:2,0:100,1:28,2:19,3:30,2:15,1:10,0:14,1:3,3:5,1:2,0:11,1:1,3:35,1:2,0:100,1:28,2:19,1:1,3:28,2:16,1:11,0:11,1:2,3:10,1:2,0:9,1:1,3:33,1:2,0:97,1:31,2:1,1:1,2:21,3:26,2:17,1:15,0:8,1:2,3:10,1:2,0:7,1:2,3:34,1:2,0:96,1:31,2:22,1:3,3:22,1:2,2:17,1:15,0:8,1:2,3:10,1:3,0:6,1:2,3:34,1:2,0:96,1:31,2:23,1:2,3:22,1:2,2:17,1:18,0:5,1:2,3:11,1:2,0:6,1:2,3:34,1:2,0:92,1:35,2:25,1:2,3:18,1:2,2:19,1:19,0:4,1:2,3:11,1:4,0:5,1:2,3:33,1:2,0:91,1:36,2:26,1:1,3:18,1:2,2:18,1:21,0:3,1:3,3:1,1:1,3:11,1:3,0:2,1:2,3:34,1:2,0:87,1:40,2:27,1:2,3:15,2:20,1:31,3:10,1:3,0:2,1:2,3:35,1:2,0:85,1:41,2:28,1:1,3:13,2:22,1:31,3:10,1:3,0:1,1:3,3:35,1:2,0:79,1:47,2:29,1:2,3:9,1:2,2:22,1:31,3:10,1:5,3:37,1:2,0:79,1:47,2:29,1:2,3:9,1:2,2:22,1:31,3:13,1:2,3:37,1:2,0:72,1:54,2:32,1:2,3:2,1:4,2:24,1:33,3:12,1:2,3:36,1:2,0:72,1:54,2:32,1:8,2:24,1:34,3:11,1:2,3:37,1:2,0:62,1:63,2:64,1:34,3:1,1:1,3:9,1:1,3:38,1:2,0:62,1:63,2:27,1:4,2:9,1:2,2:20,1:38,3:48,1:2,0:55,1:72,2:25,1:5,2:7,1:5,2:18,1:38,3:47,1:1,0:57,1:72,2:25,1:5,2:6,1:7,2:17,1:38,3:46,1:2,0:53,1:76,2:20,5:3,4:16,1:5,2:16,1:41,3:43,1:2,0:52,1:77,2:20,5:3,4:16,1:5,2:16,1:42,3:43,1:2,0:51,1:77,2:20,4:16,5:2,4:1,1:7,2:14,1:42,3:43,1:2,0:50,1:78,2:20,4:16,5:2,4:1,1:7,2:14,1:42,3:43,1:2,0:49,1:79,2:18,1:2,4:18,5:1,1:8,2:13,1:42,3:43,1:2,0:49,1:79,2:18,1:2,4:18,5:1,1:9,2:12,1:45,3:39,1:1,0:51,1:79,2:16,1:4,4:19,1:6,2:2,1:2,2:11,1:45,3:39,1:2,0:50,1:79,2:16,1:3,2:1,5:1,4:18,1:6,2:2,1:2,2:11,1:45,3:39,1:2,0:50,1:79,2:17,1:1,2:2,5:1,4:17,1:7,2:2,1:2,2:11,1:45,3:39,1:2,0:48,1:81,2:14,1:3,2:3,5:1,4:17,1:7,2:4,1:3,2:6,1:49,3:37,1:2,0:48,1:81,2:14,1:3,2:3,5:1,4:17,1:7,2:4,1:3,2:6,1:50,3:36,1:2,0:48,1:81,2:12,1:2,2:6,5:1,4:17,1:5,2:7,1:1,2:7,1:50,3:35,1:2,0:49,1:81,2:12,1:2,2:6,5:1,4:17,1:5,2:9,1:1,2:5,1:50,3:1,1:1,3:33,1:2,0:49,1:81,2:9,1:3,2:8,5:3,4:15,1:3,2:11,1:2,2:4,1:52,3:33,1:2,0:49,1:81,2:9,1:3,2:8,5:3,4:15,1:3,2:11,1:2,2:4,1:53,3:32,1:2,0:49,1:81,2:7,1:4,2:9,5:3,4:15,1:3,2:11,1:4,2:2,1:55,3:28,1:4,0:46,1:84,2:6,1:4,2:10,5:3,4:3,5:4,4:8,1:3,2:13,1:2,2:2,1:55,3:28,1:4,0:46,1:84,2:7,1:2,2:11,5:3,4:15,1:3,2:13,1:61,3:28,1:3,0:45,1:84,2:20,5:3,4:7,5:2,4:6,1:2,2:16,1:59,3:28,1:3,0:1,1:2,0:42,1:86,2:18,5:3,4:15,1:2,2:16,1:61,3:26,1:3,0:2,1:2,0:41,1:87,2:17,5:3,4:9,5:2,4:4,2:18,1:63,3:25,1:2,2:1,0:1,1:2,0:41,1:87,2:17,5:3,4:15,2:18,1:63,3:25,1:3,2:2,1:3,0:39,1:87,2:17,5:3,4:15,2:18,1:63,3:26,1:2,2:2,1:4,0:36,1:89,2:17,5:3,4:15,2:18,1:63,3:26,1:1,3:1,1:2,2:1,1:4,0:35,1:89,2:17,5:1,4:17,2:18,1:64,3:1,1:1,3:23,1:1,3:1,1:7,2:1,0:34,1:89,2:17,5:1,4:16,1:1,2:18,1:66,3:25,1:7,2:2,0:33,1:89,2:17,5:1,4:16,1:3,2:14,1:69,3:24,1:1,2:2,1:6,0:33,1:89,2:17,5:1,4:2,5:2,4:12,1:3,2:14,1:69,3:23,1:2,2:2,1:6,0:33,1:89,2:17,5:1,4:2,5:2,4:12,1:3,2:14,1:68,2:1,1:1,3:22,1:2,2:2,1:6,0:33,1:89,2:17,4:6,5:1,4:10,1:3,2:14,1:68,2:3,3:18,1:3,2:5,1:5,0:31,1:91,2:17,4:6,5:1,4:10,1:3,2:14,1:68,2:2,3:18,1:4,2:5,1:5,2:2,0:29,1:91,2:17,4:8,5:1,4:8,1:3,2:14,1:68,2:5,3:15,1:1,2:8,1:6,2:1,0:29,1:91,2:17,4:8,5:2,4:7,1:3,2:14,1:69,2:4,3:10,1:2,3:1,1:2,2:9,1:6,2:1,0:29,1:93,2:14,1:1,4:10,5:1,4:6,1:3,2:14,1:70,2:4,3:6,1:3,3:3,2:11,1:7,0:29,1:93,2:13,1:2,4:10,5:2,4:5,1:3,2:14,1:71,2:7,1:1,3:5,1:1,2:11,1:9,0:28,1:93,2:13,1:2,4:17,1:3,2:12,1:73,2:25,1:9,0:28,1:93,2:13,1:2,4:12,5:2,4:3,1:3,2:12,1:73,2:25,1:9,0:28,1:93,2:13,1:2,4:12,5:2,4:3,1:5,2:10,1:75,2:23,1:9,0:27,1:94,2:13,1:2,4:17,1:5,2:10,1:75,2:23,1:9,0:26,1:95,2:13,1:2,4:14,5:2,4:1,1:5,2:10,1:77,2:21,1:11,0:24,1:95,2:13,1:2,4:14,5:2,4:1,1:5,2:10,1:78,2:18,1:13,0:24,1:95,2:13,1:2,4:17,1:5,2:10,1:81,2:14,1:14,0:24,1:95,2:13,1:2,4:16,5:1,1:5,2:8,1:83,2:14,1:14,0:24,1:96,2:12,1:2,4:16,5:1,1:5,2:7,1:84,2:14,1:14,0:24,1:97,2:11,1:2,4:14,5:2,4:1,1:5,2:7,1:87,2:11,1:14,0:24,1:97,2:9,1:4,4:14,5:2,4:1,1:5,2:7,1:90,2:4,1:18,0:24,1:97,2:9,1:4,4:12,5:2,4:3,1:5,2:7,1:114,0:20,1:99,2:9,1:4,4:12,5:2,4:3,1:5,2:7,1:114,0:19,1:100,2:9,1:4,4:10,5:2,4:5,1:5,2:7,1:114,0:19,1:100,2:9,1:4,4:10,5:2,4:5,1:5,2:7,1:114,0:19,1:100,2:9,1:4,4:17,1:5,2:7,1:114,0:19,1:100,2:9,1:4,4:8,5:2,4:7,1:5,2:7,1:114,0:19,1:102,2:7,1:4,4:17,1:5,2:5,1:116,0:19,1:102,2:7,1:4,4:5,5:2,4:10,1:5,2:5,1:116,0:19,1:102,2:7,1:3,4:4,5:2,4:12,1:5,2:5,1:117,0:18,1:103,2:6,1:3,4:4,5:2,4:12,1:5,2:5,1:118,0:17,1:103,2:6,1:3,4:2,5:2,4:14,1:5,2:5,1:118,0:17,1:103,2:6,1:3,4:18,1:5,2:5,1:118,0:17,1:103,2:6,1:3,5:1,4:17,1:5,2:5,1:118,0:17,1:103,2:4,1:5,4:18,1:5,2:3,1:121,0:14,1:105,2:4,1:5,4:18,1:5,2:3,1:123,0:12,1:106,2:3,1:5,4:18,1:5,2:3,1:122,0:13,1:107,2:2,1:5,4:18,1:5,2:3,1:122,0:13,1:106,2:3,1:5,4:18,1:5,2:3,1:122,0:13,1:107,2:2,1:5,4:18,1:5,2:3,1:123,0:12,1:107,2:2,1:5,4:18,1:5,2:3,1:125,0:10,1:107,2:2,1:5,4:18,1:133,0:8,1:109,2:2,1:5,4:17,5:1,1:133,0:8,1:109,2:2,1:5,4:18,1:133,0:8,1:116,4:15,5:2,4:1,1:135,0:6,1:116,4:15,5:2,4:1,1:135,0:6,1:116,4:18,1:135,0:6,1:116,4:13,5:2,4:3,1:135,0:6,1:116,4:19,1:134,0:6,1:116,4:11,5:2,4:6,1:134,0:6,1:115,4:20,1:132,0:8,1:115,4:9,5:3,4:8,1:132,0:832",
+"0:1220,1:2,0:271,1:18,0:257,1:18,0:251,1:26,0:12,1:9,0:228,1:26,0:12,1:9,0:224,1:30,0:6,1:24,0:215,1:31,0:4,1:25,0:211,1:65,0:209,1:72,0:202,1:73,0:202,1:77,0:197,1:78,0:192,1:84,0:191,1:86,0:185,1:91,0:183,1:92,0:181,1:97,0:178,1:97,0:178,1:97,0:176,1:100,0:175,1:102,0:173,1:102,0:173,1:102,0:172,1:103,0:170,1:59,3:2,1:46,0:168,1:59,3:2,1:46,0:168,1:59,3:2,1:47,0:167,1:57,3:9,1:43,0:164,1:59,3:9,1:43,0:164,1:58,3:12,1:41,0:164,1:58,3:12,1:41,0:164,1:57,3:14,1:40,0:164,1:57,3:14,1:40,0:164,1:56,3:16,1:41,0:162,1:56,3:16,1:41,0:162,1:55,3:17,1:41,0:162,1:54,3:18,1:41,0:162,1:54,3:18,1:41,0:163,1:53,3:18,1:41,0:164,1:50,3:20,1:41,0:164,1:50,3:20,1:41,0:164,1:48,3:23,1:40,0:164,1:48,3:23,1:40,0:164,1:47,3:26,1:38,0:164,1:46,3:27,1:38,0:164,1:44,3:29,1:36,0:166,1:44,3:29,1:36,0:166,1:44,3:29,1:36,0:166,1:43,3:32,1:34,0:166,1:48,3:27,1:34,0:166,1:50,3:26,1:33,0:167,1:23,3:6,1:22,3:25,1:32,0:167,1:20,3:11,1:20,3:16,1:39,0:169,1:18,3:15,1:18,3:15,1:40,0:169,1:18,3:22,1:11,3:14,1:23,3:1,1:17,0:169,1:17,3:33,1:1,3:12,1:23,3:6,1:14,0:169,1:17,3:46,1:23,3:6,1:13,0:172,1:15,3:76,1:11,0:173,1:15,3:76,1:11,0:175,1:12,3:17,1:10,3:51,1:10,0:175,1:12,3:17,1:11,3:51,1:9,0:175,1:12,3:15,1:16,3:23,1:8,3:16,1:10,0:175,1:12,3:11,1:1,3:1,1:6,2:1,1:11,3:22,1:10,3:15,1:10,0:173,1:14,3:11,1:6,3:1,2:2,1:7,2:2,1:3,3:19,1:14,3:13,1:8,0:175,1:14,3:19,2:1,1:7,2:2,3:1,1:3,3:17,1:16,3:12,1:8,0:172,1:2,3:7,1:8,3:21,1:5,2:2,3:3,1:2,3:16,1:11,2:3,1:4,3:11,1:8,0:172,1:3,3:6,1:8,3:49,1:2,3:2,1:7,2:3,3:1,1:4,3:10,1:8,0:172,3:10,1:6,3:50,1:1,3:4,1:6,2:2,3:2,1:5,3:8,1:7,0:172,1:2,3:5,1:2,3:5,1:4,3:57,1:3,3:1,2:1,3:4,1:4,3:8,1:7,0:172,1:2,3:4,1:3,3:5,1:4,3:78,1:7,0:172,1:2,3:8,1:1,3:5,1:2,3:78,1:7,0:172,1:2,3:8,1:2,3:3,1:3,3:78,1:7,0:172,1:2,3:10,1:1,3:3,1:2,3:78,1:9,0:170,1:2,3:11,1:1,3:82,1:4,3:3,1:2,0:170,1:2,3:10,1:2,3:82,1:4,3:5,1:2,0:168,1:2,3:9,1:3,3:82,1:4,3:5,1:2,0:168,1:2,3:9,1:3,3:82,1:4,3:5,1:2,0:168,1:2,3:94,1:2,3:7,1:2,0:168,1:2,3:94,1:2,3:7,1:2,0:169,1:2,3:93,1:2,3:7,1:2,0:170,1:2,3:91,1:3,3:7,1:2,0:170,1:3,3:90,1:2,3:8,1:2,0:170,1:3,3:90,1:1,3:9,1:2,0:170,1:3,3:90,1:1,3:9,1:2,0:172,1:2,3:46,1:4,3:39,1:1,3:9,1:2,0:173,1:1,3:46,1:5,3:5,1:3,3:30,1:2,3:8,1:2,0:173,1:3,3:43,1:6,3:1,1:1,3:2,1:5,3:27,1:1,3:9,1:2,0:176,1:2,3:49,1:2,3:1,1:6,3:2,1:1,3:23,1:2,3:9,1:2,0:176,1:2,3:57,1:3,3:24,1:2,3:9,1:2,0:176,1:2,3:84,1:3,3:8,1:2,0:176,1:1,3:85,1:3,3:8,1:2,0:178,1:2,3:8,1:1,3:73,1:3,3:6,1:2,0:180,1:1,3:8,1:2,3:22,1:1,3:32,1:1,3:17,1:2,3:7,1:2,0:182,3:1,1:9,3:22,1:1,3:30,1:1,3:16,1:3,3:8,1:2,0:183,3:4,0:2,1:3,3:70,1:3,3:8,1:2,0:190,1:2,3:23,1:5,3:20,1:5,3:17,1:3,3:7,1:1,0:192,1:2,3:25,1:26,3:19,1:3,3:6,1:1,0:193,1:2,3:26,1:4,2:16,1:4,3:20,1:3,3:5,1:2,0:195,1:1,3:27,1:2,2:16,1:2,3:22,1:8,0:197,1:1,3:29,1:16,3:24,1:8,0:61,1:7,0:129,1:2,3:31,1:10,3:25,1:3,0:66,1:2,3:1,1:5,0:130,1:2,3:66,1:3,0:66,1:2,3:6,1:2,0:128,1:2,3:65,1:2,0:56,1:4,0:8,1:2,3:6,1:2,0:129,1:3,3:62,1:3,0:55,1:6,0:7,1:2,3:6,1:2,0:129,1:3,3:62,1:3,0:55,1:2,3:3,1:2,0:6,1:2,3:6,1:2,0:129,1:3,3:62,1:3,0:54,1:3,3:3,1:2,0:6,1:2,3:6,1:2,0:129,1:5,3:61,1:1,0:53,1:2,3:6,1:3,0:4,1:2,3:7,1:2,0:4,1:3,0:122,1:4,3:59,1:2,0:55,1:2,3:7,1:2,0:4,1:2,3:6,1:2,0:4,1:6,0:120,1:2,3:3,1:2,3:56,1:2,0:55,1:2,3:7,1:2,0:4,1:2,3:6,1:2,0:2,1:2,3:4,1:1,0:121,1:2,3:3,1:2,3:54,1:2,0:57,1:2,3:7,1:2,0:4,1:2,3:6,1:3,0:1,1:2,3:5,1:3,0:118,1:2,3:5,1:1,3:53,1:2,0:57,1:2,3:7,1:2,0:4,1:2,3:6,1:6,3:6,1:2,0:118,1:2,3:5,1:2,3:52,1:2,0:57,1:2,3:7,1:2,0:4,1:2,3:6,1:6,3:6,1:2,0:118,1:2,3:56,1:3,0:58,1:2,3:8,1:2,0:4,1:2,3:6,1:6,3:6,1:2,0:118,1:2,3:56,1:3,0:58,1:2,3:7,1:2,0:4,1:3,3:6,1:6,3:6,1:2,0:118,1:2,3:52,1:1,3:1,1:3,0:60,1:2,3:7,1:2,0:4,1:2,3:6,1:5,3:8,1:2,0:118,1:2,3:52,1:4,0:63,1:2,3:5,1:2,0:4,1:2,3:6,1:4,3:8,1:2,0:119,1:2,3:52,1:4,0:63,1:2,3:5,1:2,0:4,1:2,3:6,1:4,3:8,1:2,0:119,1:2,3:13,1:5,3:31,1:7,0:63,1:2,3:5,1:2,0:4,1:2,3:6,1:4,3:8,1:2,0:119,1:2,3:13,1:5,3:31,1:3,3:1,1:3,0:63,1:2,3:6,1:2,0:3,1:2,3:6,1:4,3:6,1:4,0:119,1:2,3:19,1:4,3:22,1:4,3:5,1:2,0:63,1:2,3:7,1:1,0:3,1:1,3:7,1:3,3:7,1:2,0:121,1:2,3:18,1:4,3:23,1:4,3:5,1:2,0:62,1:2,3:7,1:6,3:7,1:4,3:6,1:2,0:119,1:4,3:19,1:3,3:1,1:24,3:5,1:2,0:64,1:2,3:7,1:5,3:7,1:3,3:8,1:2,0:7,1:5,0:107,1:4,3:23,1:22,3:7,1:2,0:64,1:2,3:7,1:5,3:7,1:2,3:8,1:2,0:4,1:1,0:1,1:7,0:104,1:3,2:2,1:2,3:23,1:22,3:7,1:2,0:64,1:2,3:7,1:5,3:7,1:2,3:8,1:2,0:4,1:3,3:4,1:1,0:105,1:3,2:2,1:2,3:52,1:2,0:64,1:2,3:7,1:5,3:7,1:2,3:8,1:2,0:4,1:1,3:1,1:1,3:5,1:1,0:104,1:3,2:2,1:2,3:52,1:2,0:64,1:2,3:7,1:4,3:8,1:2,3:8,1:2,0:3,1:2,3:7,1:2,0:101,1:5,2:2,1:2,3:52,1:2,0:64,1:2,3:7,1:4,3:6,1:4,3:8,1:2,0:3,1:2,3:7,1:2,0:101,1:5,2:2,1:2,3:52,1:2,0:63,1:2,3:7,1:5,3:6,1:4,3:8,1:2,0:3,1:2,3:7,1:2,0:99,1:5,2:6,3:52,1:4,0:43,1:7,0:11,1:2,3:7,1:4,3:6,1:4,3:8,1:3,0:3,1:2,3:7,1:2,0:98,1:6,2:6,3:52,1:5,0:40,1:9,0:11,1:2,3:7,1:4,3:6,1:3,3:8,1:3,0:3,1:1,3:9,1:2,0:96,1:8,2:7,1:2,3:49,2:2,1:5,0:38,1:2,3:7,1:1,0:10,1:2,3:7,1:4,3:6,1:3,3:7,1:3,0:2,1:2,3:9,1:2,0:97,1:8,2:7,1:2,3:49,2:2,1:5,0:38,1:2,3:8,1:2,0:8,1:3,3:8,1:2,3:6,1:3,3:6,1:3,0:2,2:1,1:2,3:7,1:2,0:98,1:8,2:10,3:48,2:3,1:6,2:2,0:34,1:3,3:7,1:3,0:9,1:2,3:16,1:3,3:6,1:3,0:2,2:1,1:2,3:7,1:2,0:97,1:9,2:11,3:45,1:3,2:2,1:7,2:1,0:34,1:2,3:10,1:1,0:10,1:1,3:16,1:3,3:6,1:3,0:2,2:1,1:2,3:7,1:2,0:97,1:9,2:12,3:44,1:3,2:2,1:7,2:2,0:33,1:3,3:9,1:2,0:8,1:1,3:17,1:3,3:6,1:3,2:3,1:2,3:7,1:2,0:92,1:14,2:12,1:2,3:40,1:2,2:5,1:9,0:35,1:1,3:9,1:2,0:8,1:1,3:26,1:3,2:2,1:1,3:9,1:2,0:92,1:14,2:12,1:2,3:40,1:2,2:5,1:9,0:35,1:3,3:8,1:2,0:7,1:1,3:25,1:3,2:1,1:2,3:9,1:3,0:88,1:18,2:14,1:2,3:36,1:2,2:8,1:10,0:33,1:3,3:8,1:2,0:6,1:2,3:24,1:4,2:1,1:2,3:7,1:2,0:91,1:18,2:14,1:2,3:36,1:2,2:9,1:9,0:33,1:3,3:9,1:3,0:4,1:2,3:24,1:3,2:2,1:2,3:6,1:2,0:87,1:23,2:17,3:34,1:1,2:12,1:8,0:33,1:3,3:10,1:2,0:4,1:2,3:24,1:5,3:1,1:1,3:6,1:2,0:87,1:23,2:17,1:1,3:32,1:2,2:12,1:9,0:33,1:1,3:11,1:3,0:3,1:2,3:24,1:5,3:8,1:2,0:82,1:28,2:19,3:30,2:15,1:10,0:32,1:3,3:8,1:3,0:2,1:2,3:39,1:2,0:82,1:28,2:19,1:1,3:28,2:16,1:11,0:34,1:1,3:7,1:3,0:2,1:2,3:37,1:4,0:77,1:31,2:1,1:1,2:21,3:26,2:17,1:15,0:30,1:2,3:9,1:4,3:37,1:2,0:79,1:31,2:22,1:3,3:22,1:2,2:17,1:15,0:32,1:1,3:8,1:2,3:38,1:2,0:80,1:31,2:23,1:2,3:22,1:2,2:17,1:18,0:29,1:1,3:8,1:2,3:38,1:2,0:76,1:35,2:25,1:2,3:18,1:2,2:19,1:19,0:18,1:3,0:7,1:1,3:8,1:2,3:38,1:2,0:75,1:36,2:26,1:1,3:18,1:2,2:18,1:21,0:17,1:3,0:6,1:2,3:8,1:2,3:38,1:2,0:71,1:40,2:27,1:2,3:15,2:20,1:27,0:12,1:4,0:7,1:1,3:45,1:2,0:72,1:41,2:28,1:1,3:13,2:22,1:27,0:14,1:2,0:7,1:1,3:45,1:2,0:66,1:47,2:29,1:2,3:9,1:2,2:22,1:33,0:8,1:3,0:7,1:1,3:44,1:2,0:66,1:47,2:29,1:2,3:9,1:2,2:22,1:33,0:8,1:3,0:7,1:1,3:43,1:2,0:60,1:54,2:32,1:2,3:2,1:4,2:24,1:34,0:9,1:2,0:6,1:1,3:43,1:2,0:60,1:54,2:32,1:8,2:24,1:38,0:5,1:3,0:5,1:1,3:43,1:2,0:51,1:63,2:64,1:46,0:5,1:1,3:43,1:2,0:51,1:63,2:27,1:4,2:9,1:2,2:20,1:49,0:5,1:1,3:42,1:2,0:44,1:72,2:25,1:5,2:7,1:5,2:18,1:49,0:5,1:1,3:42,1:2,0:44,1:72,2:25,1:5,2:6,1:7,2:17,1:50,0:4,1:1,3:42,1:2,0:40,1:76,2:20,5:3,4:16,1:5,2:16,1:50,0:4,1:2,3:40,1:2,0:40,1:77,2:20,5:3,4:16,1:5,2:16,1:51,0:5,1:1,3:39,1:2,0:40,1:77,2:20,4:16,5:2,4:1,1:7,2:14,1:52,0:4,1:1,3:39,1:2,0:39,1:78,2:20,4:16,5:2,4:1,1:7,2:14,1:52,0:4,1:1,3:39,1:2,0:38,1:79,2:18,1:2,4:18,5:1,1:8,2:13,1:53,0:2,1:2,3:37,1:2,0:40,1:79,2:18,1:2,4:18,5:1,1:9,2:12,1:53,0:4,1:1,3:36,1:2,0:40,1:79,2:16,1:4,4:19,1:6,2:2,1:2,2:11,1:54,0:3,1:1,3:36,1:2,0:40,1:79,2:16,1:3,2:1,5:1,4:18,1:6,2:2,1:2,2:11,1:54,0:3,1:1,3:35,1:2,0:41,1:79,2:17,1:1,2:2,5:1,4:17,1:7,2:2,1:2,2:11,1:55,0:3,1:1,3:34,1:2,0:39,1:81,2:14,1:3,2:3,5:1,4:17,1:7,2:4,1:3,2:6,1:58,0:3,1:1,3:33,1:2,0:39,1:81,2:14,1:3,2:3,5:1,4:17,1:7,2:4,1:3,2:6,1:58,0:3,1:2,3:30,1:2,0:1,1:1,0:39,1:81,2:12,1:2,2:6,5:1,4:17,1:5,2:7,1:1,2:7,1:59,0:4,1:1,3:29,1:2,0:41,1:81,2:12,1:2,2:6,5:1,4:17,1:5,2:9,1:1,2:5,1:59,0:3,1:1,3:30,1:2,0:41,1:81,2:9,1:3,2:8,5:3,4:15,1:3,2:11,1:2,2:4,1:60,0:2,1:1,3:30,1:2,0:41,1:81,2:9,1:3,2:8,5:3,4:15,1:3,2:11,1:2,2:4,1:60,0:3,1:2,3:27,1:2,0:42,1:81,2:7,1:4,2:9,5:3,4:15,1:3,2:11,1:4,2:2,1:61,0:4,1:1,3:24,1:2,0:41,1:84,2:6,1:4,2:10,5:3,4:3,5:4,4:8,1:3,2:13,1:2,2:2,1:62,0:3,1:1,3:24,1:2,0:41,1:84,2:7,1:2,2:11,5:3,4:15,1:3,2:13,1:67,0:2,1:1,3:24,1:2,0:41,1:84,2:20,5:3,4:7,5:2,4:6,1:2,2:16,1:65,0:2,1:1,3:24,1:2,0:41,1:86,2:18,5:3,4:15,1:2,2:16,1:65,0:1,1:1,3:23,1:4,0:41,1:87,2:17,5:3,4:9,5:2,4:4,2:18,1:68,3:22,1:4,0:41,1:87,2:17,5:3,4:15,2:18,1:68,3:22,1:6,0:39,1:87,2:17,5:3,4:15,2:18,1:68,3:22,1:3,2:1,1:3,0:36,1:89,2:17,5:3,4:15,2:18,1:69,3:21,1:3,2:1,1:4,0:35,1:89,2:17,5:1,4:17,2:18,1:69,3:22,1:2,2:1,1:4,2:1,0:34,1:89,2:17,5:1,4:16,1:1,2:18,1:70,3:21,1:2,2:1,1:4,2:2,0:33,1:89,2:17,5:1,4:16,1:3,2:14,1:71,3:22,1:2,2:2,1:5,0:33,1:89,2:17,5:1,4:2,5:2,4:12,1:3,2:14,1:70,3:23,1:1,3:1,2:2,1:5,0:33,1:89,2:17,5:1,4:2,5:2,4:12,1:3,2:14,1:68,2:1,1:4,3:19,1:1,3:1,2:2,1:6,0:33,1:89,2:17,4:6,5:1,4:10,1:3,2:14,1:68,2:3,1:2,3:21,2:3,1:5,0:31,1:91,2:17,4:6,5:1,4:10,1:3,2:14,1:68,2:3,1:2,3:21,2:3,1:5,2:2,0:29,1:91,2:17,4:8,5:1,4:8,1:3,2:14,1:68,2:5,1:1,3:18,2:5,1:6,2:1,0:29,1:91,2:17,4:8,5:2,4:7,1:3,2:14,1:69,2:5,1:3,3:12,2:2,3:1,2:5,1:6,2:1,0:29,1:93,2:14,1:1,4:10,5:1,4:6,1:3,2:14,1:70,2:7,3:2,1:5,3:4,2:9,1:7,0:29,1:93,2:13,1:2,4:10,5:2,4:5,1:3,2:14,1:71,2:6,3:8,2:11,1:9,0:28,1:93,2:13,1:2,4:17,1:3,2:12,1:73,2:25,1:9,0:28,1:93,2:13,1:2,4:12,5:2,4:3,1:3,2:12,1:73,2:25,1:9,0:28,1:93,2:13,1:2,4:12,5:2,4:3,1:5,2:10,1:75,2:23,1:9,0:27,1:94,2:13,1:2,4:17,1:5,2:10,1:75,2:23,1:9,0:26,1:95,2:13,1:2,4:14,5:2,4:1,1:5,2:10,1:77,2:21,1:11,0:24,1:95,2:13,1:2,4:14,5:2,4:1,1:5,2:10,1:78,2:18,1:13,0:24,1:95,2:13,1:2,4:17,1:5,2:10,1:81,2:14,1:14,0:24,1:95,2:13,1:2,4:16,5:1,1:5,2:8,1:83,2:14,1:14,0:24,1:96,2:12,1:2,4:16,5:1,1:5,2:7,1:84,2:14,1:14,0:24,1:97,2:11,1:2,4:14,5:2,4:1,1:5,2:7,1:87,2:11,1:14,0:24,1:97,2:9,1:4,4:14,5:2,4:1,1:5,2:7,1:90,2:4,1:18,0:24,1:97,2:9,1:4,4:12,5:2,4:3,1:5,2:7,1:114,0:20,1:99,2:9,1:4,4:12,5:2,4:3,1:5,2:7,1:114,0:19,1:100,2:9,1:4,4:10,5:2,4:5,1:5,2:7,1:114,0:19,1:100,2:9,1:4,4:10,5:2,4:5,1:5,2:7,1:114,0:19,1:100,2:9,1:4,4:17,1:5,2:7,1:114,0:19,1:100,2:9,1:4,4:8,5:2,4:7,1:5,2:7,1:114,0:19,1:102,2:7,1:4,4:17,1:5,2:5,1:116,0:19,1:102,2:7,1:4,4:5,5:2,4:10,1:5,2:5,1:116,0:19,1:102,2:7,1:3,4:4,5:2,4:12,1:5,2:5,1:117,0:18,1:103,2:6,1:3,4:4,5:2,4:12,1:5,2:5,1:118,0:17,1:103,2:6,1:3,4:2,5:2,4:14,1:5,2:5,1:118,0:17,1:103,2:6,1:3,4:18,1:5,2:5,1:118,0:17,1:103,2:6,1:3,5:1,4:17,1:5,2:5,1:118,0:17,1:103,2:4,1:5,4:18,1:5,2:3,1:121,0:14,1:105,2:4,1:5,4:18,1:5,2:3,1:123,0:12,1:106,2:3,1:5,4:18,1:5,2:3,1:122,0:13,1:107,2:2,1:5,4:18,1:5,2:3,1:122,0:13,1:106,2:3,1:5,4:18,1:5,2:3,1:122,0:13,1:107,2:2,1:5,4:18,1:5,2:3,1:123,0:12,1:107,2:2,1:5,4:18,1:5,2:3,1:125,0:10,1:107,2:2,1:5,4:18,1:133,0:8,1:109,2:2,1:5,4:17,5:1,1:133,0:8,1:109,2:2,1:5,4:18,1:133,0:8,1:116,4:15,5:2,4:1,1:135,0:6,1:116,4:15,5:2,4:1,1:135,0:6,1:116,4:18,1:135,0:6,1:116,4:13,5:2,4:3,1:135,0:6,1:116,4:19,1:134,0:6,1:116,4:11,5:2,4:6,1:134,0:6,1:115,4:20,1:132,0:8,1:115,4:9,5:3,4:8,1:132,0:832"
+];
+
+function decodeRLE(rle, total) {
+  const out = new Uint8Array(total);
+  let p = 0;
+  for (const part of rle.split(',')) {
+    const [v, n] = part.split(':').map(Number);
+    out.fill(v, p, p + n);
+    p += n;
+  }
+  return out;
+}
+const PAL_RGBA = PALETTE.map(c => [
+  parseInt(c.slice(1, 3), 16), parseInt(c.slice(3, 5), 16), parseInt(c.slice(5, 7), 16),
+  c.length > 7 ? parseInt(c.slice(7, 9), 16) : 255
+]);
+function paintSprite(canvas, idx, w, h, keep) {
+  canvas.width = w; canvas.height = h;
+  const ctx = canvas.getContext('2d');
+  const img = ctx.createImageData(w, h);
+  for (let i = 0; i < idx.length; i++) {
+    if (!idx[i] || (keep && !keep(i))) continue;
+    img.data.set(PAL_RGBA[idx[i]], i * 4);
+  }
+  ctx.putImageData(img, 0, 0);
+  return canvas;
+}
+
+/* ---------- Flags ---------- */
+function starPath(ctx, cx, cy, n, R, r, rotation) {
+  ctx.beginPath();
+  for (let i = 0; i < n * 2; i++) {
+    const rad = i % 2 === 0 ? R : r;
+    const a = rotation + (i * Math.PI) / n;
+    const px = cx + rad * Math.cos(a), py = cy + rad * Math.sin(a);
+    i === 0 ? ctx.moveTo(px, py) : ctx.lineTo(px, py);
+  }
+  ctx.closePath();
+}
+function drawBorder(ctx, x, y, w, h, lineWidth = 1) {
+  ctx.save();
+  ctx.strokeStyle = '#000';
+  ctx.lineWidth = lineWidth;
+  ctx.strokeRect(x + lineWidth / 2, y + lineWidth / 2, w - lineWidth, h - lineWidth);
+  ctx.restore();
+}
+function drawVietnamFlag(ctx, x, y, w, h) {
+  ctx.save();
+  ctx.fillStyle = '#DA251D'; ctx.fillRect(x, y, w, h);
+  const R = h / 3;
+  ctx.fillStyle = '#FFFF00';
+  starPath(ctx, x + w / 2, y + h / 2, 5, R, R * 0.381966, -Math.PI / 2);
+  ctx.fill();
+  ctx.restore();
+  drawBorder(ctx, x, y, w, h);
+}
+function drawTaiwanFlag(ctx, x, y, w, h) {
+  ctx.save();
+  ctx.fillStyle = '#FE0000'; ctx.fillRect(x, y, w, h);
+  const cw = w / 2, ch = h / 2;
+  ctx.fillStyle = '#000095'; ctx.fillRect(x, y, cw, ch);
+  const cx = x + cw / 2, cy = y + ch / 2, R = w / 8;
+  ctx.fillStyle = '#FFFFFF';
+  starPath(ctx, cx, cy, 12, R, R * 0.6, -Math.PI / 2); ctx.fill();
+  ctx.fillStyle = '#000095';
+  ctx.beginPath(); ctx.arc(cx, cy, R * 0.56, 0, Math.PI * 2); ctx.fill();
+  ctx.fillStyle = '#FFFFFF';
+  ctx.beginPath(); ctx.arc(cx, cy, R * 0.5, 0, Math.PI * 2); ctx.fill();
+  ctx.restore();
+  drawBorder(ctx, x, y, w, h);
+}
+function drawJapanFlag(ctx, x, y, w, h) {
+  ctx.save();
+  ctx.fillStyle = '#FFFFFF'; ctx.fillRect(x, y, w, h);
+  ctx.fillStyle = '#BC002D';
+  ctx.beginPath(); ctx.arc(x + w / 2, y + h / 2, (h * 3) / 10, 0, Math.PI * 2); ctx.fill();
+  ctx.restore();
+  drawBorder(ctx, x, y, w, h);
+}
+const FLAGS = {
+  vietnam: { ratio: 2 / 3, draw: drawVietnamFlag },
+  taiwan:  { ratio: 2 / 3, draw: drawTaiwanFlag },
+  japan:   { ratio: 2 / 3, draw: drawJapanFlag },
+};
+function renderFlag(canvas, name, cssWidth) {
+  const def = FLAGS[name];
+  const cssHeight = Math.round(cssWidth * def.ratio);
+  const dpr = window.devicePixelRatio || 1;
+  canvas.width = Math.round(cssWidth * dpr); canvas.height = Math.round(cssHeight * dpr);
+  canvas.style.width = cssWidth + 'px'; canvas.style.height = cssHeight + 'px';
+  const ctx = canvas.getContext('2d');
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  def.draw(ctx, 0, 0, cssWidth, cssHeight);
+}
+
+/* =====================================================================
+   HELPERS
+   ===================================================================== */
+const REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const clamp01 = v => Math.max(0, Math.min(1, v));
+const easeOutCubic = t => 1 - Math.pow(1 - t, 3);
+const easeInOut = t => t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
+const easeOutBack = t => { const c = 1.7; return 1 + (c + 1) * Math.pow(t - 1, 3) + c * Math.pow(t - 1, 2); };
+const lerp = (a, b, t) => a + (b - a) * t;
+function fitCanvas(canvas, state) {
+  const r = canvas.getBoundingClientRect();
+  const dpr = window.devicePixelRatio || 1;
+  state.W = r.width; state.H = r.height; state.dpr = dpr;
+  canvas.width = Math.max(1, Math.round(r.width * dpr));
+  canvas.height = Math.max(1, Math.round(r.height * dpr));
+}
+
+/* =====================================================================
+   1. OVERVIEW ANIMATION
+   ===================================================================== */
+const hero = {
+  canvas: document.getElementById('heroCanvas'),
+  W: 0, H: 0, dpr: 1,
+  start: null, visible: false, leftOnce: false,
+  waveStart: -1, waveCycles: 0, bubbleStart: -1, nextIdle: 9,
+  infoShown: false,
+};
+hero.ctx = hero.canvas.getContext('2d');
+
+const meIdx = ME_FRAMES.map(r => decodeRLE(r, ME_W * ME_H));
+const meSprites = meIdx.map(idx => paintSprite(document.createElement('canvas'), idx, ME_W, ME_H));
+const BLOCK = 3;
+const blockOrder = new Float32Array(ME_W * ME_H);
+(() => {
+  const bw = Math.ceil(ME_W / BLOCK), bh = Math.ceil(ME_H / BLOCK);
+  const rnd = new Float32Array(bw * bh).map((_, i) => 0.55 * Math.random() + 0.45 * (1 - Math.floor(i / bw) / bh));
+  for (let y = 0; y < ME_H; y++) for (let x = 0; x < ME_W; x++)
+    blockOrder[y * ME_W + x] = rnd[Math.floor(y / BLOCK) * bw + Math.floor(x / BLOCK)];
+})();
+const dissolveCanvas = document.createElement('canvas');
+let lastDissolve = -1;
+function dissolveSprite(p) {
+  const q = Math.round(p * 40) / 40;
+  if (q !== lastDissolve) { paintSprite(dissolveCanvas, meIdx[0], ME_W, ME_H, i => blockOrder[i] < q); lastDissolve = q; }
+  return dissolveCanvas;
+}
+
+const T = { circle: 0, me: 0.45, meDur: 0.9, wave: 1.45, ring: 2.2, ringDur: 0.85, flag0: 3.0, flagGap: 0.42, flagDur: 0.65 };
+const WAVE_SEQ = [4, 3, 5, 3], WAVE_STEP = 0.13, SMILE_HOLD = 0.8;
+// EDIT: degree labels next to the flags
+const FLAG_ITEMS = [
+  { name: 'vietnam', label: 'Eng. CTU',  angle: 145 },
+  { name: 'taiwan',  label: 'MSc. NCTU', angle: 180 },
+  { name: 'japan',   label: 'PhD. KIT',  angle: 215 },
+];
+
+function heroLayout() {
+  const { W, H } = hero;
+  const R = Math.min(H * 0.30, W / 3.95);
+  const cx = Math.min(Math.max(W * 0.5, 2.55 * R), W - 1.3 * R);
+  return { R, cx, cy: H * 0.5 };
+}
+function heroTime() { return hero.start === null ? 0 : (performance.now() - hero.start) / 1000; }
+function triggerWave(t, cycles, sayHello) {
+  hero.waveStart = t; hero.waveCycles = cycles;
+  if (sayHello) hero.bubbleStart = t + 0.1;
+  hero.nextIdle = t + 8;
+}
+function waveFrame(t) {
+  if (hero.waveStart < 0 || t < hero.waveStart) return 0;
+  const el = t - hero.waveStart, dur = hero.waveCycles * 4 * WAVE_STEP;
+  if (el < dur) return WAVE_SEQ[Math.floor(el / WAVE_STEP) % 4];
+  return el < dur + SMILE_HOLD ? 3 : 0;   // keep smiling for a moment after waving
+}
+
+function drawBubble(ctx, x, y, R, t) {
+  const text = 'Hello!';
+  const age = t - hero.bubbleStart;
+  if (hero.bubbleStart < 0 || age < 0) return;
+  const pop = easeOutBack(clamp01(age / 0.3));
+  const shown = text.slice(0, Math.min(text.length, Math.floor(age / 0.075) + 1));
+  const u = Math.max(2, Math.round(R * 0.018));
+  const fs = Math.max(14, Math.round(R * 0.15));
+  ctx.save();
+  ctx.font = `600 ${fs}px "Pixelify Sans", monospace`;
+  const bw = Math.ceil(ctx.measureText(text).width + fs * 1.1), bh = Math.round(fs * 1.7);
+  ctx.translate(x, y); ctx.scale(pop, pop);
+  const bx = 0, by = -bh - u * 3;
+  const stepRect = (inset, color) => {
+    ctx.fillStyle = color;
+    ctx.fillRect(bx + u + inset, by + inset, bw - 2 * u - 2 * inset, bh - 2 * inset);
+    ctx.fillRect(bx + inset, by + u + inset, bw - 2 * inset, bh - 2 * u - 2 * inset);
+  };
+  stepRect(0, '#1B1920');
+  stepRect(u, '#FFFFFF');
+  ctx.fillStyle = '#1B1920';
+  ctx.fillRect(bx + u * 2, by + bh - u, u * 4, u);
+  ctx.fillRect(bx + u, by + bh, u * 3, u);
+  ctx.fillRect(bx, by + bh + u, u * 2, u);
+  ctx.fillStyle = '#FFFFFF';
+  ctx.fillRect(bx + u * 3, by + bh - u, u * 2, u);
+  ctx.fillRect(bx + u * 2, by + bh, u, u);
+  ctx.fillStyle = '#1B1920';
+  ctx.textBaseline = 'middle';
+  ctx.fillText(shown, bx + fs * 0.55, by + bh / 2 + 1);
+  ctx.restore();
+}
+
+function drawHero(now) {
+  if (hero.start === null) hero.start = now - (REDUCED ? 60000 : 0);
+  const t = (now - hero.start) / 1000;
+  const { ctx, dpr, W, H } = hero;
+  const { R, cx, cy } = heroLayout();
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  ctx.clearRect(0, 0, W, H);
+
+  if (hero.waveStart < 0 && t >= T.wave) triggerWave(REDUCED ? -100 : T.wave, 3, true);
+  if (!REDUCED && t > hero.nextIdle) triggerWave(t, 2, false);
+  if (!hero.infoShown && t > 0.9) { hero.infoShown = true; document.getElementById('info').classList.add('in'); }
+
+  const cr = R * easeOutBack(clamp01((t - T.circle) / 0.7));
+  if (cr > 0) { ctx.fillStyle = '#7bcde8'; ctx.beginPath(); ctx.arc(cx, cy, cr, 0, Math.PI * 2); ctx.fill(); }
+
+  const ringR = 1.13 * R, ringW = 0.035 * R;
+  const rp = clamp01((t - T.ring) / T.ringDur);
+  if (rp > 0) {
+    const ep = clamp01((t - T.ring) / (T.ringDur * 1.6));
+    if (ep < 1) {
+      ctx.strokeStyle = `rgba(55,135,196,${0.35 * (1 - ep)})`; ctx.lineWidth = ringW * 0.5;
+      ctx.beginPath(); ctx.arc(cx, cy, ringR * 1.35 * easeOutCubic(ep), 0, Math.PI * 2); ctx.stroke();
+    }
+    ctx.strokeStyle = '#3787c4'; ctx.lineWidth = ringW;
+    ctx.beginPath(); ctx.arc(cx, cy, Math.max(0.1, ringR * easeOutCubic(rp)), 0, Math.PI * 2); ctx.stroke();
+  }
+
+  const mp = clamp01((t - T.me) / T.meDur);
+  if (mp > 0 && cr > 0) {
+    const px = (1.75 * R) / ME_W;
+    const x0 = cx - 140 * px, y0 = cy + 1.04 * R - ME_H * px;
+    const sprite = mp < 1 ? dissolveSprite(mp) : meSprites[waveFrame(t)];
+    ctx.save();
+    ctx.beginPath(); ctx.arc(cx, cy, cr, 0, Math.PI * 2); ctx.clip();
+    ctx.imageSmoothingEnabled = false;
+    ctx.drawImage(sprite, x0, y0, ME_W * px, ME_H * px);
+    ctx.restore();
+  }
+
+  const fw = 0.28 * R, fh = fw * 2 / 3;
+  const D = ringR + ringW / 2 + 0.2 * R + fw / 2;
+  FLAG_ITEMS.forEach((f, i) => {
+    const t0 = T.flag0 + i * T.flagGap;
+    const p = clamp01((t - t0) / T.flagDur);
+    if (p <= 0) return;
+    const a = f.angle * Math.PI / 180, ca = Math.cos(a), sa = -Math.sin(a);
+    const d = lerp(ringR, D, easeOutBack(p));
+    const fx = cx + d * ca, fy = cy + d * sa, s = lerp(0.25, 1, easeOutCubic(p));
+    ctx.save();
+    ctx.globalAlpha = clamp01(p * 2.5);
+    ctx.fillStyle = '#3787c4';
+    const dots = 4, sz = Math.max(2, R * 0.018);
+    for (let k = 1; k <= dots; k++) {
+      const dd = lerp(ringR + ringW / 2, d - fw * 0.55 * s, k / (dots + 1));
+      ctx.fillRect(cx + dd * ca - sz / 2, cy + dd * sa - sz / 2, sz, sz);
+    }
+    FLAGS[f.name].draw(ctx, fx - (fw * s) / 2, fy - (fh * s) / 2, fw * s, fh * s);
+    ctx.restore();
+
+    const lp = clamp01((t - t0 - T.flagDur * 0.7) / 0.4);
+    if (lp > 0) {
+      const fs = Math.max(12, Math.round(R * 0.12));
+      ctx.save();
+      ctx.globalAlpha = lp;
+      ctx.fillStyle = '#1B1920';
+      ctx.font = `600 ${fs}px Figtree, "Segoe UI", system-ui, sans-serif`;
+      ctx.textAlign = 'right'; ctx.textBaseline = 'middle';
+      ctx.fillText(f.label, fx - fw / 2 - 0.08 * R - 8 * (1 - lp), fy + 1);
+      ctx.restore();
+    }
+  });
+
+  drawBubble(ctx, cx + 0.12 * R, cy - 0.5 * R, R, t);
+}
+
+// tap/click ME to wave again (no visible hint)
+hero.canvas.addEventListener('click', e => {
+  if (hero.start === null) return;
+  const r = hero.canvas.getBoundingClientRect();
+  const { R, cx, cy } = heroLayout();
+  if (Math.hypot(e.clientX - r.left - cx, e.clientY - r.top - cy) <= R * 1.2) triggerWave(heroTime(), 3, true);
+});
+
+/* =====================================================================
+   2. FIELD DEMOS
+   ===================================================================== */
+const field = { canvas: document.getElementById('fieldArt'), W: 0, H: 0, dpr: 1, mode: 'ai', visible: false, on: true };
+field.ctx = field.canvas.getContext('2d');
+
+function drawAI(ctx, W, H, t) {
+  ctx.fillStyle = '#FBFCFD'; ctx.fillRect(0, 0, W, H);
+  const layers = [3, 4, 4, 2], xs = [0.14, 0.38, 0.62, 0.86];
+  const nodes = layers.map((n, li) => Array.from({ length: n }, (_, k) => ({ x: xs[li] * W, y: H * (0.5 + (k - (n - 1) / 2) * 0.21) })));
+  const nr = Math.max(6, Math.min(W, H) * 0.04);
+  ctx.lineWidth = 1.5;
+  for (let li = 0; li < nodes.length - 1; li++) nodes[li].forEach((a, ai) => nodes[li + 1].forEach((b, bi) => {
+    ctx.strokeStyle = 'rgba(27,25,32,.14)';
+    ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
+    const ph = ((t * 0.55 - li * 0.33 + (ai * 7 + bi * 3) * 0.031) % 1 + 1) % 1;
+    if (ph < 0.33) {
+      const q = ph / 0.33, s = nr * 0.55;
+      ctx.fillStyle = '#3787c4';
+      ctx.fillRect(lerp(a.x, b.x, q) - s / 2, lerp(a.y, b.y, q) - s / 2, s, s);
+    }
+  }));
+  nodes.forEach((layer, li) => layer.forEach((n, k) => {
+    const glow = Math.sin(t * 3.4 - li * 2.1 + k);
+    ctx.fillStyle = glow > 0.7 ? '#7bcde8' : '#FFFFFF';
+    ctx.strokeStyle = '#1B1920'; ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.arc(n.x, n.y, nr, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+  }));
+}
+
+function sliceValue(nx, ny) {
+  // stylized axial brain slice -> 0 none, 1 white matter, 2 skull, 3 ventricles, 4 lesion, 5 cortex
+  const e = nx * nx / 0.62 + ny * ny / 0.8;
+  if (e > 1) return 0;
+  if (e > 0.84) return 2;
+  if (e > 0.62) return 5;
+  const bend = 0.16 - 0.8 * (ny + 0.08) * (ny + 0.08);
+  if (ny > -0.36 && ny < 0.2 && Math.abs(Math.abs(nx) - bend) < 0.05) return 3;
+  if (((nx - 0.36) ** 2 + (ny - 0.3) ** 2) < 0.006) return 4;
+  return 1;
+}
+function drawMI(ctx, W, H, t) {
+  ctx.fillStyle = '#000'; ctx.fillRect(0, 0, W, H);          // black, like a scanner display
+  const S = Math.min(W, H) * 0.42, cx = W / 2, cy = H / 2;
+  const cell = Math.max(4, Math.round(S / 16));
+  const sweep = ((t * 0.22) % 1.25), scanX = cx - S * 1.2 + sweep * 2.4 * S;
+  const colors = [null, '#7bcde8', '#FFFFFF', '#000000', '#F1AF90', '#3787c4'];
+  const n = Math.ceil(S * 1.1 / cell);
+  for (let y = cy - n * cell; y < cy + n * cell; y += cell) {
+    for (let x = cx - n * cell; x < cx + n * cell; x += cell) {
+      const v = sliceValue((x + cell / 2 - cx) / S, (y + cell / 2 - cy) / S);
+      if (!v) continue;
+      if (x + cell / 2 < scanX) {
+        ctx.fillStyle = colors[v];
+        ctx.fillRect(Math.round(x), Math.round(y), cell - 1, cell - 1);
+      } else {
+        ctx.fillStyle = 'rgba(123,205,232,.3)';
+        ctx.fillRect(x + cell / 2 - 1, y + cell / 2 - 1, 2, 2);
+      }
+    }
+  }
+  ctx.strokeStyle = 'rgba(255,255,255,.55)'; ctx.lineWidth = 1.5;
+  ctx.beginPath(); ctx.ellipse(cx, cy, S * Math.sqrt(0.62) + 2, S * Math.sqrt(0.8) + 2, 0, 0, Math.PI * 2); ctx.stroke();
+  if (sweep < 1.2) {
+    ctx.fillStyle = 'rgba(123,205,232,.18)'; ctx.fillRect(scanX - 14, cy - S * 1.05, 14, S * 2.1);
+    ctx.fillStyle = '#7bcde8'; ctx.fillRect(scanX - 1.5, cy - S * 1.05, 3, S * 2.1);
+  }
+}
+
+// TMS: figure-eight coil over the head, pulses induce an E-field hotspot in cortex
+function drawBEM(ctx, W, H, t) {
+  ctx.fillStyle = '#FBFCFD'; ctx.fillRect(0, 0, W, H);
+  const cx = W / 2, cy = H * 0.64, r = Math.min(W * 0.3, H * 0.32);
+  const period = 1.8, ph = (t % period) / period;
+  const pulse = ph < 0.5 ? Math.sin(ph / 0.5 * Math.PI) : 0;    // 0..1 while the coil fires
+
+  // head and brain (coronal view)
+  ctx.lineWidth = 2; ctx.strokeStyle = '#1B1920'; ctx.fillStyle = '#FFFFFF';
+  ctx.beginPath(); ctx.arc(cx, cy, r, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+  const br = r * 0.84;
+  for (const side of [-1, 1]) {                                // two hemispheres with gyri
+    ctx.beginPath();
+    for (let i = 0; i <= 90; i++) {
+      const a = -Math.PI / 2 + side * (i / 90) * Math.PI;
+      const rr = br * (1 + 0.022 * Math.sin(i * 0.83) + 0.014 * Math.sin(i * 1.9 + 1));
+      const x = cx + side * 3 + Math.cos(a) * rr * 0.98, y = cy + Math.sin(a) * rr * 0.9;
+      i ? ctx.lineTo(x, y) : ctx.moveTo(x, y);
+    }
+    ctx.closePath();
+    ctx.fillStyle = '#F6E4DB'; ctx.fill();
+    ctx.strokeStyle = '#1B1920'; ctx.lineWidth = 1.6; ctx.stroke();
+    ctx.strokeStyle = 'rgba(27,25,32,.35)'; ctx.lineWidth = 1.2;  // a few sulci
+    for (let k = 0; k < 4; k++) {
+      const a0 = -Math.PI / 2 + side * (0.3 + k * 0.6);
+      ctx.beginPath();
+      ctx.moveTo(cx + Math.cos(a0) * br * 0.93, cy + Math.sin(a0) * br * 0.83);
+      ctx.quadraticCurveTo(cx + Math.cos(a0 + side * .1) * br * 0.7, cy + Math.sin(a0 + side * .1) * br * 0.62,
+                           cx + Math.cos(a0 - side * .05) * br * 0.55, cy + Math.sin(a0 - side * .05) * br * 0.48);
+      ctx.stroke();
+    }
+  }
+
+  // induced E-field hotspot under the coil centre (pixel cells)
+  const hx = cx, hy = cy - br * 0.78, cell = Math.max(4, Math.round(r / 11));
+  if (pulse > 0.02) {
+    for (let y = hy - r * 0.5; y < hy + r * 0.6; y += cell) for (let x = hx - r * 0.7; x < hx + r * 0.7; x += cell) {
+      const dx = (x + cell / 2 - cx), dy = (y + cell / 2 - cy);
+      if (Math.hypot(dx / 0.98, dy / 0.9) > br * 0.98) continue;
+      const g = Math.exp(-((x + cell / 2 - hx) ** 2) / (r * r * 0.09) - ((y + cell / 2 - hy) ** 2) / (r * r * 0.05)) * pulse;
+      if (g < 0.15) continue;
+      ctx.fillStyle = g > 0.65 ? 'rgba(218,37,29,.85)' : g > 0.4 ? 'rgba(241,175,144,.95)' : 'rgba(123,205,232,.8)';
+      ctx.fillRect(Math.round(x), Math.round(y), cell - 1, cell - 1);
+    }
+  }
+
+  // magnetic field lines into the head
+  if (pulse > 0.02) {
+    ctx.strokeStyle = `rgba(55,135,196,${0.7 * pulse})`; ctx.lineWidth = 1.5; ctx.setLineDash([4, 4]);
+    ctx.lineDashOffset = -t * 30;
+    for (const k of [-1, 0, 1]) {
+      ctx.beginPath(); ctx.moveTo(cx + k * r * 0.12, cy - r - r * 0.16);
+      ctx.quadraticCurveTo(cx + k * r * 0.25, cy - r * 0.75, cx + k * r * 0.18, cy - r * 0.45);
+      ctx.stroke();
+    }
+    ctx.setLineDash([]);
+  }
+
+  // figure-eight coil (two flat windings, seen slightly from above)
+  const coy = cy - r - r * 0.2, wrx = r * 0.42, wry = r * 0.13;
+  ctx.strokeStyle = '#3787c4'; ctx.lineWidth = 7;               // handle
+  ctx.beginPath(); ctx.moveTo(cx, coy - wry * 0.4); ctx.lineTo(cx + r * 0.1, coy - r * 0.5); ctx.stroke();
+  for (const side of [-1, 1]) {
+    const wx = cx + side * wrx;
+    for (let k = 0; k < 3; k++) {
+      ctx.strokeStyle = pulse > 0.3 ? '#3787c4' : '#1B1920';
+      ctx.lineWidth = 2;
+      ctx.beginPath(); ctx.ellipse(wx, coy, wrx * (1 - k * 0.22), wry * (1 - k * 0.22), 0, 0, Math.PI * 2); ctx.stroke();
+    }
+    // current markers run in opposite directions in the two wings
+    if (pulse > 0.05) {
+      for (let m = 0; m < 3; m++) {
+        const a = side * t * 4 + m * 2.09;
+        ctx.fillStyle = '#F1AF90';
+        ctx.fillRect(wx + Math.cos(a) * wrx - 3, coy + Math.sin(a) * wry - 3, 6, 6);
+      }
+    }
+  }
+
+  // biphasic pulse trace
+  const bx = W * 0.05, by = H * 0.14, bw = W * 0.24;
+  ctx.strokeStyle = '#1B1920'; ctx.lineWidth = 1.5; ctx.beginPath();
+  for (let i = 0; i <= 40; i++) {
+    const u = i / 40, y = by - (u > 0.05 && u < 0.45 ? Math.sin((u - 0.05) / 0.4 * Math.PI * 2) * H * 0.06 : 0);
+    i ? ctx.lineTo(bx + u * bw, y) : ctx.moveTo(bx + u * bw, y);
+  }
+  ctx.stroke();
+  ctx.fillStyle = '#3787c4'; ctx.fillRect(bx + ph * bw - 1.5, by - H * 0.08, 3, H * 0.16);
+}
+
+function drawField(now) {
+  const t = now / 1000;
+  const { ctx, dpr, W, H } = field;
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  ctx.clearRect(0, 0, W, H);
+  ({ ai: drawAI, mi: drawMI, bem: drawBEM })[field.mode](ctx, W, H, REDUCED ? 2.6 : t);
+}
+
+const demoToggle = document.getElementById('demoToggle');
+demoToggle.addEventListener('change', () => {
+  field.on = demoToggle.checked;
+  document.getElementById('fieldBox').classList.toggle('no-demo', !field.on);
+  if (field.on) requestAnimationFrame(() => fitCanvas(field.canvas, field));
+});
+
+/* =====================================================================
+   TABS
+   ===================================================================== */
+function setupTabs(list, onChange) {
+  const tabs = [...list.querySelectorAll('[role="tab"]')];
+  const select = (tab, focus) => {
+    tabs.forEach(b => {
+      const on = b === tab;
+      b.setAttribute('aria-selected', on);
+      b.tabIndex = on ? 0 : -1;
+      const panel = document.getElementById(b.getAttribute('aria-controls'));
+      panel.hidden = !on;
+      if (on) { panel.classList.remove('enter'); void panel.offsetWidth; panel.classList.add('enter'); }
+    });
+    if (focus) tab.focus();
+    onChange && onChange(tab);
+  };
+  tabs.forEach((b, i) => {
+    b.addEventListener('click', () => select(b));
+    b.addEventListener('keydown', e => {
+      const d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+      if (d) { e.preventDefault(); select(tabs[(i + d + tabs.length) % tabs.length], true); }
+    });
+  });
+}
+setupTabs(document.getElementById('fieldTabs'), tab => { field.mode = tab.dataset.art; });
+document.querySelectorAll('[data-seg]').forEach(s => setupTabs(s));
+document.querySelectorAll('canvas[data-flag]').forEach(c => renderFlag(c, c.dataset.flag, +c.dataset.w));
+
+/* =====================================================================
+   FOOTER MINI GAME: pixel-art cat
+   Each frame the cat is drawn with simple filled shapes on a tiny canvas
+   (1 unit = 1 pixel), snapped to a 6-color palette, outlined, then
+   scaled up without smoothing. Tap play = jump, hold = charge a longer jump.
+   ===================================================================== */
+const cat = { canvas: document.getElementById('catCanvas'), W: 0, H: 0, dpr: 1, visible: false,
+  x: 60, dir: 1, speed: 40, step: 0, last: null,
+  crouch: 0, charging: false, chargeStart: 0,
+  jump: null,          // { start, dur, dist, height }
+  land: -1, turnAfterLanding: false,
+  hurt: null };        // { start } while knocked over by the button
+cat.ctx = cat.canvas.getContext('2d');
+
+const PIX = 2;                                      // css px per sprite pixel
+const SPR_W = 46, SPR_H = 32, OX = 23, OY = 28;      // sprite canvas and ground origin
+const CAT_COLORS = {
+  ink:   [27, 25, 32],
+  body:  [141, 147, 155],
+  dark:  [92, 98, 106],
+  light: [226, 229, 232],
+  pink:  [232, 150, 150],
+  tear:  [55, 135, 196],
+};
+const CAT_LIST = Object.values(CAT_COLORS);
+const css = c => `rgb(${c[0]},${c[1]},${c[2]})`;
+const spr = document.createElement('canvas');
+spr.width = SPR_W; spr.height = SPR_H;
+const sctx = spr.getContext('2d', { willReadFrequently: true });
+
+function leg(c, color, pts, w) {
+  c.strokeStyle = color; c.lineWidth = w; c.lineCap = 'round'; c.lineJoin = 'round';
+  c.beginPath(); c.moveTo(pts[0][0], pts[0][1]);
+  for (let i = 1; i < pts.length; i++) c.lineTo(pts[i][0], pts[i][1]);
+  c.stroke();
+}
+function ellipse(c, color, x, y, rx, ry) { c.fillStyle = color; c.beginPath(); c.ellipse(x, y, rx, ry, 0, 0, Math.PI * 2); c.fill(); }
+function poly(c, color, pts) { c.fillStyle = color; c.beginPath(); pts.forEach((p, i) => i ? c.lineTo(p[0], p[1]) : c.moveTo(p[0], p[1])); c.closePath(); c.fill(); }
+
+// Side view, facing right, feet at y = 0. pose: step, crouch (0..1), air (0..1), tilt (rad), t
+function drawCatShapes(c, pose) {
+  const B = css(CAT_COLORS.body), D = css(CAT_COLORS.dark), L = css(CAT_COLORS.light), P = css(CAT_COLORS.pink), K = css(CAT_COLORS.ink);
+  const low = pose.crouch * 3.2, air = pose.air, flip = pose.flip || 0, tailAir = Math.max(air, flip);
+  const walk = (1 - air) * (1 - pose.crouch);
+  const sw = Math.sin(pose.step) * 2.6 * walk, sw2 = Math.sin(pose.step + Math.PI) * 2.6 * walk;
+  const bodyY = -10.5 + low;
+  const hip = [-6, bodyY + 1.5], sh = [6, bodyY + 1.8];
+  // leg end points: walking, or stretched out in the air
+  const backFoot = (s) => [lerp(hip[0] - 0.5 + s, hip[0] - 7, air), lerp(0, hip[1] + 4, air)];
+  const backHock = (s) => [lerp(hip[0] - 2.4 + s * 0.4, hip[0] - 4, air), lerp(-3 + low * 0.3, hip[1] + 2.5, air)];
+  const frontFoot = (s) => [lerp(sh[0] + 0.5 + s, sh[0] + 7, air), lerp(0, sh[1] + 3.5, air)];
+
+  const dropY = pose.dropY || 0;
+  c.save();
+  c.translate(0, bodyY + dropY); c.rotate(pose.tilt); c.translate(0, -bodyY);
+
+  // far legs (darker so they read as behind the body)
+  leg(c, D, [hip, backHock(sw2), backFoot(sw2)], 2.2);
+  leg(c, D, [sh, frontFoot(sw2)], 2);
+  // tail: curls up while walking, streams back in a leap, twitches while crouching
+  const tw = Math.sin(pose.t * 2.2) * 1.2 + (pose.crouch > 0.3 ? Math.sin(pose.t * 18) * 0.8 : 0);
+  c.strokeStyle = B; c.lineWidth = 2.3; c.lineCap = 'round';
+  c.beginPath(); c.moveTo(-9, bodyY - 1);
+  c.bezierCurveTo(lerp(-14, -15, tailAir), lerp(bodyY - 1, bodyY - 1, tailAir),
+                  lerp(-16 + tw, -19, tailAir), lerp(bodyY - 8, bodyY - 2, tailAir),
+                  lerp(-13.5 + tw, -21, tailAir), lerp(bodyY - 11, bodyY - 4, tailAir));
+  c.stroke();
+  // body: torso, haunch, chest
+  ellipse(c, B, 0, bodyY, 9.2, 3.9);
+  ellipse(c, B, -5.2, bodyY + 0.3, 4.4, 4.3);
+  ellipse(c, B, 5.4, bodyY + 0.2, 3.7, 3.9);
+  // neck and head (head dips forward when crouching)
+  // when knocked over (flip), the head tucks down to body level and the ears flatten
+  const hx = 10 + pose.crouch * 1.2, hy = lerp(bodyY - 4.6 + pose.crouch * 2.2, bodyY + 0.8, flip);
+  const ear = lerp(1, 0.55, flip);
+  poly(c, B, [[4.5, bodyY - 2.5], [hx - 2.5, hy - 1.5], [hx + 1.5, hy + 2.2], [7.5, bodyY + 2.5]]);
+  ellipse(c, B, hx, hy, 3.6, 3.3);
+  ellipse(c, B, hx + 2.9, hy + 0.9, 1.9, 1.5);                     // muzzle
+  poly(c, B, [[hx - 3.1, hy - 1.4], [hx - 2.4, hy - 1.4 - 4.8 * ear], [hx - 0.2, hy - 2.8]]);   // ears
+  poly(c, B, [[hx + 0.2, hy - 2.9], [hx + 2.2, hy - 1.4 - 4.9 * ear], [hx + 2.9, hy - 1.3]]);
+  // near legs
+  leg(c, B, [hip, backHock(sw), backFoot(sw)], 2.4);
+  leg(c, B, [sh, frontFoot(sw)], 2.1);
+
+  // eye only; everything else is left unfilled (squeezed shut while crying)
+  c.fillStyle = K; c.fillRect(hx + 0.9, hy - 0.9, 1.05, pose.blink || pose.cry ? 0.6 : 1.1);
+  c.restore();
+
+  // tears squirt from the eye in arcs
+  if (pose.cry) {
+    const ex = hx + 1.4, ey = hy - 0.4, ca = Math.cos(pose.tilt), sa = Math.sin(pose.tilt);
+    const wx = ca * ex - sa * (ey - bodyY), wy = bodyY + dropY + sa * ex + ca * (ey - bodyY);
+    c.fillStyle = css(CAT_COLORS.tear);
+    for (let k = 0; k < 4; k++) {
+      const ph = (pose.t * 1.8 + k / 4) % 1, side = k % 2 ? 1 : -1;
+      c.fillRect(wx + side * ph * 6 - 0.6, wy - 3 * ph + 8 * ph * ph - 0.6, 1.2, 1.4);
+    }
+  }
+}
+
+function catSprite(pose, dir) {
+  sctx.setTransform(1, 0, 0, 1, 0, 0);
+  sctx.clearRect(0, 0, SPR_W, SPR_H);
+  sctx.setTransform(dir, 0, 0, 1, OX, OY);
+  drawCatShapes(sctx, pose);
+  const img = sctx.getImageData(0, 0, SPR_W, SPR_H), d = img.data;
+  // classify each pixel: 0 empty, 1 far legs, 2 near body, 3 eye
+  const cls = new Uint8Array(SPR_W * SPR_H);
+  const ref = [[1, CAT_COLORS.dark], [2, CAT_COLORS.body], [3, CAT_COLORS.ink], [4, CAT_COLORS.tear]];
+  for (let i = 0, p = 0; i < d.length; i += 4, p++) {
+    if (d[i + 3] < 110) continue;
+    let best = 0, bd = 1e9;
+    for (const [k, c] of ref) {
+      const dd = (c[0] - d[i]) ** 2 + (c[1] - d[i + 1]) ** 2 + (c[2] - d[i + 2]) ** 2;
+      if (dd < bd) { bd = dd; best = k; }
+    }
+    cls[p] = best;
+  }
+  // outline only: around the whole silhouette, between far legs and the body, plus the eye
+  const at = (x, y) => (x < 0 || y < 0 || x >= SPR_W || y >= SPR_H) ? 0 : cls[y * SPR_W + x];
+  for (let y = 0; y < SPR_H; y++) for (let x = 0; x < SPR_W; x++) {
+    const c = at(x, y), n = [at(x - 1, y), at(x + 1, y), at(x, y - 1), at(x, y + 1)];
+    const ink = c === 3 || (c === 0 && n.some(v => v > 0 && v < 4)) || (c === 1 && n.some(v => v === 2 || v === 3));
+    const i = (y * SPR_W + x) * 4;
+    if (c === 4) { d[i] = 55; d[i + 1] = 135; d[i + 2] = 196; d[i + 3] = 255; continue; }
+    d[i] = 27; d[i + 1] = 25; d[i + 2] = 32; d[i + 3] = ink ? 255 : 0;
+  }
+  sctx.putImageData(img, 0, 0);
+  return spr;
+}
+
+/* ---------- controls: press = start charging, release = jump ---------- */
+const MAX_CHARGE = 1.1;   // seconds of holding for a full-power jump
+const catBtn = document.getElementById('catBtn');
+const nowS = () => performance.now() / 1000;
+function chargeStart() {
+  if (cat.jump || cat.charging || cat.hurt) return;
+  cat.charging = true; cat.chargeStart = nowS();
+  catBtn.classList.add('charging');
+}
+function chargeRelease() {
+  if (!cat.charging) return;
+  cat.charging = false; catBtn.classList.remove('charging');
+  const p = clamp01((nowS() - cat.chargeStart) / MAX_CHARGE);
+  cat.jump = { start: nowS(), dur: 0.5 + 0.45 * p, dist: 45 + 230 * p, power: p };
+}
+catBtn.addEventListener('pointerdown', e => { e.preventDefault(); catBtn.setPointerCapture && catBtn.setPointerCapture(e.pointerId); chargeStart(); });
+catBtn.addEventListener('pointerup', chargeRelease);
+catBtn.addEventListener('pointercancel', chargeRelease);
+catBtn.addEventListener('lostpointercapture', chargeRelease);
+catBtn.addEventListener('contextmenu', e => e.preventDefault());
+catBtn.addEventListener('keydown', e => { if ((e.key === ' ' || e.key === 'Enter') && !e.repeat) { e.preventDefault(); chargeStart(); } });
+catBtn.addEventListener('keyup', e => { if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); chargeRelease(); } });
+
+function drawCatScene(now) {
+  const t = now / 1000;
+  const dt = cat.last === null ? 0 : Math.min(0.05, t - cat.last);
+  cat.last = t;
+  const { ctx, dpr, W, H } = cat;
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  ctx.clearRect(0, 0, W, H);
+  const ground = H - 24, gap = 15, mid = W / 2, margin = 44;
+  ctx.fillStyle = '#1B1920';
+  ctx.fillRect(0, ground - 1, mid - gap, 2);
+  ctx.fillRect(mid + gap, ground - 1, W - mid - gap, 2);
+
+  // highest point that keeps the whole cat inside the footer
+  const maxLift = Math.max(12, ground - (OY - 2) * PIX - 4);
+  let lift = 0, air = 0, tilt = 0;
+  const targetCrouch = cat.charging ? 0.35 + 0.65 * clamp01((t - cat.chargeStart) / MAX_CHARGE) : (t < cat.land ? 0.6 : 0);
+  cat.crouch += (targetCrouch - cat.crouch) * Math.min(1, dt * 14);
+
+  // bumping into the play button: knocked over, cries, gets up, walks the other way
+  const BTN_R = 12, NOSE = 16 * PIX, TAIL = 11 * PIX;
+  const hitsButton = () => {
+    const a = cat.x - (cat.dir > 0 ? TAIL : NOSE), b = cat.x + (cat.dir > 0 ? NOSE : TAIL);
+    return b > mid - BTN_R && a < mid + BTN_R;
+  };
+  const startHurt = () => {
+    cat.hurt = { start: t };
+    cat.x = mid - cat.dir * (BTN_R + NOSE + 1);
+    cat.turnAfterLanding = false;
+  };
+  let hurtPose = null;
+
+  if (cat.hurt) {
+    const a = t - cat.hurt.start, DUR = 2.7;
+    if (a >= DUR) { cat.hurt = null; cat.dir *= -1; cat.land = t + 0.1; }
+    else {
+      if (a < 0.2) { cat.x -= cat.dir * 80 * dt; lift = Math.sin(a / 0.2 * Math.PI) * 7; }
+      const fall = clamp01((a - 0.1) / 0.3), rise = clamp01((a - 2.15) / 0.45);
+      const k = easeInOut(fall) * (1 - easeInOut(rise));
+      const crying = a > 0.45 && a < 2.15;
+      if (rise > 0 && rise < 1) lift = Math.sin(rise * Math.PI) * 10;
+      // flipped onto its back, legs kicking while it cries
+      hurtPose = { tilt: -Math.PI * k, dropY: 6.6 * k + (crying && Math.sin(t * 16) > 0 ? 0.6 : 0), air: 0, flip: k, cry: crying,
+                   step: cat.step + (crying ? Math.sin(t * 13) * 1.3 : 0) };
+    }
+  } else if (cat.jump) {
+    const j = cat.jump, p = (t - j.start) / j.dur;
+    if (p >= 1) {
+      cat.jump = null; cat.land = t + 0.14;
+      if (cat.turnAfterLanding) { cat.dir *= -1; cat.turnAfterLanding = false; }
+      if (hitsButton()) startHurt();              // landed on the button
+    } else {
+      lift = 4 * p * (1 - p) * maxLift * (0.45 + 0.55 * j.power);
+      air = Math.min(1, Math.sin(Math.PI * p) * 1.6);
+      tilt = lerp(-0.28, 0.32, p) * air;
+      cat.x += cat.dir * (j.dist / j.dur) * dt;
+      if (cat.x > W - margin || cat.x < margin) { cat.x = Math.min(W - margin, Math.max(margin, cat.x)); cat.turnAfterLanding = true; }
+    }
+  } else if (!cat.charging && t >= cat.land && !REDUCED) {
+    cat.x += cat.dir * cat.speed * dt;
+    cat.step += dt * 8;
+    if (cat.x > W - margin) { cat.x = W - margin; cat.dir = -1; }
+    if (cat.x < margin) { cat.x = margin; cat.dir = 1; }
+    if (hitsButton()) startHurt();                // walked into the button
+  }
+
+  // charge meter above the button while holding
+  if (cat.charging) {
+    const p = clamp01((t - cat.chargeStart) / MAX_CHARGE), n = 6, bw = 6, bg = 2;
+    const x0 = Math.round(mid - (n * bw + (n - 1) * bg) / 2), y0 = ground - 24;
+    for (let i = 0; i < n; i++) {
+      ctx.fillStyle = (i + 1) / n <= p + 0.001 ? '#3787c4' : '#DCE6EC';
+      ctx.fillRect(x0 + i * (bw + bg), y0, bw, 5);
+    }
+  }
+
+  const blink = (t % 4.2) < 0.12;
+  const pose = Object.assign({ step: cat.step, crouch: cat.crouch, air, tilt, t, blink }, hurtPose || {});
+  const sprite = catSprite(pose, cat.dir);
+  ctx.imageSmoothingEnabled = false;
+  ctx.drawImage(sprite, Math.round(cat.x - OX * PIX), Math.round(ground + 1 - lift - OY * PIX), SPR_W * PIX, SPR_H * PIX);
+}
+
+/* =====================================================================
+   SCROLL TRIGGERS, SIZING, MAIN LOOP
+   ===================================================================== */
+const revealIO = new IntersectionObserver(entries => entries.forEach(e => {
+  if (e.isIntersecting) { e.target.classList.add('in'); revealIO.unobserve(e.target); }
+}), { threshold: 0.15 });
+document.querySelectorAll('.reveal').forEach(el => revealIO.observe(el));
+
+const visIO = new IntersectionObserver(entries => entries.forEach(e => {
+  if (e.target === hero.canvas) {
+    // coming back to the overview after scrolling away: wave hello again
+    if (e.isIntersecting && hero.leftOnce && hero.start !== null) { triggerWave(heroTime(), 3, true); hero.leftOnce = false; }
+    if (!e.isIntersecting && hero.start !== null) hero.leftOnce = true;
+    hero.visible = e.isIntersecting;
+  }
+  if (e.target === field.canvas) field.visible = e.isIntersecting;
+  if (e.target === cat.canvas) { cat.visible = e.isIntersecting; cat.last = null; }
+}), { threshold: 0.35 });
+[hero.canvas, field.canvas, cat.canvas].forEach(c => visIO.observe(c));
+
+const navLinks = [...document.querySelectorAll('nav ul a')];
+const navIO = new IntersectionObserver(entries => entries.forEach(e => {
+  if (e.isIntersecting) navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id));
+}), { rootMargin: '-45% 0px -50% 0px' });
+document.querySelectorAll('main section').forEach(s => navIO.observe(s));
+
+const ro = new ResizeObserver(() => { fitCanvas(hero.canvas, hero); fitCanvas(field.canvas, field); fitCanvas(cat.canvas, cat); });
+[hero.canvas, field.canvas, cat.canvas].forEach(c => ro.observe(c));
+fitCanvas(hero.canvas, hero); fitCanvas(field.canvas, field); fitCanvas(cat.canvas, cat);
+
+function loop(now) {
+  if (hero.visible) drawHero(now);
+  if (field.visible && field.on) drawField(now);
+  if (cat.visible) drawCatScene(now);
+  requestAnimationFrame(loop);
+}
+requestAnimationFrame(loop);
+</script>
+</body>
+</html>
