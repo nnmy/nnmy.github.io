@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>Phòng tai biến</title>
+<style>
+@page{size:A4;margin:0}
+html{font-size:11pt}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Segoe UI",Arial,sans-serif;color:#111;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.poster{width:210mm;height:297mm;display:flex;flex-direction:column;background:#fff;overflow:hidden}
+.hd{background:#c1121f;color:#fff;text-align:center;padding:7mm 8mm 5mm}
+.hd h1{margin:0;font-size:3.1rem;line-height:1;font-weight:900;letter-spacing:.5px}
+.hd .sub{margin:2mm 0 0;font-size:1.25rem;font-weight:700;color:#ffd60a}
+.hd .tiny{margin:1mm 0 0;font-size:.95rem}
+.sec{padding:4mm 8mm 0}
+.sec h2{margin:0 0 2mm;font-size:1.6rem;font-weight:900;text-align:center;line-height:1.1}
+.cards{display:flex;gap:4mm}
+.card{flex:1;border:1.2mm solid #111;border-radius:4mm;text-align:center;padding:2mm 2mm 3mm;background:#fff7d6}
+.card svg{width:22mm;height:22mm}
+.card b{display:block;font-size:2.2rem;line-height:1;color:#c1121f;font-weight:900}
+.card span{display:block;font-size:1.1rem;font-weight:700;line-height:1.15;margin-top:1mm}
+.call{margin:3mm 8mm 0;background:#ffd60a;border:1.2mm solid #111;border-radius:4mm;text-align:center;padding:2mm 3mm}
+.call b{font-size:2.6rem;font-weight:900;line-height:1}
+.call span{display:block;font-size:1.05rem;font-weight:700}
+.two{display:flex;gap:5mm;padding:4mm 8mm 0}
+.col{flex:1;border-radius:4mm;padding:3mm 4mm}
+.warn{background:#eaf3de;border:1mm solid #1b7f3b}
+.stop{background:#fde8e8;border:1mm solid #c1121f}
+.col h3{margin:0 0 1.5mm;font-size:1.25rem;font-weight:900;line-height:1.1}
+.warn h3{color:#1b7f3b}.stop h3{color:#c1121f}
+.col ul{margin:0;padding-left:5mm}
+.col li{font-size:1.08rem;font-weight:600;line-height:1.2;margin-bottom:1.2mm}
+.col .note{font-size:.95rem;font-weight:700;margin-top:1mm}
+.steps{display:flex;gap:3mm}
+.step{flex:1;background:#111;color:#fff;border-radius:4mm;padding:2.5mm 3mm;text-align:center}
+.step .n{display:inline-block;width:8mm;height:8mm;line-height:8mm;border-radius:50%;background:#ffd60a;color:#111;font-weight:900;font-size:1.2rem}
+.step p{margin:1mm 0 0;font-size:1.05rem;font-weight:700;line-height:1.15}
+.night{margin:2.5mm 0 0;text-align:center;background:#1d3557;color:#fff;border-radius:4mm;padding:2mm 3mm;font-size:1.1rem;font-weight:700}
+.prev{display:flex;gap:3mm}
+.prev div{flex:1;background:#e7f1fb;border:1mm solid #185fa5;border-radius:4mm;padding:2mm;text-align:center;font-size:1.02rem;font-weight:700;line-height:1.15}
+.ft{margin-top:auto;border-top:1.2mm solid #c1121f;padding:3mm 8mm 4mm;background:#f6f6f6}
+.ft .line{font-size:1.15rem;}
+.ft .small{font-size:.8rem;color:#444;margin-top:1.5mm;line-height:1.25}
+</style>
+</head>
+<body>
+<div class="poster">
+
+  <div class="hd">
+    <h1>ĐỘT QUỴ: GHI CHÚ NHANH</h1>
+    <p class="sub">Mỗi phút trôi qua, não mất thêm tế bào</p>
+    <p class="tiny">Đột quỵ (tai biến mạch máu não) là khi mạch máu nuôi não bị nghẽn hoặc bị vỡ</p>
+  </div>
+
+  <div class="sec">
+    <h2>THẤY MỘT DẤU HIỆU LÀ BỆNH SẮP NẶNG</h2>
+    <div class="cards">
+      <div class="card">
+        <svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="26" fill="#fff" stroke="#111" stroke-width="3"/><circle cx="23" cy="26" r="3"/><circle cx="41" cy="26" r="3"/><path d="M20 42 Q32 40 44 50" fill="none" stroke="#c1121f" stroke-width="4" stroke-linecap="round"/></svg>
+        <b>MẶT</b><span>Méo, miệng lệch<br>Kêu cười thì lệch một bên</span>
+      </div>
+      <div class="card">
+        <svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="12" r="7" fill="#fff" stroke="#111" stroke-width="3"/><path d="M32 19V42M32 42L22 60M32 42L42 60M32 26L12 12" fill="none" stroke="#111" stroke-width="4" stroke-linecap="round"/><path d="M32 26L50 44" fill="none" stroke="#c1121f" stroke-width="4" stroke-linecap="round"/></svg>
+        <b>TAY</b><span>Yếu, tê, không nhấc lên được<br>(cả chân cũng vậy)</span>
+      </div>
+      <div class="card">
+        <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M8 10H56V42H30L18 56V42H8Z" fill="#fff" stroke="#111" stroke-width="3" stroke-linejoin="round"/><circle cx="22" cy="26" r="3.5" fill="#c1121f"/><circle cx="32" cy="26" r="3.5" fill="#c1121f"/><circle cx="42" cy="26" r="3.5" fill="#c1121f"/></svg>
+        <b>NÓI</b><span>Ngọng, hoặc không nói được</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="call">
+    <b>KÊU XE CẤP CỨU NGAY</b>
+    <span>Nói rõ: "nghi đột quỵ" · Đừng chờ thêm · Đừng tự chở bằng xe máy</span>
+  </div>
+
+  <div class="two">
+    <div class="col warn">
+      <h3>DẤU HIỆU BÁO TRƯỚC ÍT NGÀY<br>(có khi chỉ vài phút rồi hết)</h3>
+      <ul>
+        <li>Chóng mặt, đi loạng choạng</li>
+        <li>Muốn ói, không rõ vì sao</li>
+        <li>Đau đầu dữ dội</li>
+        <li>Nhìn đôi, mờ một bên mắt</li>
+        <li>Tê hoặc yếu thoáng qua</li>
+      </ul>
+      <div class="note">Hết rồi vẫn nguy hiểm: đi bệnh viện sớm!</div>
+    </div>
+    <div class="col stop">
+      <h3>TUYỆT ĐỐI KHÔNG</h3>
+      <ul>
+        <li>Không cho ăn, uống, uống thuốc</li>
+        <li>Không cạo gió hay chích đầu ngón tay</li>
+        <li>Không chờ tới sáng, không "ngủ thêm xem sao"</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="sec">
+    <h2>TRONG LÚC CHỜ XE CẤP CỨU</h2>
+    <div class="steps">
+      <div class="step"><span class="n">1</span><p>Ghi giờ bắt đầu phát bệnh để bác sĩ biết</p></div>
+      <div class="step"><span class="n">2</span><p>Cho nằm nghỉ, ói thì nằm nghiêng</p></div>
+      <div class="step"><span class="n">3</span><p>Mang theo thuốc đang uống để bác sĩ coi</p></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <h2>PHÒNG NGỪA MỖI NGÀY</h2>
+    <div class="prev">
+      <div>Uống thuốc huyết áp đều đặn</div>
+      <div>Ăn nhạt, ít muối, ít mỡ</div>
+      <div>Bỏ thuốc lá, rượu bia</div>
+      <div>Đi bộ khoảng 30 phút/ngày</div>
+    </div>
+  </div>
+
+  <div class="ft">
+    <div class="line">BV gần nhà: <b>BV Đa khoa An Giang</b>  (60 Ung Văn Khiêm, LX-AG; Cấp cứu: 0296 3910 115)</div>
+    <div class="line">BV chuyên tai biến: <b>SIS Cần Thơ</b>  (397 Nguyễn Văn Cừ, An Bình-Ninh Kiều; Hotline: 1800 1115)</div>
+    <div class="small">Tài liệu này tham khảo từ y văn. Người có bệnh huyết áp, tiểu đường, bệnh tim cần khám định kỳ.</div>
+  </div>
+
+</div>
+</body>
+</html>
